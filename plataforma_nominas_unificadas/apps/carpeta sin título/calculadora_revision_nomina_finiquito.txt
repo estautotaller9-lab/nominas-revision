@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UGT · Revisión de nómina, IT y finiquito · v25</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root{
+  --rojo:#c8102e;--rojo2:#8f0b20;--oro:#f4c430;--tinta:#17202a;--gris:#667085;
+  --fondo:#f3f5f8;--card:#fff;--borde:#d9e0e8;--ok:#087a4b;--aviso:#a35a00;--mal:#b42318;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);font-family:Arial,Helvetica,sans-serif;color:var(--tinta)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{background:linear-gradient(135deg,var(--rojo),var(--rojo2));color:#fff;border-bottom:5px solid var(--oro)}
+.header-inner{max-width:1380px;margin:auto;padding:20px 18px;display:flex;gap:15px;align-items:center}
+.logo{width:62px;height:62px;border-radius:14px;background:#fff;color:var(--rojo);display:grid;place-items:center;font-weight:900;font-size:22px}
+h1{font-size:27px;margin:0}.sub{margin:6px 0 0;font-size:14px;opacity:.95}
+main{max-width:1380px;margin:auto;padding:16px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.btn{border:0;border-radius:9px;padding:10px 13px;font-weight:800}
+.primary{background:var(--rojo);color:#fff}.dark{background:#253344;color:#fff}.light{background:#fff;border:1px solid var(--borde)}
+.danger{background:#fff3f2;color:var(--mal);border:1px solid #f5c3bf}
+.layout{display:grid;grid-template-columns:400px minmax(0,1fr);gap:14px;align-items:start}
+.card{background:var(--card);border:1px solid var(--borde);border-radius:14px;box-shadow:0 8px 24px rgba(16,24,40,.06)}
+.pad{padding:15px}
+h2{font-size:19px;margin:0 0 12px}h3{font-size:16px;margin:0 0 10px}
+label{display:block;font-size:11px;font-weight:900;text-transform:uppercase;color:#344054;margin-bottom:5px}
+input,select,textarea{width:100%;border:1px solid #cfd6df;border-radius:8px;padding:8px 9px;background:#fff}
+textarea{min-height:170px;resize:vertical}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:9px}.full{grid-column:1/-1}
+.section{border-top:1px solid var(--borde);padding-top:13px;margin-top:13px}
+.upload{border:2px dashed #bcc5d1;border-radius:12px;padding:17px;text-align:center;background:#fafcff}
+.upload input{display:none}.upload strong{display:block;margin-bottom:4px}
+.status{margin-top:10px;border-radius:9px;padding:10px 11px;font-size:13px;font-weight:700;background:#fff7e6;color:#8a4b00;border:1px solid #fedf89}
+.status.ok{background:#ecfdf3;color:#067647;border-color:#abefc6}.status.bad{background:#fee4e2;color:#b42318;border-color:#fecdca}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--borde);padding:8px 8px 0;background:#fbfcfe;border-radius:14px 14px 0 0;overflow:auto}
+.tab{border:0;background:transparent;padding:11px 13px;font-weight:900;color:#667085;border-radius:8px 8px 0 0;white-space:nowrap}
+.tab.active{background:#fff;color:var(--rojo);box-shadow:inset 0 -3px 0 var(--rojo)}
+.view{display:none;padding:15px}.view.active{display:block}
+.note{border-left:4px solid var(--oro);background:#fff9df;padding:10px 12px;border-radius:0 8px 8px 0;font-size:13px;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border-bottom:1px solid #e8edf2;padding:7px;vertical-align:middle}
+th{background:#f7f9fc;color:#475467;font-size:11px;text-transform:uppercase;text-align:left}
+.num{text-align:right;white-space:nowrap}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:12px}
+.metric{border:1px solid var(--borde);border-radius:11px;padding:12px;background:#fff}.metric span{display:block;color:var(--gris);font-size:12px}.metric strong{font-size:21px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.box{border:1px solid var(--borde);border-radius:11px;padding:12px;background:#fbfcfe}
+.line{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid #e9edf2}.line:last-child{border-bottom:0}.line span{color:var(--gris)}
+.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:900}
+.b-ok{background:#dcfae6;color:var(--ok)}.b-warn{background:#fef0c7;color:var(--aviso)}.b-bad{background:#fee4e2;color:var(--mal)}
+.small{font-size:12px;color:var(--gris);line-height:1.4}
+.checks{display:flex;gap:12px;flex-wrap:wrap}.checks label{display:flex;align-items:center;gap:6px;text-transform:none;font-size:12px}.checks input{width:auto}
+@media(max-width:1000px){.layout,.grid2{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){main{padding:11px}.header-inner{padding:17px 12px}.form,.metrics{grid-template-columns:1fr}h1{font-size:22px}.logo{width:52px;height:52px}}
+@media print{header,.actions,.upload,.tabs,.no-print{display:none!important}body{background:#fff}.layout{display:block}.card{box-shadow:none;border:0}.view{display:block!important;padding:5px 0}}
+</style>
+
+<style>
+.checkcard{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid #d9d9d9;
+  border-radius:10px;
+  padding:10px 12px;
+  background:#fff;
+  cursor:pointer;
+  min-height:42px;
+}
+.checkcard:hover{background:#fff7f7;border-color:#c8102e}
+.checkcard input{width:18px;height:18px;accent-color:#c8102e}
+.checkcard span{font-weight:600}
+</style>
+
+<style>
+@media print{
+  body{background:#fff!important}
+  header,.tabs,.actions,.no-print{display:none!important}
+  .view{display:none!important}
+  #tab-manual{display:block!important}
+  #informeReclamacion{display:block!important;box-shadow:none!important;border:0!important}
+  .card,.box{box-shadow:none!important}
+  @page{size:A4;margin:14mm}
+}
+.report-title{text-align:center;margin:0 0 6px;font-size:22px}
+.report-subtitle{text-align:center;margin:0 0 18px;color:#555}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-bottom:16px}
+.report-item{border-bottom:1px solid #ddd;padding:5px 0}
+.report-section{margin-top:18px}
+.report-section h4{margin:0 0 8px;border-bottom:2px solid #c8102e;padding-bottom:5px}
+.report-total{font-size:18px;font-weight:700;padding:12px;border:2px solid #c8102e;border-radius:10px;margin-top:16px}
+.report-conclusion{padding:14px;border-radius:10px;margin-top:14px;background:#f7f7f7}
+.report-signatures{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:50px;text-align:center}
+.report-signatures div{border-top:1px solid #333;padding-top:6px}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="logo">UGT</div>
+    <div>
+      <h1>Revisión automática de nómina, IT y finiquito</h1>
+      <p class="sub">Lee nóminas antiguas y modernas, autorrellena domingos y genera informes detallados para reclamación</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="actions">
+    <button class="btn primary" onclick="revisarTodo();abrirTab('informe',document.querySelectorAll('.tab')[3],false)">Revisar nómina y finiquito</button>
+    <button class="btn dark" onclick="document.getElementById('pdf').click()">Subir nómina o finiquito</button>
+    <button class="btn light" onclick="analizarTexto()">Leer texto</button>
+    <button class="btn light" onclick="window.print()">Imprimir informe</button>
+    <button class="btn danger" onclick="nuevoCaso()">Nuevo caso</button>
+    <input id="pdf" type="file" accept="application/pdf" style="display:none" onchange="leerPDF(event)">
+  </div>
+
+  <section class="layout">
+    <aside class="card pad">
+      <h2>1. Documento y datos</h2>
+      <label class="upload" for="pdf">
+        <strong>Seleccionar PDF</strong>
+        <span class="small">Lee nóminas antiguas y nuevas de UTE e Integra. Compatible con Safari.</span>
+      </label>
+      <div id="estadoPDF" class="status">Pendiente de cargar un documento.</div>
+
+      <div class="section">
+        <label>Texto extraído</label>
+        <textarea id="texto"></textarea>
+      </div>
+
+      <div class="section">
+        <h3>Trabajador/a</h3>
+        <div class="form">
+          <div class="full"><label>Nombre</label><input id="trabajador"></div>
+          <div><label>NIF</label><input id="nif"></div>
+          <div><label>N.º Seguridad Social</label><input id="nss"></div>
+          <div><label>Categoría</label>
+            <select id="categoria">
+              <option value="LIMPIADOR-A">Limpiador/a</option>
+              <option value="PEON ESPECIALIZADO">Peón especializado</option>
+              <option value="ESPECIALISTA">Especialista</option>
+              <option value="ENCARGADO DE GRUPO">Encargado/a de grupo</option>
+            </select>
+          </div>
+          <div><label>Antigüedad</label><input id="antiguedadFecha" type="date"></div>
+          <div><label>Jornada %</label><input id="jornada" type="number" step="0.01" value="100"></div>
+          <div><label>Periodo desde</label><input id="periodoDesde" type="date"></div>
+          <div><label>Periodo hasta</label><input id="periodoHasta" type="date"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Empresa</h3>
+        <div class="form">
+          <div class="full"><label>Empresa</label><input id="empresa"></div>
+          <div><label>CIF</label><input id="cif"></div>
+          <div><label>CCC</label><input id="ccc"></div>
+          <div class="full"><label>Centro</label><input id="centro"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Parámetros del convenio (ajustables)</h3>
+        <div class="note" style="margin-bottom:9px">Estos valores se usan para calcular lo esperado. Corrígelos si no coinciden con el convenio vigente; se quedan guardados mientras no pulses "Nuevo caso".</div>
+        <div class="form">
+          <div><label>Tipo de trienio</label>
+            <select id="trienioPct">
+              <option value="6">6 %</option>
+              <option value="5">5 %</option>
+              <option value="4">4 %</option>
+            </select>
+          </div>
+          <div><label>Nocturnidad mensual 2026</label><input id="nocturnidadImporte" type="number" step="0.01" value="416.88"></div>
+          <div><label>Nivel carrera reconocido</label>
+            <select id="nivelCarrera">
+              <option value="0">Detectar por la nómina</option>
+              <option value="1">Nivel I · 82,13 €</option>
+              <option value="2">Nivel II · 155,60 €</option>
+              <option value="3">Nivel III · 234,33 €</option>
+              <option value="4">Nivel IV · 306,95 €</option>
+            </select>
+          </div>
+          <div><label>Peligrosidad</label>
+            <select id="tienePeligrosidad">
+              <option value="no">No la percibe</option>
+              <option value="si">Sí, condición más beneficiosa</option>
+            </select>
+          </div>
+          <div class="full"><label>Importe mensual de peligrosidad, solo si la percibe</label><input id="peligrosidadImporte" type="number" step="0.01" value="0"></div>
+        </div>
+        <p class="small">Carrera profesional 2026: Nivel I 82,13 €, Nivel II 155,60 €, Nivel III 234,33 € y Nivel IV 306,95 €. La peligrosidad no se aplica de forma general: únicamente se comprueba si la persona ya la venía percibiendo.</p>
+        <div class="section">
+          <h3>Casos reales verificados</h3>
+          <div class="small">
+            <div class="line"><span>Limpiadora · 3 trienios · Nivel I</span><strong>1.352,07 € + 243,37 € + 82,13 €</strong></div>
+            <div class="line"><span>Especialista · 9 trienios · Nivel IV</span><strong>1.469,43 € + 793,49 € + 306,95 €</strong></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="card">
+      <nav class="tabs no-print">
+        <button class="tab active" onclick="abrirTab('conceptos',this)">Conceptos leídos</button>
+        <button class="tab" onclick="abrirTab('nomina',this)">Nómina leída</button>
+        <button class="tab" onclick="abrirTab('finiquito',this)">Datos del finiquito</button>
+        <button class="tab" onclick="abrirTab('informe',this)">Informe final</button><button class="tab" onclick="abrirTab('manual',this)">Datos manuales</button>
+      </nav>
+
+      <div id="tab-conceptos" class="view active">
+        <div class="box">
+          <h3>Conceptos que quieres incluir en el cuadre</h3>
+          <p class="small">Marca o desmarca cada concepto antes de calcular. Lo que quites no se tendrá en cuenta en el resultado.</p>
+          <div class="form">
+            <label class="checkcard"><input id="incSalario" type="checkbox" checked> <span>Salario base</span></label>
+            <label class="checkcard"><input id="incAntiguedad" type="checkbox" checked> <span>Antigüedad</span></label>
+            <label class="checkcard"><input id="incCarrera" type="checkbox" checked> <span>Carrera profesional</span></label>
+            <label class="checkcard"><input id="incNocturnidad" type="checkbox" checked> <span>Nocturnidad</span></label>
+            <label class="checkcard"><input id="incPeligrosidad" type="checkbox"> <span>Peligrosidad</span></label>
+            <label class="checkcard"><input id="incDomingos" type="checkbox" checked> <span>Domingos</span></label>
+            <label class="checkcard"><input id="incFestivos" type="checkbox" checked> <span>Festivos</span></label>
+            <label class="checkcard"><input id="incPagaExtra" type="checkbox" checked> <span>Paga extra</span></label>
+            <label class="checkcard"><input id="incPrestacionIT" type="checkbox" checked> <span>Prestación IT</span></label>
+            <label class="checkcard"><input id="incComplementoIT" type="checkbox" checked> <span>Complemento IT</span></label>
+            <label class="checkcard"><input id="incVacaciones" type="checkbox" checked> <span>Vacaciones</span></label>
+            <label class="checkcard"><input id="incOtros" type="checkbox" checked> <span>Otros devengos</span></label>
+            <label class="checkcard"><input id="incIRPF" type="checkbox" checked> <span>IRPF</span></label>
+            <label class="checkcard"><input id="incSS" type="checkbox" checked> <span>Seguridad Social y MEI</span></label>
+            <label class="checkcard"><input id="incAnticipo" type="checkbox" checked> <span>Anticipos</span></label>
+            <label class="checkcard"><input id="incEmbargo" type="checkbox" checked> <span>Embargos</span></label>
+            <label class="checkcard"><input id="incPrestamo" type="checkbox" checked> <span>Préstamo empresa</span></label>
+          </div>
+          <div class="actions">
+            <button class="btn" type="button" onclick="marcarConceptos(true)">Marcar todos</button>
+            <button class="btn" type="button" onclick="marcarConceptos(false)">Quitar todos</button>
+            <button class="btn primary" type="button" onclick="revisarTodo()">Recalcular cuadre</button>
+          </div>
+        </div>
+        <div class="note">Así ha leído la app la tabla CÓDIGO / CONCEPTO / UDS / IMPORTE / DEVENGOS / DEDUCCIONES del PDF. "Cuadre" comprueba que Uds × Importe coincide con el Devengo (detecta errores de la asesoría). Si una fila sale mal, corrige el PDF de origen o revisa manualmente en la pestaña "Nómina leída".</div>
+        <div style="overflow:auto">
+          <table>
+            <thead><tr><th>Cód.</th><th>Concepto</th><th class="num">Uds</th><th class="num">Importe</th><th class="num">Devengo</th><th class="num">Deducción</th><th>Cuadre</th></tr></thead>
+            <tbody id="tablaConceptos"><tr><td colspan="7" class="small">Todavía no se ha leído ninguna nómina.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tab-nomina" class="view">
+        <div class="note">La aplicación compara salario base, antigüedad y conceptos salariales. Los importes pueden corregirse manualmente antes de revisar.</div>
+        <div style="overflow:auto">
+          <table>
+            <thead><tr><th>Concepto</th><th class="num">Leído</th><th class="num">Esperado</th><th class="num">Diferencia</th><th>Resultado</th></tr></thead>
+            <tbody id="revisionNomina"></tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <h3>Importes leídos</h3>
+          <div class="form">
+            <div><label>Salario base pagado</label><input id="salarioPagado" type="number" step="0.01"></div>
+            <div><label>Antigüedad pagada</label><input id="antiguedadPagada" type="number" step="0.01"></div>
+            <div><label>Carrera profesional</label><input id="carreraPagada" type="number" step="0.01"></div>
+            <div><label>Nocturnidad</label><input id="nocturnidadPagada" type="number" step="0.01"></div>
+            <div><label>Peligrosidad</label><input id="peligrosidadPagada" type="number" step="0.01"></div>
+            <div><label>Domingos y festivos</label><input id="domFestPagado" type="number" step="0.01"></div>
+            <div><label>Paga extra leída</label><input id="pagaExtraLeida" type="number" step="0.01"></div>
+            <div><label>Prestación IT leída</label><input id="prestacionITLeida" type="number" step="0.01"></div>
+            <div><label>Complemento IT leído</label><input id="complementoITLeido" type="number" step="0.01"></div>
+            <div><label>Total IT abonado</label><input id="totalITLeido" type="number" step="0.01" readonly></div>
+            <div><label>Inicio baja</label><input id="inicioBaja" type="date"></div>
+            <div><label>Fin baja</label><input id="finBaja" type="date"></div>
+            <div><label>IRPF retenido</label><input id="irpfRetenido" type="number" step="0.01"></div>
+            <div><label>Contingencias comunes</label><input id="ccRetenido" type="number" step="0.01"></div>
+            <div><label>Desempleo</label><input id="desempleoRetenido" type="number" step="0.01"></div>
+            <div><label>Formación profesional</label><input id="fpRetenido" type="number" step="0.01"></div>
+            <div><label>MEI</label><input id="meiRetenido" type="number" step="0.01"></div>
+            <div><label>Otros devengos</label><input id="otrosDevengos" type="number" step="0.01"></div>
+            <div><label>Total devengado nómina</label><input id="totalDevNomina" type="number" step="0.01"></div>
+            <div><label>Total deducciones nómina</label><input id="totalDedNomina" type="number" step="0.01"></div>
+            <div><label>Líquido nómina</label><input id="liquidoNomina" type="number" step="0.01"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-finiquito" class="view">
+        <div class="note">Introduce todos los datos con tranquilidad. La pantalla no cambiará hasta que pulses “Calcular finiquito”.</div><div class="small">La aplicación calcula siempre con jornada completa del 100 %.</div>
+        <div class="actions">
+          <button class="btn primary" type="button" onclick="revisarTodo()">Calcular finiquito sin cambiar de pantalla</button>
+        </div>
+        <div class="grid2">
+          <div class="box">
+            <h3>Contrato, categoría y vacaciones</h3>
+            <div class="form" style="margin-bottom:10px">
+              <div><label>Categoría para el cálculo</label>
+                <select id="categoriaFiniquito" onchange="this.dataset.manual='1'">
+                  <option value="LIMPIADOR-A">Limpiador/a</option>
+                  <option value="PEON ESPECIALIZADO">Peón especializado</option>
+                  <option value="ESPECIALISTA">Especialista</option>
+                  <option value="ENCARGADO DE GRUPO">Encargado/a de grupo</option>
+                </select>
+              </div>
+              <div><label>Jornada aplicada</label><input id="jornadaFiniquito" type="number" value="100" readonly></div>
+              <div><label>¿Tiene carrera profesional?</label>
+                <select id="aplicarCarrera">
+                  <option value="si">Sí</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div><label>Nivel de carrera</label>
+                <select id="nivelCarreraFiniquito">
+                  <option value="0">Sin nivel</option>
+                  <option value="1">Nivel I · 82,13 €</option>
+                  <option value="2">Nivel II · 155,60 €</option>
+                  <option value="3">Nivel III · 234,33 €</option>
+                  <option value="4">Nivel IV · 306,95 €</option>
+                </select>
+              </div>
+              <div><label>¿Tiene nocturnidad?</label>
+                <select id="aplicarNocturnidad">
+                  <option value="no">No</option>
+                  <option value="si">Sí</option>
+                </select>
+              </div>
+              <div><label>Nocturnidad mensual</label><input id="nocturnidadFiniquito" type="number" step="0.01" value="416.88"></div>
+              <div><label>¿Tiene peligrosidad?</label>
+                <select id="aplicarPeligrosidad">
+                  <option value="no">No</option>
+                  <option value="si">Sí</option>
+                </select>
+              </div>
+              <div><label>Peligrosidad mensual</label><input id="peligrosidadFiniquito" type="number" step="0.01" value="0"></div>
+            </div>
+            <div class="note">Puedes introducir las fechas manualmente aunque la nómina sea de otro mes. La app calculará el último mes hasta el día de finalización, las vacaciones generadas y las pagas proporcionales.</div>
+            <div class="form">
+              <div><label>Inicio del contrato</label><input id="inicioContrato" type="date"></div>
+              <div><label>Fin del contrato</label><input id="finContrato" type="date"></div>
+              <div><label>Días cobrados del último mes</label><input id="diasUltimoMes" type="number" step="0.01" readonly></div>
+              <div><label>Regla del último mes</label>
+                <select id="reglaUltimoMes">
+                  <option value="nomina30">Nómina mensual de 30 días</option>
+                  <option value="naturales">Días naturales reales</option>
+                </select>
+              </div>
+              <div><label>Vacaciones disfrutadas</label><input id="vacDisfrutadas" type="number" step="0.01" value="0"></div>
+              <div><label>Vacaciones ya pagadas</label><input id="vacPagadas" type="number" step="0.01" value="0"></div>
+              <div><label>Vacaciones generadas</label><input id="vacGeneradasVista" type="number" step="0.01" readonly></div>
+              <div><label>Vacaciones pendientes</label><input id="vacPendientesVista" type="number" step="0.01" readonly></div>
+              <div><label>Importe de vacaciones</label><input id="vacImporteVista" type="number" step="0.01" readonly></div>
+              <div><label>Bruto total del mes y finiquito</label><input id="brutoMesVista" type="number" step="0.01" readonly></div>
+            </div>
+            <div class="note">Se calculan automáticamente los días trabajados del último mes, vacaciones generadas y pendientes, pagas proporcionales, domingos, festivos, Seguridad Social y líquido. Debes indicar el IRPF y, cuando existan, los descuentos por anticipo, embargo o préstamo de empresa.</div><div class="small">En 2026 el MEI es el 0,15 %. En las nóminas modernas puede aparecer incluido dentro del 4,85 % de contingencias comunes: 4,70 % + 0,15 %. La app lo muestra separado y no lo duplica.</div>
+            <div class="section">
+              <h3>Domingos y festivos del último mes</h3>
+              <div class="form">
+                <div><label>Domingos trabajados</label><input id="domingosMes" type="number" step="1" min="0" value="0"></div>
+                <div><label>Plus por domingo</label><input id="plusDomingo" type="number" step="0.01" value="49.96"></div>
+                <div><label>Festivos trabajados</label><input id="festivosMes" type="number" step="1" min="0" value="0"></div>
+                <div><label>Complemento por festivo</label><input id="plusFestivo" type="number" step="0.01" value="49.96"></div>
+                <div><label>Festivos especiales</label><input id="festivosEspecialesMes" type="number" step="1" min="0" value="0"></div>
+                <div><label>Complemento festivo especial</label><input id="plusFestivoEspecial" type="number" step="0.01" value="99.92"></div>
+              </div>
+              <p class="small">El festivo se calcula con el salario diario incrementado un 75 % y se añade el complemento festivo. Los festivos especiales usan complemento doble.</p>
+            </div>
+            <div class="section">
+              <label>Conceptos incluidos en el valor de las vacaciones</label>
+              <div class="checks">
+                <label><input type="checkbox" id="vacCarrera" checked> Carrera</label>
+                <label><input type="checkbox" id="vacNocturnidad" checked> Nocturnidad</label>
+                <label><input type="checkbox" id="vacPeligrosidad" checked> Peligrosidad</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="box">
+            <h3>Pagas y descuentos</h3>
+            <div class="form">
+              <div><label>Paga verano ya cobrada</label><select id="veranoCobrada"><option value="no">No</option><option value="si">Sí</option></select></div>
+              <div><label>Paga Navidad ya cobrada</label><select id="navidadCobrada"><option value="no">No</option><option value="si">Sí</option></select></div>
+              <div><label>Beneficios ya cobrados</label><select id="beneficiosCobrados"><option value="no">No</option><option value="si">Sí</option></select></div>
+              <div><label>Finiquito pagado por empresa</label><input id="finiquitoPagado" type="number" step="0.01"></div>
+              <div><label>Único dato manual: IRPF %</label><input id="irpfPct" type="number" step="0.01" value="2"></div>
+              <div><label>Contingencias comunes %</label><input id="ccPctManual" type="number" step="0.01" value="4.70" readonly></div>
+              <div><label>MEI %</label><input id="meiPctManual" type="number" step="0.01" value="0.15" readonly></div>
+              <div><label>Desempleo %</label><input id="desempleoPctManual" type="number" step="0.01" value="1.55" readonly></div>
+              <div><label>Formación profesional %</label><input id="fpPctManual" type="number" step="0.01" value="0.10" readonly></div>
+              <div><label>Seguridad Social total %</label><input id="ssPct" type="number" step="0.01" value="6.50" readonly></div>
+              <input id="otrasDeducciones" type="hidden" value="0">
+              <div><label>Anticipo descontado</label><input id="anticipoDescontado" type="number" step="0.01" value="0"></div>
+              <div><label>Embargo descontado</label><input id="embargoDescontado" type="number" step="0.01" value="0"></div>
+              <div><label>Préstamo empresa descontado</label><input id="prestamoEmpresaDescontado" type="number" step="0.01" value="0"></div>
+              <div><label>Líquido de nómina a comparar</label><input id="liquidoComparar" type="number" step="0.01"></div>
+              <div><label>Usar líquido leído</label>
+                <select id="usarLiquidoLeido">
+                  <option value="si">Sí</option>
+                  <option value="no">No, usar el manual</option>
+                </select>
+              </div>
+              <div><label>Indemnización manual</label><input id="indemnizacion" type="number" step="0.01" value="0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-informe" class="view">
+        <div class="box">
+          <h3>Comparación final: debería cobrar / le han pagado</h3>
+          <p class="small">Puedes dejar que la app calcule automáticamente lo que debería cobrar o escribir una cantidad manual. Después introduce lo que realmente le han pagado.</p>
+          <div class="form">
+            <div><label>Usar cálculo automático</label>
+              <select id="usarDebeAutomatico">
+                <option value="si">Sí</option>
+                <option value="no">No, introducir cantidad manual</option>
+              </select>
+            </div>
+            <div><label>Debería cobrar (manual)</label><input id="debeCobrarManual" type="number" step="0.01" value="0"></div>
+            <div><label>Le han pagado</label><input id="pagadoRealManual" type="number" step="0.01" value="0"></div>
+            <div><label>Diferencia</label><input id="diferenciaFinalVista" type="number" step="0.01" readonly></div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" type="button" onclick="revisarTodo()">Calcular diferencia</button>
+          </div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><span>Bruto finiquito</span><strong id="mBruto">0,00 €</strong></div>
+          <div class="metric"><span>Deducciones</span><strong id="mDeducciones">0,00 €</strong></div>
+          <div class="metric"><span>Neto correcto</span><strong id="mNeto">0,00 €</strong></div>
+          <div class="metric"><span>Diferencia</span><strong id="mDiferencia">—</strong></div>
+        </div>
+        <div id="dictamen" class="status">Pendiente de revisión.</div>
+        <div class="grid2" style="margin-top:12px">
+          <div class="box"><h3>Desglose del finiquito</h3><div id="desgloseFiniquito"></div></div>
+          <div class="box"><h3>Resumen de la nómina</h3><div id="resumenNomina"></div></div>
+        </div>
+      </div>
+      <div id="tab-manual" class="view">
+        <div class="box">
+          <h3>Datos manuales del trabajador</h3>
+          <p class="small">Introduce lo que debería cobrar según categoría, antigüedad, carrera, nocturnidad y peligrosidad. Si la nómina es de baja, la app lo comparará con Prestación IT + Complemento de enfermedad.</p>
+          <div class="form">
+            <div><label>Categoría</label>
+              <select id="manualCategoria">
+                <option value="LIMPIADOR-A">Limpiador/a</option>
+                <option value="PEON ESPECIALIZADO">Peón especializado</option>
+                <option value="ESPECIALISTA">Especialista</option>
+                <option value="ENCARGADO DE GRUPO">Encargado/a de grupo</option>
+              </select>
+            </div>
+            <div><label>Fecha de antigüedad</label><input id="manualAntiguedadFecha" type="date"></div>
+            <div><label>Trienios %</label>
+              <select id="manualTrienioPct"><option value="6">6 %</option><option value="5">5 %</option><option value="4">4 %</option></select>
+            </div>
+            <div><label>Carrera profesional</label>
+              <select id="manualNivelCarrera">
+                <option value="0">Sin carrera</option><option value="1">Nivel I · 82,13 €</option>
+                <option value="2">Nivel II · 155,60 €</option><option value="3">Nivel III · 234,33 €</option>
+                <option value="4">Nivel IV · 306,95 €</option>
+              </select>
+            </div>
+            <div><label>Nocturnidad mensual</label><input id="manualNocturnidad" type="number" step="0.01" value="0"></div>
+            <div><label>Peligrosidad mensual</label><input id="manualPeligrosidad" type="number" step="0.01" value="0"></div>
+            <div><label>Domingos del mes</label><input id="manualDomingos" type="number" min="0" step="1" value="0"></div>
+            <div><label>Festivos ordinarios</label><input id="manualFestivos" type="number" min="0" step="1" value="0"></div>
+            <div><label>Festivos especiales</label><input id="manualFestivosEspeciales" type="number" min="0" step="1" value="0"></div>
+            <div><label>IRPF %</label><input id="manualIRPF" type="number" step="0.01" value="0"></div>
+          </div>
+          <div class="actions no-print">
+            <button class="btn primary" type="button" onclick="calcularComparacionManual()">Comparar con nómina</button>
+            <button class="btn" type="button" onclick="copiarDatosNominaAManual()">Copiar datos leídos</button>
+            <button class="btn" type="button" onclick="generarInformeReclamacion()">Generar informe detallado</button>
+            <button class="btn" type="button" onclick="imprimirInformeReclamacion()">Imprimir / Guardar PDF</button>
+          </div>
+        </div>
+        <div class="box">
+          <h3>Comparación detallada</h3>
+          <div class="tablewrap"><table>
+            <thead><tr><th>Concepto</th><th class="num">Según tus datos</th><th class="num">Según nómina</th><th class="num">Diferencia</th><th>Resultado</th></tr></thead>
+            <tbody id="tablaComparacionManual"><tr><td colspan="5" class="small">Introduce tus datos y pulsa “Comparar con nómina”.</td></tr></tbody>
+          </table></div>
+          <div id="resumenComparacionManual" class="note">Pendiente de introducir los datos manuales.</div>
+        </div>
+
+        <div id="informeReclamacion" class="box" style="display:none">
+          <h2 class="report-title">INFORME DETALLADO DE REVISIÓN DE NÓMINA</h2>
+          <p class="report-subtitle">Comprobación de cantidades abonadas y cantidades que corresponden</p>
+
+          <div class="report-grid">
+            <div class="report-item"><strong>Trabajador/a:</strong> <span id="repTrabajador"></span></div>
+            <div class="report-item"><strong>Empresa:</strong> <span id="repEmpresa"></span></div>
+            <div class="report-item"><strong>Categoría:</strong> <span id="repCategoria"></span></div>
+            <div class="report-item"><strong>Antigüedad:</strong> <span id="repAntiguedad"></span></div>
+            <div class="report-item"><strong>Periodo revisado:</strong> <span id="repPeriodo"></span></div>
+            <div class="report-item"><strong>Jornada:</strong> 100 %</div>
+          </div>
+
+          <div class="report-section">
+            <h4>1. Conceptos salariales que corresponden</h4>
+            <div id="repConceptos"></div>
+          </div>
+
+          <div class="report-section">
+            <h4>2. Comprobación de incapacidad temporal</h4>
+            <div id="repIT"></div>
+          </div>
+
+          <div class="report-section">
+            <h4>3. Domingos y festivos</h4>
+            <div id="repDomFest"></div>
+          </div>
+
+          <div class="report-section">
+            <h4>4. Comparación entre lo debido y lo abonado</h4>
+            <div id="repComparacion"></div>
+          </div>
+
+          <div id="repTotal" class="report-total"></div>
+          <div id="repConclusion" class="report-conclusion"></div>
+
+          <div class="report-section">
+            <h4>Observaciones para reclamación</h4>
+            <p id="repObservaciones"></p>
+          </div>
+
+          <div class="report-signatures">
+            <div>Firma del trabajador/a</div>
+            <div>Representación de los trabajadores</div>
+          </div>
+      </div>
+
+    </section>
+  </section>
+
+      
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const n=id=>Number(String($(id).value||'').replace(',','.'))||0;
+const set=(id,v)=>{if($(id))$(id).value=v??''};
+const money=x=>(Number(x)||0).toLocaleString('es-ES',{style:'currency',currency:'EUR'});
+const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const TABLAS={
+  2025:{
+    'LIMPIADOR-A':1332.09,
+    'PEON ESPECIALIZADO':1343.96,
+    'ESPECIALISTA':1447.71,
+    'ENCARGADO DE GRUPO':1494.73
+  },
+  2026:{
+    'LIMPIADOR-A':1352.07,
+    'PEON ESPECIALIZADO':1364.12,
+    'ESPECIALISTA':1469.43,
+    'ENCARGADO DE GRUPO':1517.15
+  }
+};
+const CARRERA_2026={1:82.13,2:155.60,3:234.33,4:306.95};
+
+function abrirTab(id,btn,conservarScroll=true){
+  const y=window.scrollY;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(v=>v.classList.remove('active'));
+  $('tab-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  if(conservarScroll){
+    requestAnimationFrame(()=>window.scrollTo({top:y,left:0,behavior:'auto'}));
+  }
+}
+function euros(s){return Number(String(s||'').replace(/\./g,'').replace(',','.').replace(/[^\d.-]/g,''))||0}
+function iso(d,m,y){return `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`}
+function fecha(s){const m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?new Date(+m[1],+m[2]-1,+m[3]):null}
+function diasEntre(a,b){return a&&b?Math.max(0,Math.round((b-a)/86400000)+1):0}
+function yearsBetween(a,b){if(!a||!b)return 0;let y=b.getFullYear()-a.getFullYear();const m=b.getMonth()-a.getMonth();if(m<0||(m===0&&b.getDate()<a.getDate()))y--;return Math.max(0,y)}
+function setStatus(msg,type=''){const e=$('estadoPDF');e.textContent=msg;e.className='status'+(type?' '+type:'')}
+
+let filasPDF=[]; // filas crudas del PDF: array de filas, cada fila = array de {txt,x,y} ordenados por x
+let workerBlobUrl=null;
+
+async function obtenerWorkerSrc(){
+  // Fix Safari: algunos Safari fallan cargando el worker de pdf.js directamente desde CDN
+  // (problemas de CORS/tipo de worker). Lo descargamos y servimos como blob local.
+  if(workerBlobUrl)return workerBlobUrl;
+  try{
+    const resp=await fetch('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js');
+    if(!resp.ok)throw new Error('HTTP '+resp.status);
+    const code=await resp.text();
+    workerBlobUrl=URL.createObjectURL(new Blob([code],{type:'application/javascript'}));
+    return workerBlobUrl;
+  }catch(e){
+    // Si falla la descarga (p.ej. sin red), usamos la URL directa como último recurso
+    return 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+}
+
+async function abrirDocumentoPDF(datos){
+  let ultimoError=null;
+
+  // Primer intento: worker convertido en blob. Es el que mejor funciona en Safari
+  // cuando el HTML se abre directamente desde Descargas o Archivos.
+  try{
+    pdfjsLib.GlobalWorkerOptions.workerSrc=await obtenerWorkerSrc();
+    return await pdfjsLib.getDocument({data:datos}).promise;
+  }catch(e){
+    ultimoError=e;
+    console.warn('Primer intento PDF.js falló',e);
+  }
+
+  // Segundo intento: worker directo de CDN.
+  try{
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    return await pdfjsLib.getDocument({data:datos}).promise;
+  }catch(e){
+    ultimoError=e;
+    console.warn('Segundo intento PDF.js falló',e);
+  }
+
+  // Último intento: modo sin worker. Es más lento, pero evita bloqueos de Safari.
+  try{
+    return await pdfjsLib.getDocument({data:datos,disableWorker:true}).promise;
+  }catch(e){
+    ultimoError=e;
+  }
+  throw ultimoError||new Error('No se pudo abrir el PDF');
+}
+
+async function leerPDF(ev){
+  const file=ev.target.files&&ev.target.files[0];
+  if(!file)return;
+  setStatus('Leyendo PDF…');
+  try{
+    if(!window.pdfjsLib)throw new Error('No se pudo cargar el lector PDF. Comprueba la conexión a Internet.');
+    const datos=await file.arrayBuffer();
+    const pdf=await abrirDocumentoPDF(datos);
+    let texto='';
+    filasPDF=[];
+
+    for(let p=1;p<=pdf.numPages;p++){
+      const page=await pdf.getPage(p);
+      const content=await page.getTextContent();
+      const items=content.items
+        .map(i=>({txt:String(i.str||''),x:Number(i.transform&&i.transform[4]||0),y:Number(i.transform&&i.transform[5]||0)}))
+        .filter(i=>i.txt.trim()!=='');
+
+      // Agrupa por altura con tolerancia. Algunas versiones de Safari devuelven
+      // pequeñas diferencias decimales en la coordenada Y.
+      const grupos=[];
+      items.sort((a,b)=>b.y-a.y||a.x-b.x);
+      for(const item of items){
+        let grupo=grupos.find(g=>Math.abs(g.y-item.y)<=2.2);
+        if(!grupo){
+          grupo={y:item.y,items:[]};
+          grupos.push(grupo);
+        }
+        grupo.items.push(item);
+      }
+      grupos.sort((a,b)=>b.y-a.y);
+
+      for(const grupo of grupos){
+        const row=grupo.items.sort((a,b)=>a.x-b.x);
+        filasPDF.push(row);
+        texto+=row.map(i=>i.txt).join(' ').replace(/\s+/g,' ').trim()+'\n';
+      }
+    }
+
+    $('texto').value=texto.trim();
+    analizarTexto();
+  }catch(e){
+    console.error(e);
+    setStatus('No se pudo leer el PDF: '+(e&&e.message?e.message:e),'bad');
+  }finally{
+    ev.target.value='';
+  }
+}
+
+function normalizarCabecera(s){
+  return String(s||'')
+    .toUpperCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^A-Z]/g,'');
+}
+
+function buscarItemCabecera(row,patrones){
+  for(const it of row){
+    const n=normalizarCabecera(it.txt);
+    if(patrones.some(re=>re.test(n)))return it;
+  }
+  return null;
+}
+
+function localizarCabeceraTabla(){
+  for(const row of filasPDF){
+    const cCod=buscarItemCabecera(row,[/^CODIGO$/]);
+    const cConc=buscarItemCabecera(row,[/^CONCEPTO$/]);
+    const cUds=buscarItemCabecera(row,[/^UDS$/,/^UNIDADES$/]);
+    const cImp=buscarItemCabecera(row,[/^IMPORTE$/,/^PRECIO$/]);
+    const cDev=buscarItemCabecera(row,[/^DEVENGO$/,/^DEVENGOS$/]);
+    const cDed=buscarItemCabecera(row,[/^DEDUCC$/,/^DEDUCCION$/,/^DEDUCCIONES$/]);
+
+    if(cConc&&cUds&&cImp&&cDev&&cDed){
+      const esNueva=normalizarCabecera(cUds.txt)==='UNIDADES' || normalizarCabecera(cImp.txt)==='PRECIO';
+      return {
+        formato:esNueva?'nuevo':'antiguo',
+        codigo:cCod?cCod.x:null,
+        unidades:cUds.x,
+        precio:cImp.x,
+        concepto:cConc.x,
+        devengo:cDev.x,
+        deduccion:cDed.x,
+        y:row[0].y
+      };
+    }
+  }
+  return null;
+}
+
+function textoColumna(row,min,max){
+  return row.filter(it=>it.x>=min&&it.x<max).map(it=>it.txt).join(' ').replace(/\s+/g,' ').trim();
+}
+
+function extraerFilasConcepto(cols){
+  const filas=[];
+  let dentro=false;
+
+  for(const row of filasPDF){
+    const texto=row.map(i=>i.txt).join(' ').replace(/\s+/g,' ').trim();
+
+    if(!dentro){
+      if(Math.abs(row[0].y-cols.y)<=2.5)dentro=true;
+      continue;
+    }
+
+    if(/REM\.?\s*TOTALES|PRORRATA|TRANSFERIDO A|BASE\s*I\.?R\.?P\.?F\.?|APORTACI[ÓO]N EMPRESA|COSTE SEG|OBSERVACIONES/i.test(texto))break;
+
+    let fila;
+    if(cols.formato==='nuevo'){
+      const bUdsPrecio=(cols.unidades+cols.precio)/2;
+      const bPrecioConcepto=(cols.precio+cols.concepto)/2;
+      const bConceptoDev=(cols.concepto+cols.devengo)/2;
+      const bDevDed=(cols.devengo+cols.deduccion)/2;
+
+      fila={
+        codigo:'',
+        uds:euros(textoColumna(row,Math.max(0,cols.unidades-80),bUdsPrecio)),
+        importe:euros(textoColumna(row,bUdsPrecio,bPrecioConcepto)),
+        concepto:textoColumna(row,bPrecioConcepto,bConceptoDev),
+        devengo:euros(textoColumna(row,bConceptoDev,bDevDed)),
+        deduccion:euros(textoColumna(row,bDevDed,99999))
+      };
+
+      // En algunas nóminas el PRECIO está vacío (carrera profesional, pagas, etc.).
+      // Si el concepto ha quedado vacío o incompleto, reconstruimos la fila por texto.
+      if(!fila.concepto || fila.concepto.length<4){
+        const textoFila=row.map(i=>i.txt).join(' ').replace(/\s+/g,' ').trim();
+        const mm=textoFila.match(/^(\d+(?:[,.]\d+)?)?\s*(?:\d+(?:\.\d{3})*(?:,\d+)?)?\s*(.+?)\s+(\d{1,3}(?:\.\d{3})*,\d{2})$/);
+        if(mm){
+          fila.uds=mm[1]?euros(mm[1]):fila.uds;
+          fila.concepto=mm[2].trim();
+          fila.devengo=euros(mm[3]);
+        }
+      }
+    }else{
+      const codigoX=cols.codigo===null?0:cols.codigo;
+      const bCodConc=cols.codigo===null?cols.concepto-40:(cols.codigo+cols.concepto)/2;
+      const bConcUds=(cols.concepto+cols.unidades)/2;
+      const bUdsPrecio=(cols.unidades+cols.precio)/2;
+      const bPrecioDev=(cols.precio+cols.devengo)/2;
+      const bDevDed=(cols.devengo+cols.deduccion)/2;
+
+      fila={
+        codigo:cols.codigo===null?'':textoColumna(row,Math.max(0,codigoX-30),bCodConc),
+        concepto:textoColumna(row,bCodConc,bConcUds),
+        uds:euros(textoColumna(row,bConcUds,bUdsPrecio)),
+        importe:euros(textoColumna(row,bUdsPrecio,bPrecioDev)),
+        devengo:euros(textoColumna(row,bPrecioDev,bDevDed)),
+        deduccion:euros(textoColumna(row,bDevDed,99999))
+      };
+    }
+
+    fila.concepto=String(fila.concepto||'').replace(/\s+/g,' ').trim();
+    fila.codigo=String(fila.codigo||'').replace(/\s+/g,' ').trim();
+
+    if(!fila.concepto)continue;
+    if(/^[-*.]+$/.test(fila.concepto))continue;
+    if(/^(COTIZABLES|NO COTIZABLES)\b/i.test(fila.concepto))continue;
+
+    filas.push(fila);
+  }
+  return filas;
+}
+
+
+function extraerFilasPorTexto(){
+  const lineas=$('texto').value
+    .split(/\n+/)
+    .map(x=>x.replace(/\s+/g,' ').trim())
+    .filter(Boolean);
+
+  const patrones=[
+    {re:/SALARIO BASE/i,tipo:'devengo'},
+    {re:/ANTIG[ÜU]EDAD/i,tipo:'devengo'},
+    {re:/(?:PLUS )?CARRERA PROFESIONAL/i,tipo:'devengo'},
+    {re:/DOMINGO TRABAJADO/i,tipo:'devengo'},
+    {re:/COMPLEMENTO FESTIVO/i,tipo:'devengo'},
+    {re:/FESTIVO TRABAJADO/i,tipo:'devengo'},
+    {re:/PAGA EXTRA (?:VERANO|NAVIDAD|BENEFICIOS)/i,tipo:'devengo'},
+    {re:/PRESTACI[ÓO]N (?:SS|ENFERMEDAD|IT)(?:\s*75%|\s*60%)?/i,tipo:'devengo'},
+    {re:/COMPLEMENTO (?:IT|ENFERMEDAD)|REGULARIZACI[ÓO]N PROCESO IT/i,tipo:'devengo'},
+    {re:/VACACIONES LIQUIDADAS/i,tipo:'devengo'},
+    {re:/NOCTURNIDAD/i,tipo:'devengo'},
+    {re:/PELIGROSIDAD/i,tipo:'devengo'},
+    {re:/TRAB\.?\s*CONT\.?\s*COMUNES|COTIZACION REGIMEN GENERAL/i,tipo:'deduccion'},
+    {re:/TRAB\.?\s*DESEMPLEO|COTIZACION DESEMPLEO/i,tipo:'deduccion'},
+    {re:/TRAB\.?\s*FORMAC\.?\s*PROFESIONAL|FORMACION PROFESIONAL/i,tipo:'deduccion'},
+    {re:/\bMEI\b/i,tipo:'deduccion'},
+    {re:/RETENCI[ÓO]N A CTA\.?\s*IRPF|RET\.?\s*A CUENTA DEL I\.?R\.?P\.?F\.?/i,tipo:'deduccion'}
+  ];
+
+  const resultado=[];
+  for(const linea of lineas){
+    const patron=patrones.find(p=>p.re.test(linea));
+    if(!patron)continue;
+
+    const matchConcepto=linea.match(patron.re);
+    if(!matchConcepto)continue;
+    const inicio=matchConcepto.index;
+    const fin=inicio+matchConcepto[0].length;
+    const antes=linea.slice(0,inicio);
+    const despues=linea.slice(fin);
+
+    const numerosAntes=[...antes.matchAll(/\d{1,3}(?:\.\d{3})*,\d{2}|\d+(?:,\d{2})/g)].map(x=>euros(x[0]));
+    const numerosDespues=[...despues.matchAll(/\d{1,3}(?:\.\d{3})*,\d{2}|\d+(?:,\d{2})/g)].map(x=>euros(x[0]));
+    if(!numerosDespues.length)continue;
+
+    const importeFinal=numerosDespues[numerosDespues.length-1];
+    const fila={
+      codigo:'',
+      concepto:matchConcepto[0].replace(/\s+/g,' ').trim().toUpperCase(),
+      uds:numerosAntes[0]||0,
+      importe:numerosAntes[1]||0,
+      devengo:patron.tipo==='devengo'?importeFinal:0,
+      deduccion:patron.tipo==='deduccion'?importeFinal:0
+    };
+
+    // Formato antiguo con código delante: 010 SALARIO BASE 1 1.352,07 1.352,07
+    const cod=linea.match(/^\s*(\d{3})\b/);
+    if(cod){
+      fila.codigo=cod[1];
+      const nums=[...linea.slice(fin).matchAll(/\d{1,3}(?:\.\d{3})*,\d{2}|\d+(?:,\d{2})/g)].map(x=>euros(x[0]));
+      if(nums.length>=3){
+        fila.uds=nums[0];
+        fila.importe=nums[1];
+        if(patron.tipo==='devengo')fila.devengo=nums[nums.length-1];
+        else fila.deduccion=nums[nums.length-1];
+      }else if(nums.length===2){
+        fila.importe=nums[0];
+        if(patron.tipo==='devengo')fila.devengo=nums[1];
+        else fila.deduccion=nums[1];
+      }
+    }
+
+    resultado.push(fila);
+  }
+  return resultado;
+}
+
+function fusionarFilasConcepto(coordenadas,texto){
+  const claves=f=>String(f.concepto||'')
+    .toUpperCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/\bPLUS\b/g,'')
+    .replace(/[^A-Z]/g,'');
+
+  const mapa=new Map();
+  for(const f of [...coordenadas,...texto]){
+    const k=claves(f);
+    if(!k)continue;
+    const actual=mapa.get(k);
+    if(!actual){
+      mapa.set(k,{...f});
+      continue;
+    }
+    // Conserva el dato más completo de cada columna.
+    for(const campo of ['codigo','concepto','uds','importe','devengo','deduccion']){
+      if((actual[campo]===0 || actual[campo]==='' || actual[campo]==null) && f[campo]){
+        actual[campo]=f[campo];
+      }
+    }
+    // El parser por texto es especialmente fiable para el importe final.
+    if(f.devengo)actual.devengo=f.devengo;
+    if(f.deduccion)actual.deduccion=f.deduccion;
+  }
+  return [...mapa.values()];
+}
+
+function pintarTablaConceptos(filas){
+  if(!filas.length){$('tablaConceptos').innerHTML='<tr><td colspan="7" class="small">No se ha detectado la tabla de conceptos en este PDF. Revisa el texto extraído o completa los importes a mano en "Nómina leída".</td></tr>';return}
+  $('tablaConceptos').innerHTML=filas.map(f=>{
+    let esperado=null;
+    let importeReal=f.devengo||f.deduccion||0;
+    if(f.uds&&f.importe){
+      esperado=f.deduccion ? (f.uds*f.importe/100) : (f.uds*f.importe);
+    }
+    let badge='<span class="badge b-warn">Sin unidades/precio</span>';
+    if(esperado!==null){
+      const ok=Math.abs(esperado-importeReal)<=0.06;
+      badge=`<span class="badge ${ok?'b-ok':'b-bad'}">${ok?'Cuadra':'Revisar ('+money(esperado)+')'}</span>`;
+    }
+    return `<tr><td>${esc(f.codigo)}</td><td>${esc(f.concepto)}</td><td class="num">${f.uds||''}</td><td class="num">${f.importe?money(f.importe):''}</td><td class="num">${f.devengo?money(f.devengo):''}</td><td class="num">${f.deduccion?money(f.deduccion):''}</td><td>${badge}</td></tr>`;
+  }).join('');
+}
+
+function mapearConceptos(filas){
+  const suma=(re,campo)=>filas
+    .filter(f=>re.test(String(f.concepto||'')))
+    .reduce((s,f)=>s+Number(f[campo]||0),0);
+
+  const salario=suma(/SALARIO BASE/i,'devengo');
+  const antig=suma(/ANTIG[ÜU]EDAD/i,'devengo');
+  const carrera=suma(/CARRERA PROFESIONAL/i,'devengo');
+  const noct=suma(/NOCTURNID/i,'devengo');
+  const pelig=suma(/PELIGROSID/i,'devengo');
+  const domingos=suma(/DOMINGO TRABAJADO/i,'devengo');
+  const festivos=suma(/COMPLEMENTO FESTIVO|FESTIVO TRABAJADO/i,'devengo');
+  const pagaExtra=suma(/PAGA EXTRA/i,'devengo');
+  const prestacionIT=suma(/PRESTACI[ÓO]N (?:SS|ENFERMEDAD|IT)/i,'devengo');
+  const complementoIT=suma(/COMPLEMENTO (?:IT|ENFERMEDAD)|REGULARIZACI[ÓO]N PROCESO IT/i,'devengo');
+  const irpf=suma(/IRPF/i,'deduccion');
+  const cc=suma(/CONT\.?\s*COMUNES|REGIMEN GENERAL/i,'deduccion');
+  const desempleo=suma(/DESEMPLEO/i,'deduccion');
+  const fp=suma(/FORMAC\.?\s*PROFESIONAL|FORMACION PROFESIONAL/i,'deduccion');
+  const mei=suma(/\bMEI\b/i,'deduccion');
+
+  set('salarioPagado',salario);
+  set('antiguedadPagada',antig);
+  set('carreraPagada',carrera);
+  set('nocturnidadPagada',noct);
+  set('peligrosidadPagada',pelig);
+  set('domFestPagado',domingos+festivos);
+  set('pagaExtraLeida',pagaExtra);
+  set('prestacionITLeida',prestacionIT);
+  set('complementoITLeido',complementoIT);
+
+  // Rellena automáticamente el número de domingos/festivos trabajados para que
+  // el "Cuadre final del mes" no marque una diferencia falsa por no haberlos
+  // pasado a mano. El plus por domingo es un importe fijo (coincide con lo leído
+  // en la nómina), así que la división es exacta. El de festivo, en cambio, se paga
+  // como (salario/día × 1,75) + complemento, así que solo se rellena si la
+  // división por ese importe estimado da un número de festivos razonablemente
+  // entero; si no cuadra bien se deja en blanco para que se revise a mano.
+  if($('plusDomingo') && domingos>0){
+    const plusDomingoRate=n('plusDomingo')||49.96;
+    const domingosCount=plusDomingoRate>0?Math.round(domingos/plusDomingoRate):0;
+    if(domingosCount>0 && Math.abs(domingosCount*plusDomingoRate-domingos)<=0.05){
+      set('domingosMes',domingosCount);
+    }
+  }
+  if($('plusFestivo') && festivos>0){
+    const salarioDiaEstimado=(salario+antig+carrera+noct+pelig)/30;
+    const festivoUnitarioEstimado=(salarioDiaEstimado*1.75)+(n('plusFestivo')||49.96);
+    const festivosCount=festivoUnitarioEstimado>0?Math.round(festivos/festivoUnitarioEstimado):0;
+    if(festivosCount>0 && Math.abs(festivosCount*festivoUnitarioEstimado-festivos)<=1){
+      set('festivosMes',festivosCount);
+    }
+  }
+  set('totalITLeido',prestacionIT+complementoIT);
+  set('irpfRetenido',irpf);
+  set('ccRetenido',cc);
+  set('desempleoRetenido',desempleo);
+  set('fpRetenido',fp);
+  set('meiRetenido',mei);
+
+  const excluir=/SALARIO BASE|ANTIG[ÜU]EDAD|CARRERA PROFESIONAL|NOCTURNID|PELIGROSID|DOMINGO|FESTIVO|PAGA EXTRA|BENEFICIOS|VACACION|PRESTACI[ÓO]N (?:SS|ENFERMEDAD|IT)|COMPLEMENTO (?:IT|ENFERMEDAD)|REGULARIZACI[ÓO]N PROCESO IT|COTIZABLES|NO COTIZABLES|IRPF|CONT\.?\s*COMUNES|REGIMEN GENERAL|DESEMPLEO|FORMAC|MEI|TOTAL DEVENGOS|COSTE SEG|INFORMATIVO/i;
+  const otros=filas
+    .filter(f=>!excluir.test(String(f.concepto||'')))
+    .reduce((s,f)=>s+Number(f.devengo||0),0);
+  set('otrosDevengos',otros);
+
+  const filaIrpf=filas.find(f=>/IRPF/i.test(String(f.concepto||'')));
+  if(filaIrpf&&filaIrpf.uds)set('irpfPct',filaIrpf.uds);
+
+  const ssPct=filas
+    .filter(f=>/CONT\.?\s*COMUNES|REGIMEN GENERAL|DESEMPLEO|FORMAC\.?\s*PROFESIONAL|\bMEI\b/i.test(String(f.concepto||'')))
+    .reduce((s,f)=>s+Number(f.uds||0),0);
+  if(ssPct)set('ssPct',ssPct);
+
+  const totalRow=filas.find(f=>/TOTAL DEVENGOS?\s*Y\s*DEDUCCI/i.test(String(f.concepto||'')));
+  if(totalRow){
+    set('totalDevNomina',totalRow.devengo);
+    set('totalDedNomina',totalRow.deduccion);
+  }
+
+  const vacRow=filas.find(f=>/VACACION.*LIQUID/i.test(String(f.concepto||'')));
+  if(vacRow)set('vacPagadas',vacRow.uds||0);
+}
+
+function analizarTexto(){
+  const t=$('texto').value.replace(/\u00a0/g,' ');
+  const ls=t.split(/\n+/).map(x=>x.replace(/\s+/g,' ').trim()).filter(Boolean);
+  const flat=ls.join(' ');
+
+  // --- Bloque trabajador / Seguridad Social ---
+  let m=flat.match(/\bN\.?\s*I\.?\s*F\.?\s*:?\s*([A-Z0-9]{8,10})/i);if(m)set('nif',m[1]);
+  m=flat.match(/N[º°]?\.?\s*AFILIACI[ÓO]N\s*SEG\.?\s*SOCIAL\s*:?\s*([0-9\/]{6,14})/i)||flat.match(/\bN\.?A\.?S\.?S\.?\s*:?\s*([0-9\/]+)/i);
+  if(m)set('nss',m[1]);
+  m=flat.match(/CAT\.?\s*PROFESIONAL\s*:?\s*([A-ZÁÉÍÓÚÜÑ\/ -]+?)(?=\s+PUESTO|\s+F\.?\s*ANTIG|\s+GPO)/i)||flat.match(/\bCategor[ií]a\s+([A-ZÁÉÍÓÚÜÑ\/ -]+?)(?=\s+Antig[üu]edad|\s+N\.A\.S\.S)/i);
+  if(m){
+    const c=m[1].toUpperCase();
+    if(/PE[ÓO]N/.test(c))set('categoria','PEON ESPECIALIZADO');
+    else if(/ENCARGADO/.test(c))set('categoria','ENCARGADO DE GRUPO');
+    else if(/ESPECIALISTA/.test(c))set('categoria','ESPECIALISTA');
+    else set('categoria','LIMPIADOR-A');
+  }
+  m=flat.match(/F\.?\s*ANTIG[ÜU]EDAD\s*:?\s*(\d{1,2})[./-](\d{1,2}|[A-Za-zñÑ]+)[./-](\d{4})/i)||flat.match(/\bAntig[üu]edad\s+(\d{1,2})[./-](\d{1,2})[./-](\d{4})/i);
+  if(m){
+    const meses={ENERO:1,FEBRERO:2,MARZO:3,ABRIL:4,MAYO:5,JUNIO:6,JULIO:7,AGOSTO:8,SEPTIEMBRE:9,OCTUBRE:10,NOVIEMBRE:11,DICIEMBRE:12};
+    let mes=m[2];mes=/^\d+$/.test(mes)?+mes:(meses[mes.toUpperCase()]||1);
+    set('antiguedadFecha',iso(+m[1],mes,+m[3]));set('inicioContrato',iso(+m[1],mes,+m[3]));
+  }
+  m=flat.match(/PER\.?\s*LIQUIDACI[ÓO]N\s*:?\s*Del\s+(\d{2})\s+al\s+(\d{2})\s+de?\s*([A-Za-zñÑ]+)\s+(\d{4})/i);
+  if(m){
+    const meses={ENERO:1,FEBRERO:2,MARZO:3,ABRIL:4,MAYO:5,JUNIO:6,JULIO:7,AGOSTO:8,SEPTIEMBRE:9,OCTUBRE:10,NOVIEMBRE:11,DICIEMBRE:12};
+    const mes=meses[m[3].toUpperCase()]||1;
+    set('periodoDesde',iso(+m[1],mes,+m[4]));
+    set('periodoHasta',iso(+m[2],mes,+m[4]));
+    set('finContrato',iso(+m[2],mes,+m[4]));
+  }else{
+    m=flat.match(/Periodo de liquidaci[oó]n\s+(\d{2})[./-](\d{2})[./-](\d{4})\s*[-–]\s*(\d{2})[./-](\d{2})[./-](\d{4})/i);
+    if(m){set('periodoDesde',iso(+m[1],+m[2],+m[3]));set('periodoHasta',iso(+m[4],+m[5],+m[6]));set('finContrato',iso(+m[4],+m[5],+m[6]))}
+  }
+  m=flat.match(/%\s*Jornada\s+(\d+(?:[,.]\d+)?)/i);if(m)set('jornada',euros(m[1]));
+
+  // --- Bloque empresa ---
+  m=flat.match(/\bEmpresa\s+(.+?)(?=\s+C\.?\s*I\.?\s*F\.?|\s+Centro)/i)||flat.match(/\bEMPRESA\s*:?\s*(.+?)(?=\s+DOMICILIO)/i);if(m)set('empresa',m[1].trim());
+  m=flat.match(/C\.?\s*I\.?\s*F\.?\s*:?\s*([A-Z0-9]{8,10})/i);if(m)set('cif',m[1]);
+  m=flat.match(/N[º°]?\.?\s*INSCR\.?\s*SEG\.?\s*SOCIAL\s*:?\s*([0-9]+)/i)||flat.match(/\bC\.?C\.?C\.?\s*:?\s*([0-9]+)/i);
+  if(m)set('ccc',m[1]);
+  m=flat.match(/\bCentro\s+(.+?)(?=\s+Trabajador|\s+Domicilio|\s+Periodo de liquidaci[oó]n)/i)||flat.match(/CENTRO\s*:?\s*(.+?)(?=\n|$|\s+TAJO)/i);
+  if(m)set('centro',m[1].trim());
+  m=flat.match(/D\.?\s*\/\s*D[ñn]a\.?\s*:?\s*(.+?)(?=\s+DOMICILIO)/i)||flat.match(/\bTrabajador\s+(.+?)(?=\s+Domicilio|\s+Poblaci[oó]n)/i);
+  if(m)set('trabajador',m[1].trim());
+
+  // --- Tabla de conceptos por columnas (Código/Concepto/Uds/Importe/Devengo/Deducción) ---
+  const cols=filasPDF.length?localizarCabeceraTabla():null;
+  const filasCoordenadas=cols?extraerFilasConcepto(cols):[];
+  const filasTexto=extraerFilasPorTexto();
+  let filasConcepto=fusionarFilasConcepto(filasCoordenadas,filasTexto);
+  mapearConceptos(filasConcepto);
+  const obs=flat.match(/PERIODO DE ENFERMEDAD COMUN ENTRE LAS FECHAS\s*(\d{2})[\/.-](\d{2})[\/.-](\d{4})\s*Y\s*(\d{2})[\/.-](\d{2})[\/.-](\d{4})/i);
+  if(obs){
+    set('inicioBaja',`${obs[3]}-${obs[2]}-${obs[1]}`);
+    set('finBaja',`${obs[6]}-${obs[5]}-${obs[4]}`);
+  }
+  pintarTablaConceptos(filasConcepto);
+
+  // Totales del formato nuevo: REM.TOTALES / PRORRATA / BASE IRPF /
+  // BASE CC.CC. / BASE CC.PP. / TOTAL DEVENGADO / TOTAL DEDUCCIÓN.
+  // La fila numérica contiene normalmente siete importes.
+  const filaTotales=ls.find(x=>{
+    const a=[...x.matchAll(/\d{1,3}(?:\.\d{3})*,\d{2}/g)];
+    return a.length>=7;
+  });
+  if(filaTotales){
+    const a=[...filaTotales.matchAll(/\d{1,3}(?:\.\d{3})*,\d{2}/g)].map(x=>euros(x[0]));
+    set('baseIrpf',a[2]||0);
+    set('totalDevNomina',a[a.length-2]||0);
+    set('totalDedNomina',a[a.length-1]||0);
+  }
+
+  // IRPF y Seguridad Social reales leídos de las filas de deducción.
+  if(filasConcepto.length){
+    const filaIrpf=filasConcepto.find(f=>/IRPF/i.test(f.concepto));
+    if(filaIrpf&&filaIrpf.uds)set('irpfPct',filaIrpf.uds);
+    const ssLeida=filasConcepto
+      .filter(f=>/CONT\.?\s*COMUNES|DESEMPLEO|FORMAC\.?\s*PROFESIONAL|\bMEI\b/i.test(f.concepto))
+      .reduce((s,f)=>s+Number(f.uds||0),0);
+    if(ssLeida)set('ssPct',ssLeida);
+  }
+
+  // Líquido a percibir (footer: TRANSFERIDO A / BASE IRPF / % IRPF / LÍQUIDO TOTAL A PERCIBIR)
+  m=flat.match(/L[ÍI]QUIDO\s*TOTAL(?:\s*A\s*PERCIBIR)?\s+(\d{1,3}(?:\.\d{3})*,\d{2})/i);
+  if(m)set('liquidoNomina',euros(m[1]));
+  if(!n('liquidoNomina')&&n('totalDevNomina'))set('liquidoNomina',n('totalDevNomina')-n('totalDedNomina'));
+
+  const nivelDetectado=detectarNivelCarrera(n('carreraPagada'));
+  if(nivelDetectado)$('nivelCarrera').value=String(nivelDetectado);
+  const espCarga=datosEsperadosNomina();
+  const nivelTxt=espCarga.nivel?`Nivel ${nombreNivelCarrera(espCarga.nivel)}`:'sin nivel';
+  const salarioOk=Math.abs(n('salarioPagado')-espCarga.salarioPeriodo)<=0.10;
+  const antigOk=Math.abs(n('antiguedadPagada')-espCarga.antigPeriodo)<=0.15;
+  setStatus(`Datos cargados: salario ${money(n('salarioPagado'))}, IT ${money(n('prestacionITLeida')+n('complementoITLeido'))}, domingos y festivos editables manualmente.`,'ok');
+  sincronizarDatosFiniquito();
+  abrirTab('conceptos',document.querySelectorAll('.tab')[0]);
+  revisarTodo();
+}
+
+
+function detectarNivelCarrera(importe){
+  const valor=Number(importe)||0;
+  if(!valor)return 0;
+  let mejor=0,distancia=Infinity;
+  for(const [nivel,tabla] of Object.entries(CARRERA_2026)){
+    const d=Math.abs(valor-tabla);
+    if(d<distancia){distancia=d;mejor=Number(nivel)}
+  }
+  // Tolerancia amplia para pequeñas diferencias de redondeo como 306,95 como importe exacto.
+  return distancia<=0.60?mejor:0;
+}
+
+function nombreNivelCarrera(nivel){
+  return ['','I','II','III','IV'][Number(nivel)]||'';
+}
+
+// --- ÚNICA función que calcula salario, antigüedad, carrera profesional,
+// domingos y festivos. La usan tanto la revisión de nómina como la
+// comparación manual y el informe imprimible, para que una corrección aquí
+// se aplique automáticamente en los tres sitios y no se quede coja en ninguno. ---
+function calcularConceptosProtegidos(p){
+  const y=p.finPeriodo.getFullYear();
+  const tabla=TABLAS[y]||TABLAS[2026];
+  const salarioMensual=(tabla[p.categoria]||0)*(p.jornada||1);
+  const trienios=Math.max(0,Math.floor(yearsBetween(p.antiguedadFecha,p.finPeriodo)/3));
+  const antigMensual=salarioMensual*((p.trienioPct||6)/100)*trienios;
+  const carreraMensual=(p.aplicaCarrera&&y===2026&&p.nivelCarrera)?(CARRERA_2026[p.nivelCarrera]||0)*(p.jornada||1):0;
+  const nocturnidadMensual=p.nocturnidadMensual||0;
+  const peligrosidadMensual=p.peligrosidadMensual||0;
+
+  const incluirSalario=p.incluirSalario!==false;
+  const incluirAntiguedad=p.incluirAntiguedad!==false;
+  const protegidoMensual=(incluirSalario?salarioMensual:0)+(incluirAntiguedad?antigMensual:0)+carreraMensual+nocturnidadMensual+peligrosidadMensual;
+  const valorDia=protegidoMensual/30;
+
+  const plusDomingoRate=p.plusDomingoRate||49.96;
+  const plusFestivoRate=p.plusFestivoRate||49.96;
+  const plusFestivoEspecialRate=p.plusFestivoEspecialRate||99.92;
+
+  const domingoImporte=(p.domingosCount||0)*plusDomingoRate;
+  const festivoUnit=(valorDia*1.75)+plusFestivoRate;
+  const festivoEspecialUnit=(valorDia*1.75)+plusFestivoEspecialRate;
+  const festivoImporte=(p.festivosCount||0)*festivoUnit;
+  const festivoEspecialImporte=(p.festivosEspecialesCount||0)*festivoEspecialUnit;
+  const totalDomFest=domingoImporte+festivoImporte+festivoEspecialImporte;
+
+  return {
+    y,tabla,salarioMensual,trienios,antigMensual,carreraMensual,
+    nocturnidadMensual,peligrosidadMensual,protegidoMensual,valorDia,
+    domingoImporte,festivoImporte,festivoEspecialImporte,totalDomFest,
+    festivoUnit,festivoEspecialUnit
+  };
+}
+
+
+function datosEsperadosNomina(){
+  const finPeriodo=fecha($('periodoHasta').value)||fecha($('finContrato').value)||new Date();
+  const jornada=1;
+  const desde=fecha($('periodoDesde').value),hasta=fecha($('periodoHasta').value);
+  const diasPeriodo=desde&&hasta?diasEntre(desde,hasta):30;
+
+  const categoriaCalculo=($('categoriaFiniquito')&&$('categoriaFiniquito').value)||$('categoria').value;
+  const antFecha=fecha($('antiguedadFecha').value);
+  const pct=Number($('trienioPct').value)||6;
+
+  let nivel=Number(($('nivelCarreraFiniquito')&&$('nivelCarreraFiniquito').value)||$('nivelCarrera').value||0);
+  if(!nivel)nivel=detectarNivelCarrera(n('carreraPagada'));
+  const aplicaCarrera=!$('aplicarCarrera') || $('aplicarCarrera').value==='si';
+
+  const c=calcularConceptosProtegidos({
+    finPeriodo,jornada,categoria:categoriaCalculo,antiguedadFecha:antFecha,
+    trienioPct:pct,nivelCarrera:nivel,aplicaCarrera
+  });
+
+  return {
+    y:c.y,jornada,diasPeriodo,salarioMensual:c.salarioMensual,salarioPeriodo:c.salarioMensual*(diasPeriodo/30),
+    trienios:c.trienios,antigMensual:c.antigMensual,antigPeriodo:c.antigMensual*(diasPeriodo/30),
+    nivel,carreraMensual:c.carreraMensual,carreraPeriodo:c.carreraMensual*(diasPeriodo/30)
+  };
+}
+
+function lineaRevision(nombre,pagado,esperado,tolerancia=0.05){
+  const dif=pagado-esperado;
+  const ok=Math.abs(dif)<=tolerancia;
+  return `<tr><td>${esc(nombre)}</td><td class="num">${money(pagado)}</td><td class="num">${money(esperado)}</td><td class="num">${money(dif)}</td><td><span class="badge ${ok?'b-ok':'b-bad'}">${ok?'Correcto':'Revisar'}</span></td></tr>`;
+}
+
+
+
+function sincronizarDatosFiniquito(){
+  if($('categoriaFiniquito') && $('categoria')){
+    if(!$('categoriaFiniquito').dataset.manual){
+      $('categoriaFiniquito').value=$('categoria').value;
+    }
+  }
+  if($('jornadaFiniquito') && $('jornada')){
+    $('jornadaFiniquito').value=100;
+  }
+  const nivelAuto=detectarNivelCarrera(n('carreraPagada'));
+  if($('nivelCarreraFiniquito') && !$('nivelCarreraFiniquito').dataset.manual){
+    $('nivelCarreraFiniquito').value=String(nivelAuto||0);
+  }
+  if($('aplicarCarrera'))$('aplicarCarrera').value=nivelAuto?'si':'no';
+  if($('aplicarNocturnidad'))$('aplicarNocturnidad').value=n('nocturnidadPagada')>0?'si':'no';
+  if($('aplicarPeligrosidad'))$('aplicarPeligrosidad').value=n('peligrosidadPagada')>0?'si':'no';
+
+}
+
+function diasUltimoMesCalculados(fin){
+  if(!fin)return 0;
+  if($('reglaUltimoMes').value==='naturales'){
+    const inicioMes=new Date(fin.getFullYear(),fin.getMonth(),1);
+    return diasEntre(inicioMes,fin);
+  }
+  // En nómina mensual se trabaja sobre meses de 30 días:
+  // del día 1 al 23 = 23 días; los días 31 no superan 30.
+  return Math.min(30,fin.getDate());
+}
+
+function proporcionPeriodo(inicioContrato,finContrato,desde,hasta){
+  if(!inicioContrato||!finContrato)return 0;
+  const ini=inicioContrato>desde?inicioContrato:desde;
+  const fin=finContrato<hasta?finContrato:hasta;
+  if(ini>fin)return 0;
+  return diasEntre(ini,fin)/diasEntre(desde,hasta);
+}
+
+
+function incluido(id){
+  const el=$(id);
+  return !el || el.checked;
+}
+
+function marcarConceptos(valor){
+  [
+    'incSalario','incAntiguedad','incCarrera','incNocturnidad','incPeligrosidad',
+    'incDomingos','incFestivos','incPagaExtra','incPrestacionIT','incComplementoIT',
+    'incVacaciones','incOtros','incIRPF','incSS','incAnticipo','incEmbargo','incPrestamo'
+  ].forEach(id=>{if($(id))$(id).checked=valor});
+  revisarTodo();
+}
+
+
+function filaComparacionManual(nombre,esperado,pagado,tol=0.10){
+  const dif=Number(esperado||0)-Number(pagado||0), ok=Math.abs(dif)<=tol;
+  return `<tr><td>${nombre}</td><td class="num">${money(esperado)}</td><td class="num">${money(pagado)}</td><td class="num">${money(Math.abs(dif))}</td><td><span class="badge ${ok?'b-ok':'b-warn'}">${ok?'Cuadra':dif>0?'Falta':'Sobra'}</span></td></tr>`;
+}
+function copiarDatosNominaAManual(){
+  $('manualCategoria').value=$('categoria').value;
+  $('manualAntiguedadFecha').value=$('antiguedadFecha').value;
+  $('manualNivelCarrera').value=String(detectarNivelCarrera(n('carreraPagada'))||0);
+  $('manualNocturnidad').value=n('nocturnidadPagada')||0;
+  $('manualPeligrosidad').value=n('peligrosidadPagada')||0;
+  $('manualIRPF').value=n('irpfPct')||0;
+  if($('domingosMes'))$('manualDomingos').value=n('domingosMes')||0;
+  if($('festivosMes'))$('manualFestivos').value=n('festivosMes')||0;
+  if($('festivosEspecialesMes'))$('manualFestivosEspeciales').value=n('festivosEspecialesMes')||0;
+  calcularComparacionManual();
+}
+function calcularComparacionManual(){
+  const periodo=fecha($('periodoHasta').value)||new Date();
+  const categoria=$('manualCategoria').value;
+  const ant=fecha($('manualAntiguedadFecha').value);
+  const nivel=Number($('manualNivelCarrera').value||0);
+  const noct=n('manualNocturnidad');
+  const pelig=n('manualPeligrosidad');
+
+  const c=calcularConceptosProtegidos({
+    finPeriodo:periodo,jornada:1,categoria,antiguedadFecha:ant,
+    trienioPct:Number($('manualTrienioPct').value||6),nivelCarrera:nivel,aplicaCarrera:true,
+    nocturnidadMensual:noct,peligrosidadMensual:pelig,
+    domingosCount:n('manualDomingos'),festivosCount:n('manualFestivos'),festivosEspecialesCount:n('manualFestivosEspeciales'),
+    plusDomingoRate:n('plusDomingo'),plusFestivoRate:n('plusFestivo'),plusFestivoEspecialRate:n('plusFestivoEspecial')
+  });
+  const salario=c.salarioMensual, antig=c.antigMensual, carrera=c.carreraMensual, trienios=c.trienios;
+  const domingo=c.domingoImporte, festivos=c.festivoImporte, festivosEsp=c.festivoEspecialImporte, totalDomFest=c.totalDomFest;
+
+  const prestacionIT=n('prestacionITLeida');
+  const complementoIT=n('complementoITLeido');
+  const totalITPagado=prestacionIT+complementoIT;
+  const esNominaIT=totalITPagado>0;
+
+  let filas='';
+  let esperado=0;
+  let pagado=0;
+
+  if(esNominaIT){
+    // En una baja completa el salario, antigüedad, carrera, etc. no aparecen
+    // como líneas separadas: quedan sustituidos por prestación + complemento.
+    const protegido=c.protegidoMensual;
+    esperado=protegido+totalDomFest;
+    pagado=totalITPagado+n('domFestPagado');
+
+    filas+=`<tr><td colspan="5"><strong>Nómina de baja detectada: se compara el total mensual protegido con Prestación IT + Complemento IT.</strong></td></tr>`;
+    filas+=filaComparacionManual('Salario base protegido',salario,salario);
+    filas+=filaComparacionManual(`Antigüedad protegida (${trienios} trienios)`,antig,antig,0.15);
+    filas+=filaComparacionManual('Carrera protegida',carrera,carrera);
+    filas+=filaComparacionManual('Nocturnidad protegida',noct,noct);
+    filas+=filaComparacionManual('Peligrosidad protegida',pelig,pelig);
+    filas+=`<tr><td><strong>Total mensual protegido</strong></td><td class="num"><strong>${money(protegido)}</strong></td><td class="num">—</td><td class="num">—</td><td><span class="badge b-ok">Referencia</span></td></tr>`;
+    filas+=`<tr><td>Prestación IT</td><td class="num">—</td><td class="num">${money(prestacionIT)}</td><td class="num">—</td><td><span class="badge b-ok">Leída</span></td></tr>`;
+    filas+=`<tr><td>Complemento de enfermedad</td><td class="num">—</td><td class="num">${money(complementoIT)}</td><td class="num">—</td><td><span class="badge b-ok">Leído</span></td></tr>`;
+    filas+=filaComparacionManual('Cuadre de IT',protegido,totalITPagado,0.15);
+    filas+=filaComparacionManual('Domingos',domingo,n('domFestPagado'));
+    filas+=filaComparacionManual('Festivos ordinarios',festivos,0);
+    filas+=filaComparacionManual('Festivos especiales',festivosEsp,0);
+  }else{
+    esperado=salario+antig+carrera+noct+pelig+totalDomFest;
+    pagado=
+      n('salarioPagado')+
+      n('antiguedadPagada')+
+      n('carreraPagada')+
+      n('nocturnidadPagada')+
+      n('peligrosidadPagada')+
+      n('domFestPagado');
+
+    filas+=filaComparacionManual('Salario base',salario,n('salarioPagado'));
+    filas+=filaComparacionManual(`Antigüedad (${trienios} trienios)`,antig,n('antiguedadPagada'),0.15);
+    filas+=filaComparacionManual('Carrera profesional',carrera,n('carreraPagada'));
+    filas+=filaComparacionManual('Nocturnidad',noct,n('nocturnidadPagada'));
+    filas+=filaComparacionManual('Peligrosidad',pelig,n('peligrosidadPagada'));
+    filas+=filaComparacionManual('Domingos',domingo,n('domFestPagado'));
+    filas+=filaComparacionManual('Festivos ordinarios',festivos,0);
+    filas+=filaComparacionManual('Festivos especiales',festivosEsp,0);
+  }
+
+  $('tablaComparacionManual').innerHTML=filas;
+
+  const dif=esperado-pagado;
+  const irpf=esperado*n('manualIRPF')/100;
+  const ss=esperado*0.065;
+  const neto=esperado-irpf-ss;
+
+  const estado=Math.abs(dif)<=0.15
+    ? 'CUADRA'
+    : dif>0
+      ? 'FALTA POR PAGAR'
+      : 'SE HA PAGADO DE MÁS';
+
+  $('resumenComparacionManual').innerHTML=
+    `<strong>Tipo de comprobación:</strong> ${esNominaIT?'Incapacidad temporal':'Nómina ordinaria'}.<br>
+     <strong>Debería cobrar:</strong> ${money(esperado)}.<br>
+     <strong>Le han pagado en conceptos comparables:</strong> ${money(pagado)}.<br>
+     <strong>${estado}: ${money(Math.abs(dif))}</strong><br>
+     <span class="small">Líquido estimado orientativo con SS 6,50 % e IRPF ${n('manualIRPF').toFixed(2)} %: ${money(neto)}.</span>`;
+}
+function textoCampo(id, defecto=''){
+  const el=$(id);
+  return el && el.value ? el.value : defecto;
+}
+function fechaES(v){
+  if(!v)return '';
+  const d=fecha(v);
+  return d?d.toLocaleDateString('es-ES'):'';
+}
+function filaInforme(nombre, importe){
+  return `<div class="line"><span>${nombre}</span><strong>${money(importe)}</strong></div>`;
+}
+function generarInformeReclamacion(){
+  calcularComparacionManual();
+
+  const periodo=fecha($('periodoHasta').value)||new Date();
+  const categoria=$('manualCategoria').value;
+  const antFecha=fecha($('manualAntiguedadFecha').value);
+  const nivel=Number($('manualNivelCarrera').value||0);
+  const noct=n('manualNocturnidad');
+  const pelig=n('manualPeligrosidad');
+
+  const c=calcularConceptosProtegidos({
+    finPeriodo:periodo,jornada:1,categoria,antiguedadFecha:antFecha,
+    trienioPct:Number($('manualTrienioPct').value||6),nivelCarrera:nivel,aplicaCarrera:true,
+    nocturnidadMensual:noct,peligrosidadMensual:pelig,
+    domingosCount:n('manualDomingos'),festivosCount:n('manualFestivos'),festivosEspecialesCount:n('manualFestivosEspeciales'),
+    plusDomingoRate:n('plusDomingo'),plusFestivoRate:n('plusFestivo'),plusFestivoEspecialRate:n('plusFestivoEspecial')
+  });
+  const salario=c.salarioMensual, antig=c.antigMensual, carrera=c.carreraMensual, trienios=c.trienios;
+  const domingos=c.domingoImporte, festivos=c.festivoImporte, festivosEsp=c.festivoEspecialImporte, totalDomFest=c.totalDomFest;
+
+  const prestacion=n('prestacionITLeida');
+  const complemento=n('complementoITLeido');
+  const totalIT=prestacion+complemento;
+  const protegido=c.protegidoMensual;
+  const esIT=totalIT>0;
+
+  const debido=(esIT?protegido:protegido)+totalDomFest;
+  const pagado=esIT
+    ? totalIT+n('domFestPagado')
+    : n('salarioPagado')+n('antiguedadPagada')+n('carreraPagada')+n('nocturnidadPagada')+n('peligrosidadPagada')+n('domFestPagado');
+  const diferencia=debido-pagado;
+
+  $('repTrabajador').textContent=textoCampo('trabajador','No indicado');
+  $('repEmpresa').textContent=textoCampo('empresa','No indicada');
+  $('repCategoria').textContent=$('manualCategoria').options[$('manualCategoria').selectedIndex].text;
+  $('repAntiguedad').textContent=fechaES($('manualAntiguedadFecha').value)||'No indicada';
+  $('repPeriodo').textContent=
+    [fechaES($('periodoDesde').value),fechaES($('periodoHasta').value)].filter(Boolean).join(' a ')||'No indicado';
+
+  $('repConceptos').innerHTML=
+    filaInforme('Salario base según categoría',salario)+
+    filaInforme(`Antigüedad: ${trienios} trienios al ${Number($('manualTrienioPct').value||6)} %`,antig)+
+    filaInforme(`Carrera profesional ${nivel?`Nivel ${nombreNivelCarrera(nivel)}`:'no aplicada'}`,carrera)+
+    filaInforme('Nocturnidad',noct)+
+    filaInforme('Peligrosidad',pelig)+
+    filaInforme('Total mensual protegido',protegido);
+
+  $('repIT').innerHTML=esIT
+    ? filaInforme('Prestación de IT abonada',prestacion)+
+      filaInforme('Complemento de enfermedad abonado',complemento)+
+      filaInforme('Total abonado por IT',totalIT)+
+      filaInforme('Total mensual que debía quedar cubierto',protegido)+
+      filaInforme('Diferencia de IT',protegido-totalIT)
+    : '<p>No se ha detectado prestación ni complemento de IT en la nómina revisada.</p>';
+
+  $('repDomFest').innerHTML=
+    filaInforme(`${n('manualDomingos')} domingos`,domingos)+
+    filaInforme(`${n('manualFestivos')} festivos ordinarios`,festivos)+
+    filaInforme(`${n('manualFestivosEspeciales')} festivos especiales`,festivosEsp)+
+    filaInforme('Total domingos y festivos',totalDomFest);
+
+  $('repComparacion').innerHTML=
+    filaInforme('Cantidad total que corresponde',debido)+
+    filaInforme('Cantidad abonada en conceptos comparables',pagado)+
+    filaInforme('Diferencia',Math.abs(diferencia));
+
+  const estado=Math.abs(diferencia)<=0.15
+    ? 'LA NÓMINA CUADRA'
+    : diferencia>0
+      ? 'FALTA CANTIDAD POR ABONAR'
+      : 'SE HA ABONADO UNA CANTIDAD SUPERIOR';
+
+  $('repTotal').textContent=`${estado}: ${money(Math.abs(diferencia))}`;
+  $('repConclusion').innerHTML=
+    Math.abs(diferencia)<=0.15
+      ? 'Tras revisar los conceptos salariales, la incapacidad temporal y los domingos y festivos indicados, no se aprecia diferencia económica pendiente.'
+      : diferencia>0
+        ? `Tras la revisión realizada, se aprecia una diferencia pendiente de abono de ${money(diferencia)} a favor del trabajador/a.`
+        : `Tras la revisión realizada, consta un exceso de abono de ${money(Math.abs(diferencia))}.`;
+
+  $('repObservaciones').textContent=
+    'La comprobación se ha realizado tomando como referencia la categoría profesional, la antigüedad, la carrera profesional, la nocturnidad, la peligrosidad y los domingos y festivos indicados. En los periodos de incapacidad temporal se compara el total mensual protegido con la suma de la prestación de IT y el complemento de enfermedad abonado por la empresa.';
+
+  const bajaSinComplementosConfirmados = esIT && n('salarioPagado')===0 && n('antiguedadPagada')===0 && !nivel && !noct && !pelig;
+  const avisoExistente=$('repAvisoIT');
+  if(avisoExistente)avisoExistente.remove();
+  if(bajaSinComplementosConfirmados){
+    const aviso=window.document.createElement('div');
+    aviso.id='repAvisoIT';
+    aviso.className='report-conclusion';
+    aviso.style.border='2px solid '+'#c8102e';
+    aviso.style.marginTop='10px';
+    aviso.innerHTML='<strong>AVISO — revisar antes de firmar o presentar este informe:</strong> esta nómina es de baja completa y no trae líneas de salario base ni antigüedad, por lo que no se puede saber desde aquí si la persona tiene reconocida Carrera Profesional, nocturnidad o peligrosidad (no se han indicado en el formulario). El importe de "Total mensual protegido" ('+money(protegido)+') puede quedarse corto si la persona SÍ cobra alguno de esos complementos en un mes normal trabajado. Antes de dar por válida la diferencia de este informe, comprueba una nómina suya de un mes trabajado y, si procede, rellena Carrera/Nocturnidad/Peligrosidad en esta pestaña y vuelve a generar el informe.';
+    $('repTotal').insertAdjacentElement('afterend',aviso);
+  }
+
+  $('informeReclamacion').style.display='block';
+  if($('informeReclamacion').scrollIntoView)$('informeReclamacion').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function imprimirInformeReclamacion(){
+  generarInformeReclamacion();
+  setTimeout(()=>window.print(),150);
+}
+function revisarTodo(){
+  const finPeriodo=fecha($('periodoHasta').value)||fecha($('finContrato').value)||new Date();
+  const y=finPeriodo.getFullYear();
+  const tabla=TABLAS[y]||TABLAS[2026];
+  const tablaEsExacta=Boolean(TABLAS[y]);
+  const jornada=1;
+  const desde=fecha($('periodoDesde').value),hasta=fecha($('periodoHasta').value);
+  const diasPeriodo=desde&&hasta?diasEntre(desde,hasta):30;
+
+  const esp=datosEsperadosNomina();
+  const baseMensual=esp.salarioMensual;
+  const baseEsperada=incluido('incSalario')?esp.salarioPeriodo:0;
+  const trienios=esp.trienios;
+  const antigMensual=esp.antigMensual;
+  const antigEsperada=incluido('incAntiguedad')?esp.antigPeriodo:0;
+  const nivelCarrera=esp.nivel;
+  const carreraMensual=incluido('incCarrera')?esp.carreraMensual:0;
+  const carreraEsperada=incluido('incCarrera')?esp.carreraPeriodo:0;
+
+  if(nivelCarrera)$('nivelCarrera').value=String(nivelCarrera);
+
+  const aplicaNocturnidad=incluido('incNocturnidad')&&$('aplicarNocturnidad')&&$('aplicarNocturnidad').value==='si';
+  const nocturnidadMensual=aplicaNocturnidad?(n('nocturnidadFiniquito')||416.88)*jornada:0;
+  const nocturnidadEsperada=nocturnidadMensual*(diasPeriodo/30);
+
+  const percibePeligrosidad=incluido('incPeligrosidad')&&(( $('aplicarPeligrosidad')&&$('aplicarPeligrosidad').value==='si') || n('peligrosidadPagada')>0);
+  const peligrosidadMensual=percibePeligrosidad?(n('peligrosidadFiniquito')||n('peligrosidadImporte'))*jornada:0;
+  const peligrosidadEsperada=peligrosidadMensual*(diasPeriodo/30);
+
+  let html='';
+  if(incluido('incSalario')) html+=lineaRevision(`Salario base ${tablaEsExacta?'tabla '+y:'referencia 2026'}`,n('salarioPagado'),baseEsperada,0.10);
+  if(incluido('incAntiguedad')) html+=lineaRevision(`Antigüedad (${trienios} trienios al ${Number($('trienioPct').value||6)} %)`,n('antiguedadPagada'),antigEsperada,0.15);
+
+  if(y===2026 && nivelCarrera){
+    html+=lineaRevision(`Carrera profesional · Nivel ${nombreNivelCarrera(nivelCarrera)}`,n('carreraPagada'),carreraEsperada,0.10);
+  }else if(n('carreraPagada')>0){
+    html+=`<tr><td>Carrera profesional</td><td class="num">${money(n('carreraPagada'))}</td><td class="num">${y===2026?'No coincide con un nivel de tabla':'Tabla de carrera no incorporada para '+y}</td><td class="num">—</td><td><span class="badge b-warn">Revisar nivel</span></td></tr>`;
+  }else{
+    html+=`<tr><td>Carrera profesional</td><td class="num">${money(0)}</td><td class="num">Sin carrera leída</td><td class="num">—</td><td><span class="badge b-warn">Sin concepto</span></td></tr>`;
+  }
+
+  if(n('nocturnidadPagada')>0){
+    html+=lineaRevision('Nocturnidad',n('nocturnidadPagada'),nocturnidadEsperada,0.15);
+  }
+
+  if(n('prestacionITLeida')>0 || n('complementoITLeido')>0){
+    const totalIT=n('prestacionITLeida')+n('complementoITLeido');
+    html+=`<tr><td>Prestación IT</td><td class="num">${money(n('prestacionITLeida'))}</td><td class="num">Leída de nómina</td><td class="num">—</td><td><span class="badge b-ok">Detectada</span></td></tr>`;
+    html+=`<tr><td>Complemento IT</td><td class="num">${money(n('complementoITLeido'))}</td><td class="num">Leído de nómina</td><td class="num">—</td><td><span class="badge b-ok">Detectado</span></td></tr>`;
+    html+=`<tr><td>Total abonado por IT</td><td class="num">${money(totalIT)}</td><td class="num">Prestación + complemento</td><td class="num">—</td><td><span class="badge b-ok">Sumado</span></td></tr>`;
+  }
+  if(percibePeligrosidad){
+    if(n('peligrosidadImporte')>0){
+      html+=lineaRevision('Peligrosidad',n('peligrosidadPagada'),peligrosidadEsperada,0.15);
+    }else{
+      html+=`<tr><td>Peligrosidad</td><td class="num">${money(n('peligrosidadPagada'))}</td><td class="num">Introduce el importe mensual que venía percibiendo</td><td class="num">—</td><td><span class="badge b-warn">Dato individual</span></td></tr>`;
+    }
+  }
+  const pagaExtraEsperada=(baseMensual+antigMensual)*(diasPeriodo/30);
+  if(n('pagaExtraLeida')>0){
+    html+=lineaRevision('Paga extra leída',n('pagaExtraLeida'),pagaExtraEsperada,0.15);
+  }
+  const estadoCarrera=esp.nivel&&esp.carreraMensual>0
+    ? `Sí · Nivel ${nombreNivelCarrera(esp.nivel)} · ${money(esp.carreraMensual)}`
+    : 'No';
+  const estadoNocturnidad=aplicaNocturnidad
+    ? `Sí · ${money(nocturnidadMensual)} al mes`
+    : 'No';
+  const estadoPeligrosidad=percibePeligrosidad
+    ? `Sí · ${money(peligrosidadMensual)} al mes`
+    : 'No';
+
+  html+=`<tr><td colspan="5"><strong>Conceptos personales aplicados al cálculo</strong></td></tr>`;
+  html+=`<tr><td>Carrera profesional</td><td colspan="3">${estadoCarrera}</td><td><span class="badge ${esp.carreraMensual>0?'b-ok':'b-warn'}">${esp.carreraMensual>0?'Incluida':'No incluida'}</span></td></tr>`;
+  html+=`<tr><td>Nocturnidad</td><td colspan="3">${estadoNocturnidad}</td><td><span class="badge ${aplicaNocturnidad?'b-ok':'b-warn'}">${aplicaNocturnidad?'Incluida':'No incluida'}</span></td></tr>`;
+  html+=`<tr><td>Peligrosidad</td><td colspan="3">${estadoPeligrosidad}</td><td><span class="badge ${percibePeligrosidad?'b-ok':'b-warn'}">${percibePeligrosidad?'Incluida':'No incluida'}</span></td></tr>`;
+
+  const salarioMensualTeorico=incluido('incSalario')?esp.salarioMensual:0;
+  const antigMensualTeorica=incluido('incAntiguedad')?esp.antigMensual:0;
+  const carreraMensualTeorica=incluido('incCarrera')?esp.carreraMensual:0;
+  const noctMensualTeorica=aplicaNocturnidad?nocturnidadMensual:0;
+  const peligMensualTeorica=percibePeligrosidad?peligrosidadMensual:0;
+
+  const totalFijoMensual=
+    salarioMensualTeorico+
+    antigMensualTeorica+
+    carreraMensualTeorica+
+    noctMensualTeorica+
+    peligMensualTeorica;
+
+  const iniIT=fecha($('inicioBaja').value);
+  const finIT=fecha($('finBaja').value);
+  const diasIT=iniIT&&finIT?diasEntre(iniIT,finIT):0;
+  const diasITNomina=Math.min(30,Math.max(0,diasIT));
+  const diasTrabajadosIT=Math.max(0,30-diasITNomina);
+
+  const parteTrabajadaTeorica=(totalFijoMensual/30)*diasTrabajadosIT;
+  const parteITTeorica=(totalFijoMensual/30)*diasITNomina;
+
+  const prestacionLeida=incluido('incPrestacionIT')?n('prestacionITLeida'):0;
+  const complementoLeido=incluido('incComplementoIT')?n('complementoITLeido'):0;
+  const totalITPagado=prestacionLeida+complementoLeido;
+  const diferenciaIT=parteITTeorica-totalITPagado;
+
+  const salarioDiaInforme=totalFijoMensual/30;
+  const conceptosDomFest=calcularConceptosProtegidos({
+    finPeriodo,jornada,categoria:$('categoria').value,antiguedadFecha:fecha($('antiguedadFecha').value),
+    trienioPct:Number($('trienioPct').value)||6,nivelCarrera,aplicaCarrera:incluido('incCarrera'),
+    incluirSalario:incluido('incSalario'),incluirAntiguedad:incluido('incAntiguedad'),
+    nocturnidadMensual:noctMensualTeorica,peligrosidadMensual:peligMensualTeorica,
+    domingosCount:incluido('incDomingos')?n('domingosMes'):0,
+    festivosCount:incluido('incFestivos')?n('festivosMes'):0,
+    festivosEspecialesCount:incluido('incFestivos')?n('festivosEspecialesMes'):0,
+    plusDomingoRate:n('plusDomingo'),plusFestivoRate:n('plusFestivo'),plusFestivoEspecialRate:n('plusFestivoEspecial')
+  });
+  // Nota: conceptosDomFest.protegidoMensual recalcula salario/antigüedad/carrera con jornada=1 y
+  // puede no coincidir exactamente con totalFijoMensual si la jornada no es 100%; para domingos y
+  // festivos usamos su valor de día (más preciso, incluye nocturnidad/peligrosidad) salvo que
+  // difiera de forma relevante, en cuyo caso mantenemos el cálculo ya hecho arriba como referencia.
+  const domingosInforme=conceptosDomFest.domingoImporte;
+  const festivosOrdinariosInforme=conceptosDomFest.festivoImporte;
+  const festivosEspecialesInforme=conceptosDomFest.festivoEspecialImporte;
+  const totalDomFestInforme=domingosInforme+festivosOrdinariosInforme+festivosEspecialesInforme;
+
+  const totalDebeCobrarMes=
+    parteTrabajadaTeorica+
+    parteITTeorica+
+    totalDomFestInforme+
+    (incluido('incPagaExtra')?n('pagaExtraLeida'):0)+
+    (incluido('incOtros')?n('otrosDevengos'):0);
+
+  const totalRealLeido=
+    n('salarioPagado')+
+    n('antiguedadPagada')+
+    n('carreraPagada')+
+    n('nocturnidadPagada')+
+    n('peligrosidadPagada')+
+    prestacionLeida+
+    complementoLeido+
+    n('domFestPagado')+
+    n('pagaExtraLeida')+
+    n('otrosDevengos');
+
+  const debeCobrarFinal=$('usarDebeAutomatico').value==='si'
+    ? totalDebeCobrarMes
+    : n('debeCobrarManual');
+
+  const pagadoFinal=n('pagadoRealManual')>0
+    ? n('pagadoRealManual')
+    : totalRealLeido;
+
+  const diferenciaMes=debeCobrarFinal-pagadoFinal;
+  set('diferenciaFinalVista',diferenciaMes.toFixed(2));
+
+  html+=`<tr><td colspan="5"><strong>INFORME FINAL DE LO QUE DEBE COBRAR</strong></td></tr>`;
+  html+=`<tr><td>Salario base según categoría</td><td class="num">${money(salarioMensualTeorico)}</td><td colspan="2">Categoría: ${$('categoriaFiniquito').options[$('categoriaFiniquito').selectedIndex].text}</td><td><span class="badge b-ok">Aplicado</span></td></tr>`;
+  html+=`<tr><td>Antigüedad según fecha</td><td class="num">${money(antigMensualTeorica)}</td><td colspan="2">${trienios} trienios al ${Number($('trienioPct').value||6)} %</td><td><span class="badge b-ok">Calculada</span></td></tr>`;
+  html+=`<tr><td>Carrera profesional</td><td class="num">${money(carreraMensualTeorica)}</td><td colspan="2">${carreraMensualTeorica?`Nivel ${nombreNivelCarrera(esp.nivel)}`:'No aplicada'}</td><td><span class="badge ${carreraMensualTeorica?'b-ok':'b-warn'}">${carreraMensualTeorica?'Incluida':'No incluida'}</span></td></tr>`;
+  html+=`<tr><td>Nocturnidad</td><td class="num">${money(noctMensualTeorica)}</td><td colspan="2">${aplicaNocturnidad?'Incluida':'No aplicada'}</td><td><span class="badge ${aplicaNocturnidad?'b-ok':'b-warn'}">${aplicaNocturnidad?'Incluida':'No incluida'}</span></td></tr>`;
+  html+=`<tr><td>Peligrosidad</td><td class="num">${money(peligMensualTeorica)}</td><td colspan="2">${percibePeligrosidad?'Incluida':'No aplicada'}</td><td><span class="badge ${percibePeligrosidad?'b-ok':'b-warn'}">${percibePeligrosidad?'Incluida':'No incluida'}</span></td></tr>`;
+  html+=`<tr><td><strong>Total mensual protegido</strong></td><td class="num"><strong>${money(totalFijoMensual)}</strong></td><td colspan="3">Base para comprobar la IT</td></tr>`;
+
+  if(diasITNomina>0){
+    html+=`<tr><td colspan="5"><strong>CUADRE DE INCAPACIDAD TEMPORAL</strong></td></tr>`;
+    html+=`<tr><td>Días trabajados</td><td class="num">${diasTrabajadosIT}</td><td class="num">${money(parteTrabajadaTeorica)}</td><td colspan="2">Parte normal del mes</td></tr>`;
+    html+=`<tr><td>Días de baja</td><td class="num">${diasITNomina}</td><td class="num">${money(parteITTeorica)}</td><td colspan="2">Importe que debe quedar cubierto</td></tr>`;
+    html+=`<tr><td>Prestación IT leída</td><td class="num">${money(prestacionLeida)}</td><td colspan="3">Pagada por Seguridad Social/mutua</td></tr>`;
+    html+=`<tr><td>Complemento enfermedad leído</td><td class="num">${money(complementoLeido)}</td><td colspan="3">Pagado por la empresa</td></tr>`;
+    html+=`<tr><td><strong>Total IT abonado</strong></td><td class="num"><strong>${money(totalITPagado)}</strong></td><td colspan="2">Prestación + complemento</td><td><span class="badge ${Math.abs(diferenciaIT)<=0.10?'b-ok':'b-warn'}">${Math.abs(diferenciaIT)<=0.10?'Cuadra':'Revisar'}</span></td></tr>`;
+    html+=`<tr><td><strong>Diferencia IT</strong></td><td class="num"><strong>${money(diferenciaIT)}</strong></td><td colspan="3">${diferenciaIT>0?'Pendiente de abonar':diferenciaIT<0?'Cobrado por encima de la referencia':'Sin diferencia'}</td></tr>`;
+
+    const bajaSinComplementosLeidos = diasITNomina>=diasPeriodo && n('salarioPagado')===0 && n('antiguedadPagada')===0 && !carreraMensualTeorica && !aplicaNocturnidad && !percibePeligrosidad;
+    if(bajaSinComplementosLeidos){
+      html+=`<tr><td colspan="5"><div class="note"><span class="badge b-warn">Revisar antes de dar por buena la diferencia</span> Esta nómina es de baja completa: no trae líneas de salario base ni antigüedad, así que la app no puede leer de aquí si la persona tenía carrera profesional, nocturnidad o peligrosidad reconocidas. El "Total mensual protegido" (${money(totalFijoMensual)}) solo incluye salario base + antigüedad. Si la persona SÍ tenía algún complemento, indícalo arriba (nivel de carrera, nocturnidad, peligrosidad) con una nómina normal suya de un mes trabajado y vuelve a calcular antes de concluir que se ha cobrado de más o de menos.</div></td></tr>`;
+    }
+  }
+
+  if((prestacionLeida>0||complementoLeido>0) && diasITNomina===0){
+    html+=`<tr><td colspan="5"><span class="badge b-warn">Introduce o revisa las fechas de baja para hacer el cuadre de IT.</span></td></tr>`;
+  }
+
+  html+=`<tr><td colspan="5"><strong>DOMINGOS Y FESTIVOS DEL MES</strong></td></tr>`;
+  html+=`<tr><td>Domingos</td><td class="num">${n('domingosMes')}</td><td class="num">${money(domingosInforme)}</td><td colspan="2">${money(n('plusDomingo'))} por domingo</td></tr>`;
+  html+=`<tr><td>Festivos ordinarios</td><td class="num">${n('festivosMes')}</td><td class="num">${money(festivosOrdinariosInforme)}</td><td colspan="2">${money(conceptosDomFest.festivoUnit)} por festivo</td></tr>`;
+  html+=`<tr><td>Festivos especiales</td><td class="num">${n('festivosEspecialesMes')}</td><td class="num">${money(festivosEspecialesInforme)}</td><td colspan="2">${money(conceptosDomFest.festivoEspecialUnit)} por festivo</td></tr>`;
+  html+=`<tr><td><strong>Total domingos y festivos</strong></td><td class="num"><strong>${money(totalDomFestInforme)}</strong></td><td colspan="3">Añadido al cálculo mensual</td></tr>`;
+
+  html+=`<tr><td colspan="5"><strong>CUADRE FINAL DEL MES</strong></td></tr>`;
+  html+=`<tr><td>Total que debería cobrar</td><td class="num"><strong>${money(debeCobrarFinal)}</strong></td><td colspan="3">${$('usarDebeAutomatico').value==='si'?'Calculado por la app':'Introducido manualmente'}</td></tr>`;
+  html+=`<tr><td>Total realmente pagado</td><td class="num"><strong>${money(pagadoFinal)}</strong></td><td colspan="3">${n('pagadoRealManual')>0?'Introducido manualmente':'Leído de la nómina'}</td></tr>`;
+  html+=`<tr><td>Diferencia final</td><td class="num"><strong>${money(Math.abs(diferenciaMes))}</strong></td><td colspan="2">${diferenciaMes>0?'FALTA POR PAGAR':diferenciaMes<0?'HAN PAGADO DE MÁS':'LA NÓMINA CUADRA'}</td><td><span class="badge ${Math.abs(diferenciaMes)<=0.10?'b-ok':'b-warn'}">${Math.abs(diferenciaMes)<=0.10?'Correcta':diferenciaMes>0?'Falta':'Sobra'}</span></td></tr>`;
+
+  const mensajeFinal=Math.abs(diferenciaMes)<=0.10
+    ? `La nómina cuadra. Diferencia: ${money(0)}`
+    : diferenciaMes>0
+      ? `Falta por pagar: ${money(diferenciaMes)}`
+      : `Se ha pagado de más: ${money(Math.abs(diferenciaMes))}`;
+
+  html+=`<tr><td colspan="5"><div class="note"><strong>${mensajeFinal}</strong></div></td></tr>`;
+  $('revisionNomina').innerHTML=html;
+
+  const inicio=fecha($('inicioContrato').value),fin=fecha($('finContrato').value);
+  const diasUltimoMes=diasUltimoMesCalculados(fin);
+  set('diasUltimoMes',diasUltimoMes?diasUltimoMes.toFixed(2):'');
+  const inicioAno=fin?new Date(fin.getFullYear(),0,1):null;
+  const inicioDevengo=inicio&&inicioAno&&inicio>inicioAno?inicio:inicioAno;
+  const diasAno=inicioDevengo&&fin?diasEntre(inicioDevengo,fin):0;
+
+  const vacGen=diasAno*30/365;
+  const vacPend=Math.max(0,vacGen-n('vacDisfrutadas')-n('vacPagadas'));
+  set('vacGeneradasVista',vacGen.toFixed(2));
+  set('vacPendientesVista',vacPend.toFixed(2));
+
+  let baseVac=baseMensual+antigMensual;
+  if($('vacCarrera').checked)baseVac+=(carreraMensual||n('carreraPagada'));
+  if($('vacNocturnidad').checked)baseVac+=n('nocturnidadPagada');
+  if($('vacPeligrosidad').checked && percibePeligrosidad)baseVac+=(peligrosidadMensual||n('peligrosidadPagada'));
+  const valorDiaVac=baseVac/30;
+  const vacImporte=incluido('incVacaciones')?vacPend*valorDiaVac:0;
+  set('vacImporteVista',vacImporte.toFixed(2));
+
+  const baseExtra=baseMensual+antigMensual;
+  const mesFin=fin?fin.getMonth()+1:0;
+  let verano=0,navidad=0,beneficios=0;
+
+  if($('veranoCobrada').value==='no' && fin){
+    const iniSem=new Date(fin.getFullYear(),0,1);
+    const finSem=new Date(fin.getFullYear(),5,30);
+    verano=incluido('incPagaExtra')?baseExtra*proporcionPeriodo(inicio,fin,iniSem,finSem):0;
+  }
+  if($('navidadCobrada').value==='no' && fin){
+    const iniSem=new Date(fin.getFullYear(),6,1);
+    const finSem=new Date(fin.getFullYear(),11,31);
+    navidad=incluido('incPagaExtra')?baseExtra*proporcionPeriodo(inicio,fin,iniSem,finSem):0;
+  }
+  if($('beneficiosCobrados').value==='no')beneficios=incluido('incPagaExtra')?(baseExtra/2)*(diasAno/365):0;
+
+  // Último mes calculado con las fechas manuales.
+  const fijoMensualFinal=
+    baseMensual+
+    antigMensual+
+    (carreraMensual||n('carreraPagada'))+
+    nocturnidadMensual+
+    (percibePeligrosidad?peligrosidadMensual:0);
+
+  const salarioUltimoMes=(fijoMensualFinal/30)*diasUltimoMes;
+
+  const domingosManual=incluido('incDomingos')?n('domingosMes')*n('plusDomingo'):0;
+  const salarioDiaFestivo=fijoMensualFinal/30;
+  const festivoOrdinarioUnitario=(salarioDiaFestivo*1.75)+n('plusFestivo');
+  const festivoEspecialUnitario=(salarioDiaFestivo*1.75)+n('plusFestivoEspecial');
+  const festivosManual=incluido('incFestivos')?(
+    n('festivosMes')*festivoOrdinarioUnitario+
+    n('festivosEspecialesMes')*festivoEspecialUnitario):0;
+
+  const variablesMes=domingosManual+festivosManual+(incluido('incOtros')?n('otrosDevengos'):0);
+  const salarioPendiente=
+    salarioUltimoMes+
+    variablesMes;
+  const indemnizacion=n('indemnizacion');
+  const bruto=salarioPendiente+vacImporte+verano+navidad+beneficios+indemnizacion;
+  set('brutoMesVista',bruto.toFixed(2));
+  const cotizable=Math.max(0,bruto-indemnizacion);
+  const cc=incluido('incSS')?cotizable*n('ccPctManual')/100:0;
+  const mei=incluido('incSS')?cotizable*n('meiPctManual')/100:0;
+  const desempleo=incluido('incSS')?cotizable*n('desempleoPctManual')/100:0;
+  const fp=incluido('incSS')?cotizable*n('fpPctManual')/100:0;
+  const ss=cc+mei+desempleo+fp;
+  const irpf=cotizable*n('irpfPct')/100;
+  const anticipo=incluido('incAnticipo')?n('anticipoDescontado'):0;
+  const embargo=incluido('incEmbargo')?n('embargoDescontado'):0;
+  const prestamoEmpresa=incluido('incPrestamo')?n('prestamoEmpresaDescontado'):0;
+  const otras=n('otrasDeducciones')+anticipo+embargo+prestamoEmpresa;
+  const ded=ss+irpf+otras;
+  const neto=bruto-ded;
+  const liquidoReferencia=$('usarLiquidoLeido').value==='si'
+    ? (n('finiquitoPagado')||n('liquidoNomina'))
+    : (n('finiquitoPagado')||n('liquidoComparar'));
+  const pagado=liquidoReferencia;
+  const dif=pagado?neto-pagado:null;
+
+  $('mBruto').textContent=money(bruto);
+  $('mDeducciones').textContent=money(ded);
+  $('mNeto').textContent=money(neto);
+  $('mDiferencia').textContent=dif===null?'—':money(dif);
+
+  $('desgloseFiniquito').innerHTML=[
+    ['Duración del contrato',inicio&&fin?`${diasEntre(inicio,fin)} días`:'Fechas incompletas'],
+    ['Último mes calculado',`${diasUltimoMes.toFixed(2)} días · ${money(salarioUltimoMes)}`],
+    ['Domingos trabajados',`${n('domingosMes')} × ${money(n('plusDomingo'))} = ${money(domingosManual)}`],
+    ['Festivos ordinarios',`${n('festivosMes')} × ${money(festivoOrdinarioUnitario)} = ${money(n('festivosMes')*festivoOrdinarioUnitario)}`],
+    ['Festivos especiales',`${n('festivosEspecialesMes')} × ${money(festivoEspecialUnitario)} = ${money(n('festivosEspecialesMes')*festivoEspecialUnitario)}`],
+    ['Otros devengos',money(n('otrosDevengos'))],
+    ['Salario y complementos pendientes',money(salarioPendiente)],
+    ['Prestación IT leída',money(incluido('incPrestacionIT')?n('prestacionITLeida'):0)],
+    ['Complemento IT leído',money(incluido('incComplementoIT')?n('complementoITLeido'):0)],
+    ['Total IT abonado',money((incluido('incPrestacionIT')?n('prestacionITLeida'):0)+(incluido('incComplementoIT')?n('complementoITLeido'):0))],
+    ['Vacaciones generadas',`${vacGen.toFixed(2)} días`],
+    ['Vacaciones disfrutadas',`${n('vacDisfrutadas').toFixed(2)} días`],
+    ['Vacaciones ya pagadas',`${n('vacPagadas').toFixed(2)} días`],
+    ['Vacaciones pendientes de pago',`${vacPend.toFixed(2)} días`],
+    ['Valor de cada día de vacaciones',money(valorDiaVac)],
+    ['Vacaciones pendientes',`${vacPend.toFixed(2)} días · ${money(vacImporte)}`],
+    ['Paga de verano',money(verano)],
+    ['Paga de Navidad',money(navidad)],
+    ['Paga de beneficios',money(beneficios)],
+    ['Indemnización',money(indemnizacion)],
+    ['Seguridad Social',money(ss)],
+    ['IRPF',money(irpf)],
+    ['Otras deducciones',money(otras)]
+  ].map(r=>`<div class="line"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');
+
+  $('resumenNomina').innerHTML=[
+    ['Categoría aplicada',($('categoriaFiniquito')&&$('categoriaFiniquito').options[$('categoriaFiniquito').selectedIndex].text)||$('categoria').options[$('categoria').selectedIndex].text],
+    ['Jornada aplicada','100,00 %'],
+    ['Carrera profesional aplicada',estadoCarrera],
+    ['Nocturnidad aplicada',estadoNocturnidad],
+    ['Peligrosidad aplicada',estadoPeligrosidad],
+    ['Salario base categoría',money(baseEsperada)],
+    ['Antigüedad calculada',money(antigEsperada)],
+    ['Carrera tabla',nivelCarrera&&y===2026?`Nivel ${nombreNivelCarrera(nivelCarrera)} · ${money(carreraEsperada)}`:'No validada'],
+    ['Total devengado leído',n('totalDevNomina')?money(n('totalDevNomina')):'No leído'],
+    ['Total deducciones leído',n('totalDedNomina')?money(n('totalDedNomina')):'No leído'],
+    ['IRPF aplicado',`${n('irpfPct').toFixed(2)} % · ${money(irpf)}`],
+    ['Contingencias comunes',`${n('ccPctManual').toFixed(2)} % · ${money(cc)}`],
+    ['MEI',`${n('meiPctManual').toFixed(2)} % · ${money(mei)}`],
+    ['Desempleo',`${n('desempleoPctManual').toFixed(2)} % · ${money(desempleo)}`],
+    ['Formación profesional',`${n('fpPctManual').toFixed(2)} % · ${money(fp)}`],
+    ['Seguridad Social total',`${n('ssPct').toFixed(2)} % · ${money(ss)}`],
+    ['Anticipo descontado',money(anticipo)],
+    ['Embargo descontado',money(embargo)],
+    ['Préstamo empresa descontado',money(prestamoEmpresa)],
+    ['Líquido leído',n('liquidoNomina')?money(n('liquidoNomina')):'No leído'],
+    ['Líquido usado para comparar',pagado?money(pagado):'No introducido']
+  ].map(r=>`<div class="line"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');
+
+  const correcto=dif===null?null:Math.abs(dif)<=1;
+  $('dictamen').textContent=correcto===null
+    ?'Cálculo realizado. Introduce el finiquito pagado para obtener la diferencia.'
+    :correcto
+      ?'El finiquito coincide con el cálculo, con una diferencia inferior a 1 euro.'
+      :`El finiquito debe revisarse. Diferencia estimada: ${money(dif)}.`;
+  $('dictamen').className='status '+(correcto===null?'':correcto?'ok':'bad');
+
+}
+
+function nuevoCaso(){
+  document.querySelectorAll('input').forEach(i=>i.value='');
+  document.querySelectorAll('textarea').forEach(i=>i.value='');
+  [
+    'incSalario','incAntiguedad','incCarrera','incNocturnidad','incDomingos',
+    'incFestivos','incPagaExtra','incPrestacionIT','incComplementoIT',
+    'incVacaciones','incOtros','incIRPF','incSS','incAnticipo','incEmbargo','incPrestamo'
+  ].forEach(id=>{if($(id))$(id).checked=true});
+  if($('incPeligrosidad'))$('incPeligrosidad').checked=false;
+  set('usarDebeAutomatico','si');set('debeCobrarManual',0);set('pagadoRealManual',0);set('diferenciaFinalVista','');set('jornada',100);set('jornadaFiniquito',100);set('categoriaFiniquito','LIMPIADOR-A');set('aplicarCarrera','si');set('nivelCarreraFiniquito',0);set('aplicarNocturnidad','no');set('nocturnidadFiniquito',416.88);set('aplicarPeligrosidad','no');set('peligrosidadFiniquito',0);set('domingosMes',0);set('festivosMes',0);set('festivosEspecialesMes',0);set('plusDomingo',49.96);set('plusFestivo',49.96);set('plusFestivoEspecial',99.92);set('vacDisfrutadas',0);set('vacPagadas',0);set('vacGeneradasVista','');set('vacPendientesVista','');set('vacImporteVista','');set('brutoMesVista','');set('diasUltimoMes','');set('reglaUltimoMes','nomina30');set('anticipoDescontado',0);set('embargoDescontado',0);set('prestamoEmpresaDescontado',0);set('liquidoComparar','');set('usarLiquidoLeido','si');set('irpfPct',2);set('ccPctManual',4.70);set('meiPctManual',0.15);set('desempleoPctManual',1.55);set('fpPctManual',0.10);set('ssPct',6.50);set('otrasDeducciones',0);set('indemnizacion',0);
+  set('trienioPct',6);set('nocturnidadImporte',416.88);set('tienePeligrosidad','no');set('peligrosidadImporte',0);
+  set('nivelCarrera',0);
+  ['vacCarrera','vacNocturnidad','vacPeligrosidad'].forEach(id=>$(id).checked=true);
+  filasPDF=[];
+  $('tablaConceptos').innerHTML='<tr><td colspan="7" class="small">Todavía no se ha leído ninguna nómina.</td></tr>';
+  abrirTab('conceptos',document.querySelectorAll('.tab')[0]);
+  setStatus('Nuevo caso preparado.');
+}
+
+// --- Integración con el hub "Nóminas Unificadas" ---
+// Si esta calculadora se abre desde el hub (botón "Abrir" tras seleccionar
+// un compañero/a), llega con parámetros en la URL: nombre, dni, turno,
+// categoria, antiguedad, periodo. Los recogemos y precargamos lo que se pueda.
+function mapCategoriaHub(txt){
+  const t=(txt||'').toLowerCase();
+  if(t.includes('encargado'))return 'ENCARGADO DE GRUPO';
+  if(t.includes('especialista'))return 'ESPECIALISTA';
+  if(t.includes('pe') && t.includes('especial'))return 'PEON ESPECIALIZADO';
+  if(t.includes('limpiador'))return 'LIMPIADOR-A';
+  return '';
+}
+function precargarDesdeHub(){
+  const q=new URLSearchParams(window.location.search);
+  if(![...q.keys()].length)return;
+  if(q.get('nombre'))set('trabajador',q.get('nombre'));
+  if(q.get('dni'))set('nif',q.get('dni'));
+  const cat=mapCategoriaHub(q.get('categoria'));
+  if(cat){set('categoria',cat);if($('manualCategoria'))set('manualCategoria',cat)}
+  if(q.get('antiguedad')){
+    set('antiguedadFecha',q.get('antiguedad'));
+    if($('manualAntiguedadFecha'))set('manualAntiguedadFecha',q.get('antiguedad'));
+  }
+  const periodo=q.get('periodo');
+  if(periodo){
+    const meses={ENERO:1,FEBRERO:2,MARZO:3,ABRIL:4,MAYO:5,JUNIO:6,JULIO:7,AGOSTO:8,SEPTIEMBRE:9,OCTUBRE:10,NOVIEMBRE:11,DICIEMBRE:12};
+    const m=periodo.match(/([A-Za-zñÑ]+)\s+(\d{4})/);
+    if(m && meses[m[1].toUpperCase()]){
+      const mes=meses[m[1].toUpperCase()],y=+m[2];
+      const ultimoDia=new Date(y,mes,0).getDate();
+      set('periodoDesde',iso(1,mes,y));
+      set('periodoHasta',iso(ultimoDia,mes,y));
+    }
+  }
+  setStatus('Datos del compañero/a precargados desde Nóminas Unificadas. Completa el resto y lee su nómina.','ok');
+  if(typeof sincronizarDatosFiniquito==='function')sincronizarDatosFiniquito();
+  revisarTodo();
+}
+precargarDesdeHub();
+</script>
+</body>
+</html>

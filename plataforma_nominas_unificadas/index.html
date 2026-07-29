@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nóminas Unificadas · UGT Limpieza</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<style>
+:root{
+  --rojo:#d71920;
+  --rojo-d:#a90f15;
+  --oro:#f2b705;
+  --tinta:#1c1c1c;
+  --gris:#626262;
+  --borde:#dedede;
+  --fondo:#f5f5f5;
+  --card:#fff;
+  --verde:#12743a;
+  --ambar:#a76500;
+  --azul:#135f8a;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--fondo);color:var(--tinta)}
+button,input,select,textarea{font:inherit}
+.top{background:linear-gradient(135deg,var(--rojo),#8f0d12);color:white;padding:24px 28px;border-bottom:5px solid var(--oro)}
+.top-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:18px}
+.logo{width:64px;height:64px;border-radius:16px;background:white;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:0 0 auto}
+.logo img{width:64px;height:64px;object-fit:cover}
+h1{margin:0;font-size:28px;letter-spacing:.1px}
+.sub{margin:6px 0 0;font-size:14px;opacity:.94}
+main{max-width:1180px;margin:0 auto;padding:22px}
+.notice{background:#fff8db;border-left:4px solid var(--oro);padding:13px 16px;margin-bottom:18px;border-radius:0 6px 6px 0;color:#5a4010;font-size:14px;line-height:1.45}
+.layout{display:grid;grid-template-columns:390px minmax(0,1fr);gap:16px;align-items:start}
+.panel,.card{background:var(--card);border:1px solid var(--borde);border-radius:8px;box-shadow:0 8px 22px rgba(0,0,0,.055)}
+.panel{padding:16px}
+.panel h2,.section-title{font-size:18px;margin:0 0 12px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;font-weight:700;color:#333;text-transform:uppercase;letter-spacing:.3px}
+input,select,textarea{width:100%;border:1px solid #cfcfcf;border-radius:6px;background:white;color:#111;padding:9px 10px;font-size:14px}
+textarea{min-height:74px;resize:vertical}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.btn{border:0;border-radius:6px;padding:10px 12px;font-size:13px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.primary{background:var(--rojo);color:white}
+.primary:hover{background:var(--rojo-d)}
+.soft{background:#f1f1f1;color:#222;border:1px solid #d8d8d8}
+.soft:hover{background:white}
+.blue{background:var(--azul);color:white}
+.danger{background:#fff1f1;color:#9b0000;border:1px solid #e7b8b8}
+.search{margin:13px 0 8px}
+.people-list{display:flex;flex-direction:column;gap:8px;max-height:420px;overflow:auto;padding-right:2px}
+.person{border:1px solid #e3e3e3;border-radius:8px;padding:10px;background:#fafafa;cursor:pointer}
+.person:hover,.person.active{border-color:var(--rojo);background:#fff8f8}
+.person strong{display:block;font-size:14px;margin-bottom:3px}
+.person small{display:block;color:#666;line-height:1.35}
+.empty{padding:14px;border:1px dashed #cfcfcf;border-radius:8px;color:#777;font-size:13px;background:#fafafa}
+.workspace{display:flex;flex-direction:column;gap:16px}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.case-card{padding:15px;border-radius:8px;background:white;border:1px solid var(--borde)}
+.case-card h3{margin:0 0 7px;font-size:16px}
+.case-card p{margin:0 0 12px;font-size:13px;color:#4a4a4a;line-height:1.4}
+.case-card .btn{width:100%}
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tool{padding:17px;display:flex;flex-direction:column;min-height:230px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.ico{font-size:27px}
+.tag{font-size:11px;color:#777;background:#f1f1f1;border:1px solid #e7e7e7;padding:4px 8px;border-radius:999px;white-space:nowrap}
+.tool h3{font-size:18px;margin:0 0 8px}
+.desc{font-size:14px;color:#444;line-height:1.45;margin:0 0 13px}
+.when{font-size:13px;line-height:1.42;margin:0 0 14px;padding-left:18px;color:#333}
+.when li{margin-bottom:5px}
+.actions{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+.actions .btn{flex:1}
+.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.metric{padding:12px;border-radius:8px;border:1px solid #ddd;background:white}
+.metric span{display:block;font-size:12px;color:#666;margin-bottom:5px}
+.metric strong{font-size:19px}
+.ok{color:var(--verde)}.warn{color:var(--ambar)}.bad{color:#b00000}
+.history{padding:16px}
+.history-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.history-list{display:flex;flex-direction:column;gap:8px}
+.hist-item{border:1px solid #e3e3e3;border-radius:8px;padding:10px;background:#fff;cursor:pointer}
+.hist-item:hover,.hist-item.active{border-color:var(--rojo);background:#fff8f8}
+.hist-top{display:flex;justify-content:space-between;gap:10px;font-size:13px;font-weight:800}
+.hist-item p{margin:5px 0 0;color:#555;font-size:13px;line-height:1.35}
+.detail{display:none;padding:16px}
+.detail.show{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.detail-box{border:1px solid #e2e2e2;border-radius:8px;padding:10px;background:#fafafa}
+.detail-box span{display:block;font-size:11px;text-transform:uppercase;font-weight:800;color:#666;margin-bottom:4px}
+.detail-box strong{font-size:14px}
+.copy-text{width:100%;min-height:130px;margin-top:10px;background:#fff;border:1px solid #d6d6d6;border-radius:8px;padding:10px;font-size:13px;line-height:1.45}
+.footer{font-size:12px;color:#777;margin-top:18px;line-height:1.45}
+.hidden-file{display:none}
+@media(max-width:980px){
+  .layout{grid-template-columns:1fr}
+  .quick,.summary{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .top-inner{align-items:flex-start}
+  h1{font-size:22px}
+  main{padding:14px}
+  .form-grid,.tools,.quick,.summary{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="logo"><img src="favicon-192.png" alt="UGT Limpieza"></div>
+    <div>
+      <h1>Nóminas Unificadas UGT Limpieza</h1>
+      <p class="sub">Base de datos de compañeros, historial de revisiones y acceso directo a todas las herramientas de nóminas.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="notice">
+    Los datos se guardan en este navegador. Para llevarte una copia o proteger la información, usa <strong>Exportar base</strong> y guarda el archivo.
+  </div>
+
+  <section class="layout">
+    <aside class="panel">
+      <h2>Base de compañeros</h2>
+      <div class="form-grid">
+        <div class="field full"><label>Nombre y apellidos</label><input id="p-nombre" placeholder="Ej: Miguel Romero"></div>
+        <div class="field"><label>DNI</label><input id="p-dni" placeholder="Ej: 12345678Z"></div>
+        <div class="field"><label>Teléfono</label><input id="p-telefono" placeholder="Opcional"></div>
+        <div class="field"><label>Categoría</label>
+          <select id="p-categoria">
+            <option value="">Sin indicar</option>
+            <option>Limpiador/a</option>
+            <option>Peón especializado</option>
+            <option>Especialista</option>
+            <option>Encargado/a</option>
+          </select>
+        </div>
+        <div class="field"><label>Turno</label>
+          <select id="p-turno">
+            <option value="">Sin indicar</option>
+            <option>Mañana</option>
+            <option>Tarde</option>
+            <option>Noche</option>
+            <option>Fines de semana</option>
+            <option>Partido</option>
+          </select>
+        </div>
+        <div class="field"><label>Centro</label><input id="p-centro" value="Hospital Clínico San Carlos"></div>
+        <div class="field"><label>Antigüedad</label><input id="p-antiguedad" type="date"></div>
+        <div class="field full"><label>Observaciones</label><textarea id="p-notas" placeholder="Ej: reclama festivos, revisar carrera, baja IT..."></textarea></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="guardarCompanero()">Guardar ficha</button>
+        <button class="btn soft" onclick="nuevaFicha()">Nueva</button>
+        <button class="btn danger" onclick="borrarCompanero()">Borrar</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn soft" onclick="exportarBase()">Exportar base</button>
+        <button class="btn soft" onclick="document.getElementById('import-file').click()">Importar base</button>
+        <input id="import-file" class="hidden-file" type="file" accept="application/json" onchange="importarBase(event)">
+      </div>
+
+      <input class="search" id="buscar" placeholder="Buscar compañero..." oninput="renderPersonas()">
+      <div id="people-list" class="people-list"></div>
+    </aside>
+
+    <section class="workspace">
+      <div class="summary">
+        <div class="metric"><span>Compañeros guardados</span><strong id="m-total">0</strong></div>
+        <div class="metric"><span>Revisiones anotadas</span><strong id="m-revisiones">0</strong></div>
+        <div class="metric"><span>Último caso</span><strong id="m-ultimo">-</strong></div>
+        <div class="metric"><span>Estado</span><strong id="m-estado" class="ok">Preparado</strong></div>
+      </div>
+
+      <div class="panel">
+        <h2>Revisión rápida</h2>
+        <div class="form-grid">
+          <div class="field"><label>Compañero seleccionado</label><input id="caso-persona" readonly placeholder="Selecciona o guarda una ficha"></div>
+          <div class="field"><label>Mes reclamado</label><input id="caso-mes" placeholder="Ej: julio 2026"></div>
+          <div class="field"><label>Diferencia detectada</label><input id="caso-diferencia" type="number" step="0.01" placeholder="Ej: 49.96"></div>
+          <div class="field"><label>Semáforo</label>
+            <select id="caso-estado">
+              <option value="Verde">Verde · cuadra</option>
+              <option value="Amarillo">Amarillo · revisar</option>
+              <option value="Rojo">Rojo · reclamar</option>
+            </select>
+          </div>
+          <div class="field full"><label>Qué se revisa</label><textarea id="caso-notas" placeholder="Ej: faltan 2 domingos, plus de festivo, carrera profesional..."></textarea></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn blue" onclick="guardarRevision()">Guardar revisión</button>
+          <button class="btn soft" onclick="imprimirResumen()">Imprimir resumen</button>
+        </div>
+      </div>
+
+      <div class="quick">
+        <div class="case-card">
+          <h3>Caso normal</h3>
+          <p>Para revisar una nómina ordinaria y preparar reclamación.</p>
+          <button class="btn primary" onclick="abrirHerramienta('apps/nomina_general_reclamacion.html')">Abrir revisión completa</button>
+        </div>
+        <div class="case-card">
+          <h3>Me pasan PDF/foto</h3>
+          <p>Para apoyar la revisión con lectura OCR de nómina.</p>
+          <button class="btn primary" onclick="abrirHerramienta('apps/nomina_ocr.html')">Abrir OCR</button>
+        </div>
+        <div class="case-card">
+          <h3>Fines de semana</h3>
+          <p>Para plantilla FDS y sus conceptos propios.</p>
+          <button class="btn primary" onclick="abrirHerramienta('apps/nominas_fines_semana.html')">Abrir FDS</button>
+        </div>
+        <div class="case-card">
+          <h3>Nómina + finiquito + IT</h3>
+          <p>Para cuadrar nómina, incapacidad temporal y finiquito con informe imprimible.</p>
+          <button class="btn primary" onclick="abrirHerramienta('apps/calculadora_revision_nomina_finiquito.html')">Abrir cuadre</button>
+        </div>
+      </div>
+
+      <section class="tools">
+        <article class="card tool">
+          <div class="head"><div class="ico">🧾</div><span class="tag">Cálculo general</span></div>
+          <h3>Nómina general + reclamación</h3>
+          <p class="desc">Calculadora general de nóminas con botón de reclamación y anexo de nómina real/generada.</p>
+          <ul class="when"><li>Nómina ordinaria.</li><li>Comparar abonado con calculado.</li><li>Imprimir reclamación.</li></ul>
+          <div class="actions"><button class="btn primary" onclick="abrirHerramienta('apps/nomina_general_reclamacion.html')">Abrir</button></div>
+        </article>
+
+        <article class="card tool">
+          <div class="head"><div class="ico">📅</div><span class="tag">Personal 2026</span></div>
+          <h3>Nóminas personal 2026</h3>
+          <p class="desc">Herramienta ajustada para revisión de nóminas del personal 2026.</p>
+          <ul class="when"><li>Cálculos específicos del año 2026.</li><li>Conceptos y ajustes de ese período.</li><li>Uso interno sin OCR.</li></ul>
+          <div class="actions"><button class="btn primary" onclick="abrirHerramienta('apps/nominas_personal_2026.html')">Abrir</button></div>
+        </article>
+
+        <article class="card tool">
+          <div class="head"><div class="ico">🌙</div><span class="tag">Fines de semana</span></div>
+          <h3>Control nóminas fines de semana</h3>
+          <p class="desc">Control específico para personal de fines de semana, con sus particularidades.</p>
+          <ul class="when"><li>Revisar nóminas FDS.</li><li>Controlar pluses del colectivo.</li><li>Separarlo de la nómina general.</li></ul>
+          <div class="actions"><button class="btn primary" onclick="abrirHerramienta('apps/nominas_fines_semana.html')">Abrir</button></div>
+        </article>
+
+        <article class="card tool">
+          <div class="head"><div class="ico">🔎</div><span class="tag">OCR</span></div>
+          <h3>Revisión de nómina con OCR</h3>
+          <p class="desc">Herramienta para leer o apoyar la revisión desde una nómina real escaneada o en PDF.</p>
+          <ul class="when"><li>Nómina en foto o PDF.</li><li>Extraer datos más rápido.</li><li>Evitar meter todo a mano.</li></ul>
+          <div class="actions"><button class="btn primary" onclick="abrirHerramienta('apps/nomina_ocr.html')">Abrir</button></div>
+        </article>
+
+        <article class="card tool">
+          <div class="head"><div class="ico">⚖️</div><span class="tag">Nómina · IT · Finiquito</span></div>
+          <h3>Cuadre de nómina, IT y finiquito</h3>
+          <p class="desc">Lee la nómina (PDF o texto), la compara con las tablas del convenio, cuadra la incapacidad temporal y genera un informe imprimible listo para reclamación.</p>
+          <ul class="when"><li>Nóminas normales y de baja (IT).</li><li>Detecta carrera profesional, domingos y festivos automáticamente.</li><li>Genera informe con firma para entregar o reclamar.</li></ul>
+          <div class="actions"><button class="btn primary" onclick="abrirHerramienta('apps/calculadora_revision_nomina_finiquito.html')">Abrir</button></div>
+        </article>
+      </section>
+
+      <section class="panel history">
+        <div class="history-head">
+          <h2 class="section-title">Historial de revisiones</h2>
+          <button class="btn soft" onclick="limpiarHistorial()">Limpiar historial</button>
+        </div>
+        <div id="history-list" class="history-list"></div>
+      </section>
+
+      <section id="revision-detail" class="panel detail">
+        <div class="history-head">
+          <h2 class="section-title">Revisión guardada</h2>
+          <button class="btn soft" onclick="cerrarDetalleRevision()">Cerrar</button>
+        </div>
+        <div class="detail-grid">
+          <div class="detail-box"><span>Compañero/a</span><strong id="d-h-nombre">-</strong></div>
+          <div class="detail-box"><span>DNI</span><strong id="d-h-dni">-</strong></div>
+          <div class="detail-box"><span>Mes revisado</span><strong id="d-h-mes">-</strong></div>
+          <div class="detail-box"><span>Fecha de revisión</span><strong id="d-h-fecha">-</strong></div>
+          <div class="detail-box"><span>Estado</span><strong id="d-h-estado">-</strong></div>
+          <div class="detail-box"><span>Diferencia</span><strong id="d-h-diferencia">-</strong></div>
+        </div>
+        <div class="detail-box">
+          <span>Observaciones</span>
+          <strong id="d-h-notas">-</strong>
+        </div>
+        <textarea id="revision-copy" class="copy-text" readonly></textarea>
+        <div class="btn-row">
+          <button class="btn blue" onclick="continuarRevision()">Seguir desde esta revisión</button>
+          <button class="btn primary" onclick="abrirHerramientaDesdeRevision('apps/nomina_ocr.html')">Abrir OCR con estos datos</button>
+          <button class="btn soft" onclick="imprimirRevisionGuardada()">Imprimir copia</button>
+          <button class="btn soft" onclick="copiarRevisionGuardada()">Copiar texto</button>
+        </div>
+      </section>
+
+      <p class="footer">
+        Esta base es local del navegador. Si cambias de ordenador o limpias el navegador, importa de nuevo la copia exportada.
+      </p>
+    </section>
+  </section>
+</main>
+
+<script>
+const DB_KEY='ugt_panel_nominas_companeros_v1';
+let db={personas:[],historial:[]};
+let seleccion=null;
+let revisionActiva=null;
+
+function cargarDB(){
+  try{ db=JSON.parse(localStorage.getItem(DB_KEY))||db; }
+  catch(e){ db={personas:[],historial:[]}; }
+  if(!Array.isArray(db.personas)) db.personas=[];
+  if(!Array.isArray(db.historial)) db.historial=[];
+}
+function guardarDB(){ localStorage.setItem(DB_KEY,JSON.stringify(db)); actualizarResumen(); }
+function id(){ return 'p_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,7); }
+function val(c){ return document.getElementById(c).value.trim(); }
+function set(c,v){ document.getElementById(c).value=v||''; }
+function fichaActual(){
+  return {
+    id:seleccion||id(),
+    nombre:val('p-nombre'),
+    dni:val('p-dni'),
+    telefono:val('p-telefono'),
+    categoria:val('p-categoria'),
+    turno:val('p-turno'),
+    centro:val('p-centro'),
+    antiguedad:val('p-antiguedad'),
+    notas:val('p-notas'),
+    actualizado:new Date().toISOString()
+  };
+}
+function guardarCompanero(){
+  const p=fichaActual();
+  if(!p.nombre){ alert('Pon al menos el nombre del compañero/a.'); return; }
+  const i=db.personas.findIndex(x=>x.id===p.id);
+  if(i>=0) db.personas[i]=p; else db.personas.unshift(p);
+  seleccion=p.id;
+  guardarDB();
+  renderPersonas();
+  seleccionar(p.id);
+}
+function nuevaFicha(){
+  seleccion=null;
+  ['p-nombre','p-dni','p-telefono','p-categoria','p-turno','p-antiguedad','p-notas'].forEach(k=>set(k,''));
+  set('p-centro','Hospital Clínico San Carlos');
+  set('caso-persona','');
+  renderPersonas();
+}
+function borrarCompanero(){
+  if(!seleccion){ alert('Selecciona una ficha para borrar.'); return; }
+  const p=db.personas.find(x=>x.id===seleccion);
+  if(!confirm('¿Borrar la ficha de '+(p?.nombre||'este compañero')+'?')) return;
+  db.personas=db.personas.filter(x=>x.id!==seleccion);
+  seleccion=null;
+  guardarDB();
+  nuevaFicha();
+}
+function seleccionar(pid){
+  const p=db.personas.find(x=>x.id===pid);
+  if(!p) return;
+  seleccion=pid;
+  set('p-nombre',p.nombre); set('p-dni',p.dni); set('p-telefono',p.telefono);
+  set('p-categoria',p.categoria); set('p-turno',p.turno); set('p-centro',p.centro);
+  set('p-antiguedad',p.antiguedad); set('p-notas',p.notas);
+  set('caso-persona',p.nombre);
+  renderPersonas();
+}
+function renderPersonas(){
+  const q=val('buscar').toLowerCase();
+  const lista=document.getElementById('people-list');
+  const personas=db.personas.filter(p=>[p.nombre,p.dni,p.turno,p.categoria,p.notas].join(' ').toLowerCase().includes(q));
+  if(!personas.length){ lista.innerHTML='<div class="empty">Sin compañeros guardados todavía.</div>'; return; }
+  lista.innerHTML=personas.map(p=>`
+    <div class="person ${p.id===seleccion?'active':''}" onclick="seleccionar('${p.id}')">
+      <strong>${esc(p.nombre)}</strong>
+      <small>${esc(p.dni||'Sin DNI')} · ${esc(p.turno||'Sin turno')} · ${esc(p.categoria||'Sin categoría')}</small>
+    </div>`).join('');
+}
+function guardarRevision(){
+  const persona=seleccion?db.personas.find(x=>x.id===seleccion):null;
+  const mes=val('caso-mes');
+  if(!persona){ alert('Selecciona o guarda primero un compañero/a.'); return; }
+  if(!mes){ alert('Indica el mes reclamado.'); return; }
+  const datosRevision={
+    id:revisionActiva||id(),
+    personaId:persona.id,
+    nombre:persona.nombre,
+    dni:persona.dni,
+    mes,
+    diferencia:val('caso-diferencia'),
+    estado:val('caso-estado'),
+    notas:val('caso-notas'),
+    fecha:revisionActiva ? (db.historial.find(x=>x.id===revisionActiva)?.fecha || new Date().toISOString()) : new Date().toISOString(),
+    actualizado:new Date().toISOString()
+  };
+  const idx=db.historial.findIndex(x=>x.id===datosRevision.id);
+  if(idx>=0) db.historial[idx]=datosRevision; else db.historial.unshift(datosRevision);
+  revisionActiva=datosRevision.id;
+  guardarDB();
+  renderHistorial();
+  verRevision(datosRevision.id);
+}
+function renderHistorial(){
+  const box=document.getElementById('history-list');
+  if(!db.historial.length){ box.innerHTML='<div class="empty">Aún no hay revisiones guardadas.</div>'; return; }
+  box.innerHTML=db.historial.slice(0,40).map(h=>{
+    const cls=h.estado==='Rojo'?'bad':(h.estado==='Amarillo'?'warn':'ok');
+    const dif=h.diferencia?` · ${Number(h.diferencia).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})} €`:'';
+    return `<div class="hist-item ${h.id===revisionActiva?'active':''}" onclick="verRevision('${h.id}')">
+      <div class="hist-top"><span>${esc(h.nombre)} · ${esc(h.mes)}</span><span class="${cls}">${esc(h.estado)}${dif}</span></div>
+      <p>${esc(h.notas||'Sin observaciones')}<br><small>Creada: ${new Date(h.fecha).toLocaleString('es-ES')}${h.actualizado?' · Actualizada: '+new Date(h.actualizado).toLocaleString('es-ES'):''}</small></p>
+    </div>`;
+  }).join('');
+}
+function textoRevision(h){
+  const diferencia=h.diferencia?Number(h.diferencia).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €':'Sin importe indicado';
+  return [
+    'Resumen de revisión de nómina',
+    'Trabajador/a: '+(h.nombre||''),
+    'DNI: '+(h.dni||''),
+    'Mes revisado: '+(h.mes||''),
+    'Estado: '+(h.estado||''),
+    'Diferencia detectada: '+diferencia,
+    'Fecha de revisión: '+new Date(h.fecha).toLocaleString('es-ES'),
+    h.actualizado ? 'Última actualización: '+new Date(h.actualizado).toLocaleString('es-ES') : '',
+    '',
+    'Observaciones:',
+    h.notas||'Sin observaciones'
+  ].filter(Boolean).join('\n');
+}
+function verRevision(rid){
+  const h=db.historial.find(x=>x.id===rid);
+  if(!h) return;
+  revisionActiva=rid;
+  const cls=h.estado==='Rojo'?'bad':(h.estado==='Amarillo'?'warn':'ok');
+  document.getElementById('d-h-nombre').textContent=h.nombre||'-';
+  document.getElementById('d-h-dni').textContent=h.dni||'-';
+  document.getElementById('d-h-mes').textContent=h.mes||'-';
+  document.getElementById('d-h-fecha').textContent=new Date(h.fecha).toLocaleString('es-ES')+(h.actualizado?' · Actualizada '+new Date(h.actualizado).toLocaleString('es-ES'):'');
+  const estado=document.getElementById('d-h-estado');
+  estado.textContent=h.estado||'-';
+  estado.className=cls;
+  document.getElementById('d-h-diferencia').textContent=h.diferencia?Number(h.diferencia).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €':'-';
+  document.getElementById('d-h-notas').textContent=h.notas||'Sin observaciones';
+  document.getElementById('revision-copy').value=textoRevision(h);
+  document.getElementById('revision-detail').classList.add('show');
+  renderHistorial();
+  document.getElementById('revision-detail').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function cerrarDetalleRevision(){
+  document.getElementById('revision-detail').classList.remove('show');
+}
+function continuarRevision(){
+  const h=db.historial.find(x=>x.id===revisionActiva);
+  if(!h) return alert('Selecciona una revisión del historial.');
+  const p=db.personas.find(x=>x.id===h.personaId);
+  if(p) seleccionar(p.id);
+  set('caso-persona',h.nombre||'');
+  set('caso-mes',h.mes||'');
+  set('caso-diferencia',h.diferencia||'');
+  set('caso-estado',h.estado||'Verde');
+  set('caso-notas',h.notas||'');
+  document.getElementById('caso-mes').focus();
+}
+function abrirHerramientaDesdeRevision(url){
+  continuarRevision();
+  abrirHerramienta(url);
+}
+function imprimirRevisionGuardada(){
+  const h=db.historial.find(x=>x.id===revisionActiva);
+  if(!h) return alert('Selecciona una revisión del historial.');
+  const w=window.open('','_blank','width=900,height=700');
+  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Copia revisión</title>
+  <style>body{font-family:Arial,sans-serif;color:#111;padding:30px;line-height:1.45}h1{color:#c0000c}table{width:100%;border-collapse:collapse;margin-top:18px}td,th{border:1px solid #ccc;padding:9px;text-align:left;vertical-align:top}.obs{white-space:pre-wrap}</style></head><body>
+  <h1>Copia de revisión de nómina</h1>
+  <table>
+    <tr><th>Trabajador/a</th><td>${esc(h.nombre)}</td></tr>
+    <tr><th>DNI</th><td>${esc(h.dni)}</td></tr>
+    <tr><th>Mes revisado</th><td>${esc(h.mes)}</td></tr>
+    <tr><th>Fecha de revisión</th><td>${new Date(h.fecha).toLocaleString('es-ES')}</td></tr>
+    <tr><th>Última actualización</th><td>${h.actualizado?new Date(h.actualizado).toLocaleString('es-ES'):'-'}</td></tr>
+    <tr><th>Estado</th><td>${esc(h.estado)}</td></tr>
+    <tr><th>Diferencia detectada</th><td>${h.diferencia?Number(h.diferencia).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €':'-'}</td></tr>
+    <tr><th>Observaciones</th><td class="obs">${esc(h.notas||'Sin observaciones')}</td></tr>
+  </table>
+  </body></html>`;
+  w.document.write(html); w.document.close(); w.focus(); setTimeout(()=>w.print(),250);
+}
+async function copiarRevisionGuardada(){
+  const h=db.historial.find(x=>x.id===revisionActiva);
+  if(!h) return alert('Selecciona una revisión del historial.');
+  const texto=textoRevision(h);
+  try{
+    await navigator.clipboard.writeText(texto);
+    alert('Texto copiado para enviar.');
+  }catch(e){
+    const t=document.getElementById('revision-copy');
+    t.focus(); t.select();
+    document.execCommand('copy');
+    alert('Texto seleccionado/copied para enviar.');
+  }
+}
+function limpiarHistorial(){
+  if(!db.historial.length) return;
+  if(!confirm('¿Borrar todo el historial de revisiones?')) return;
+  db.historial=[];
+  revisionActiva=null;
+  cerrarDetalleRevision();
+  guardarDB();
+  renderHistorial();
+}
+function abrirHerramienta(url){
+  const persona=seleccion?db.personas.find(x=>x.id===seleccion):null;
+  const params=new URLSearchParams();
+  if(persona){
+    params.set('nombre',persona.nombre||'');
+    params.set('dni',persona.dni||'');
+    params.set('turno',persona.turno||'');
+    params.set('categoria',persona.categoria||'');
+    params.set('antiguedad',persona.antiguedad||'');
+  }
+  if(val('caso-mes')) params.set('periodo',val('caso-mes'));
+  location.href=url+(params.toString()?'?'+params.toString():'');
+}
+function imprimirResumen(){
+  const persona=seleccion?db.personas.find(x=>x.id===seleccion):null;
+  if(!persona){ alert('Selecciona un compañero/a.'); return; }
+  const w=window.open('','_blank','width=900,height=700');
+  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Resumen revisión</title>
+  <style>body{font-family:Arial,sans-serif;color:#111;padding:30px;line-height:1.45}h1{color:#c0000c}table{width:100%;border-collapse:collapse;margin-top:18px}td,th{border:1px solid #ccc;padding:9px;text-align:left}.firma{display:grid;grid-template-columns:1fr 1fr;gap:35px;margin-top:45px}.box{border-top:1px solid #111;padding-top:8px}</style></head><body>
+  <h1>Resumen de revisión de nómina</h1>
+  <table>
+    <tr><th>Trabajador/a</th><td>${esc(persona.nombre)}</td></tr>
+    <tr><th>DNI</th><td>${esc(persona.dni)}</td></tr>
+    <tr><th>Categoría / turno</th><td>${esc(persona.categoria)} · ${esc(persona.turno)}</td></tr>
+    <tr><th>Mes revisado</th><td>${esc(val('caso-mes'))}</td></tr>
+    <tr><th>Estado</th><td>${esc(val('caso-estado'))}</td></tr>
+    <tr><th>Diferencia detectada</th><td>${esc(val('caso-diferencia'))} €</td></tr>
+    <tr><th>Observaciones</th><td>${esc(val('caso-notas'))}</td></tr>
+  </table>
+  <div class="firma"><div class="box">Firma trabajador/a</div><div class="box">UGT / delegado</div></div>
+  </body></html>`;
+  w.document.write(html); w.document.close(); w.focus(); setTimeout(()=>w.print(),250);
+}
+function exportarBase(){
+  const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='base_companeros_nominas_ugt.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function importarBase(ev){
+  const file=ev.target.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    try{
+      const data=JSON.parse(reader.result);
+      if(!Array.isArray(data.personas)) throw new Error('Formato no válido');
+      db={personas:data.personas||[],historial:data.historial||[]};
+      seleccion=null;
+      guardarDB();
+      nuevaFicha();
+      renderHistorial();
+    }catch(e){ alert('No se pudo importar la base.'); }
+  };
+  reader.readAsText(file);
+  ev.target.value='';
+}
+function actualizarResumen(){
+  document.getElementById('m-total').textContent=db.personas.length;
+  document.getElementById('m-revisiones').textContent=db.historial.length;
+  document.getElementById('m-ultimo').textContent=db.historial[0]?.mes||'-';
+  const ultimo=db.historial[0]?.estado||'Preparado';
+  const el=document.getElementById('m-estado');
+  el.textContent=ultimo;
+  el.className=ultimo==='Rojo'?'bad':(ultimo==='Amarillo'?'warn':'ok');
+}
+function esc(s){ return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+cargarDB();
+renderPersonas();
+renderHistorial();
+actualizarResumen();
+</script>
+</body>
+</html>

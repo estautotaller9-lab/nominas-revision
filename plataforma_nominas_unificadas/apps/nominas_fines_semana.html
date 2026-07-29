@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="application-name" content="Nóminas FDS UGT"/>
+<meta name="apple-mobile-web-app-title" content="Nóminas FDS"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="theme-color" content="#CC0000"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nóminas FDS — UGT Limpieza</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231a1a1a'/%3E%3Cellipse cx='20' cy='16' rx='7' ry='8' fill='%23CC0000'/%3E%3Cellipse cx='13' cy='13' rx='5' ry='3' fill='%23CC0000' transform='rotate(-40 13 13)'/%3E%3Cellipse cx='27' cy='13' rx='5' ry='3' fill='%23CC0000' transform='rotate(40 27 13)'/%3E%3Cellipse cx='20' cy='9' rx='4' ry='3' fill='%23e55'/%3E%3Cline x1='20' y1='24' x2='20' y2='48' stroke='%234CAF50' stroke-width='2.5' stroke-linecap='round'/%3E%3Cellipse cx='14' cy='36' rx='4' ry='2' fill='%234CAF50' transform='rotate(-35 14 36)'/%3E%3Crect x='14' y='42' width='13' height='10' rx='2.5' fill='white'/%3E%3Crect x='14' y='39' width='13' height='5' rx='2' fill='white'/%3E%3Crect x='14.5' y='36' width='3' height='5' rx='1.5' fill='white'/%3E%3Crect x='18.5' y='36' width='3' height='5' rx='1.5' fill='white'/%3E%3Crect x='22' y='37' width='3' height='4' rx='1.5' fill='white'/%3E%3Ctext x='33' y='26' font-family='Arial Black' font-size='20' font-weight='900' fill='%23CC0000'%3EUGT%3C/text%3E%3Cline x1='33' y1='29' x2='62' y2='29' stroke='%23CC0000' stroke-width='1'/%3E%3Ctext x='33' y='40' font-family='Arial' font-size='8' fill='white'%3Elimpieza%3C/text%3E%3Ctext x='33' y='52' font-family='Arial Black' font-size='9' font-weight='900' fill='%23CC0000'%3ENÓMINAS%3C/text%3E%3Ctext x='33' y='62' font-family='Arial Black' font-size='8' font-weight='900' fill='white'%3EFDS%3C/text%3E%3C/svg%3E"/>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231a1a1a'/%3E%3Crect width='64' height='64' rx='10' fill='%23CC0000'/%3E%3Ctext x='32' y='38' font-family='Arial Black' font-size='22' font-weight='900' fill='white' text-anchor='middle'%3EUGT%3C/text%3E%3Ctext x='32' y='52' font-family='Arial Black' font-size='10' font-weight='900' fill='white' text-anchor='middle'%3ENÓMINAS FDS%3C/text%3E%3C/svg%3E"/>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@600;700;900&display=swap');
+  :root{--red:#CC0000;--red-dark:#990000;--red-light:#fff0f0;--black:#1a1a1a;--gray-bg:#f5f5f5;--gray-border:#e0e0e0;--gray-text:#666;--green:#2e7d32;--green-bg:#e8f5e9;--amber:#795548;--amber-bg:#fff8e1;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Barlow',sans-serif;background:#f0f0f0;min-height:100vh;padding:1.5rem 1rem}
+  .page{max-width:780px;margin:0 auto}
+  .hdr{background:var(--red);border-radius:12px 12px 0 0;padding:1rem 1.5rem;display:flex;align-items:center;gap:18px}
+  .logo-box{background:var(--black);border-radius:8px;padding:6px 10px;flex-shrink:0}
+  .hdr-info{flex:1}
+  .hdr-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:.03em;line-height:1.2}
+  .hdr-sub{font-size:11px;color:rgba(255,255,255,.75);margin-top:3px}
+  .hdr-pill{background:var(--black);color:#fff;font-size:10px;font-weight:600;padding:5px 12px;border-radius:20px;white-space:nowrap;letter-spacing:.05em;align-self:flex-start;margin-top:2px}
+  .card{background:#fff;border:1px solid var(--gray-border);border-top:none}
+  .card:last-child{border-radius:0 0 12px 12px}
+  .card-inner{padding:1.25rem 1.5rem}
+  .stitle{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.85rem;display:flex;align-items:center;gap:8px}
+  .stitle::before{content:'';display:block;width:4px;height:14px;background:var(--red);border-radius:2px;flex-shrink:0}
+  .row{display:grid;gap:12px;margin-bottom:.75rem}
+  .r2{grid-template-columns:1fr 1fr}
+  label{font-size:12px;color:var(--gray-text);display:block;margin-bottom:4px;font-weight:500}
+  input,select{width:100%;padding:8px 11px;font-size:13px;font-family:'Barlow',sans-serif;border:1px solid var(--gray-border);border-radius:7px;background:#fff;color:var(--black);transition:border-color .15s}
+  input:focus,select:focus{outline:none;border-color:var(--red)}
+  .tgl-grp{display:flex;gap:8px;margin-top:4px}
+  .tgl{flex:1;padding:9px 8px;font-size:12px;font-family:'Barlow',sans-serif;font-weight:500;border:1px solid var(--gray-border);border-radius:8px;background:#fff;color:var(--gray-text);cursor:pointer;text-align:center;line-height:1.5;transition:all .15s}
+  .tgl.on{background:var(--red);color:#fff;border-color:var(--red)}
+  .tgl span{font-size:10px;opacity:.85;display:block}
+  .info-base{background:var(--gray-bg);border-radius:8px;padding:.6rem 1rem;font-size:12px;color:var(--gray-text);margin-top:.85rem}
+  .info-base strong{color:var(--black)}
+  .info-cal{background:var(--amber-bg);border:1px solid #ffe082;border-radius:8px;padding:.5rem .85rem;font-size:11px;color:var(--amber);margin:.5rem 0}
+  .warn-box{background:#fff3e0;border:1px solid #ffb74d;border-radius:8px;padding:.6rem 1rem;font-size:11px;color:#e65100;margin-top:.6rem}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .cal-head{font-size:10px;color:var(--gray-text);text-align:center;padding:3px 0;font-weight:600;font-family:'Barlow Condensed',sans-serif;letter-spacing:.05em}
+  .cal-day{font-size:11px;text-align:center;padding:4px 2px;border-radius:5px;cursor:pointer;border:1px solid transparent;min-height:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:opacity .1s}
+  .cal-day.empty{opacity:0;pointer-events:none}
+  .cal-day:not(.empty):hover{opacity:.75}
+  .sab{background:#f0f0f0;color:#444;border-color:#ddd}
+  .dom{background:var(--red-light);color:#991111;border-color:#ffcccc}
+  .fest{background:var(--red);color:#fff}
+  .baja{background:var(--green-bg);color:var(--green);border-color:#a5d6a7}
+  .aus{opacity:.35!important;background:none!important;border:1px dashed #ccc!important;color:#999!important}
+  .dn{font-size:13px;font-weight:700}
+  .dt{font-size:8px;font-weight:600;letter-spacing:.03em}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:.6rem 0}
+  .leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--gray-text)}
+  .ldot{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+  .cal-tip{font-size:11px;color:var(--gray-text);margin-top:.5rem;font-weight:500}
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:.85rem 0}
+  .metric{background:var(--gray-bg);border-radius:9px;padding:.85rem 1rem;border:1px solid var(--gray-border)}
+  .mlbl{font-size:11px;color:var(--gray-text);margin-bottom:4px;font-weight:500}
+  .mval{font-size:19px;font-weight:700;color:var(--black);font-family:'Barlow Condensed',sans-serif}
+  .msub{font-size:10px;color:#999;margin-top:3px}
+  .metric.red-m{background:var(--red);border-color:var(--red)}
+  .metric.red-m .mlbl{color:rgba(255,255,255,.8)}
+  .metric.red-m .mval{color:#fff;font-size:24px}
+  .metric.red-m .msub{color:rgba(255,255,255,.65)}
+  .tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  .tbl th{font-size:10px;color:var(--gray-text);text-align:left;padding:5px 8px;border-bottom:1px solid var(--gray-border);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-family:'Barlow Condensed',sans-serif}
+  .tbl td{padding:6px 8px;border-bottom:1px solid #f0f0f0;color:var(--black)}
+  .tbl tr:last-child td{border-bottom:none}
+  .r{text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+  .tot td{font-weight:700;background:var(--gray-bg);font-family:'Barlow Condensed',sans-serif;font-size:13px}
+  .neg td{color:#991111}
+  .pos td{color:var(--green)}
+  .info-row td{background:#fafafa;font-size:11px;color:#888;font-style:italic}
+  .sub-hdr td{background:#efefef;font-size:10px;color:#777;font-weight:700;padding:3px 8px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase}
+  .badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;font-family:'Barlow Condensed',sans-serif;letter-spacing:.03em}
+  .b-red{background:var(--red-light);color:#991111;border:1px solid #ffcccc}
+  .b-blk{background:var(--black);color:#fff}
+  .btn{width:100%;padding:12px;font-size:14px;font-weight:700;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;background:var(--red);color:#fff;border:none;border-radius:8px;cursor:pointer;transition:background .15s;margin-top:.85rem}
+  .btn:hover{background:var(--red-dark)}
+  #res{display:none}
+  .nota{background:var(--gray-bg);border-radius:8px;padding:.6rem 1rem;font-size:10px;color:#999;margin-top:1rem;line-height:1.6;border:1px solid var(--gray-border)}
+
+  /* ── IMPRESIÓN ── */
+  @media print {
+    body{background:#fff;padding:.5rem}
+    .page{max-width:100%}
+    .hdr{border-radius:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .card{border:1px solid #ccc;border-top:none;break-inside:avoid}
+    .card:last-child{border-radius:0}
+    .btn-print,.btn{display:none!important}
+    #res{display:block!important}
+    .cal-day{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .metric{-webkit-print-color-adjust:exact;print-color-adjust:exact;break-inside:avoid}
+    .metric.red-m{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .tbl td,.tbl th{font-size:11px;padding:4px 6px}
+    .metrics{grid-template-columns:repeat(4,1fr)}
+    .nota{margin-top:.5rem}
+    .warn-box{display:none}
+    .info-cal{display:none}
+    .legend{display:none}
+    .cal-grid{display:none}
+    .cal-tip{display:none}
+    h2.print-header{display:block!important}
+  }
+  .btn-print{
+    width:100%;padding:11px;font-size:13px;font-weight:700;
+    font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;
+    background:#1a1a1a;color:#fff;border:none;border-radius:8px;
+    cursor:pointer;margin-top:.6rem;transition:background .15s;
+    display:flex;align-items:center;justify-content:center;gap:8px
+  }
+  .btn-print:hover{background:#333}
+  h2.print-header{display:none;font-family:'Barlow Condensed',sans-serif;font-size:13px;color:#666;margin-bottom:.5rem;font-weight:400}
+
+  @media(max-width:520px){.r2{grid-template-columns:1fr}.tgl-grp{flex-direction:column}.hdr{flex-wrap:wrap}}
+  .panel-back{position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#ffcc00;color:#111;border:2px solid #111;border-radius:999px;padding:9px 14px;font-family:'Barlow Condensed',Arial,sans-serif;font-size:.95rem;font-weight:900;text-transform:uppercase;letter-spacing:.6px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .panel-back:hover{background:#fff;color:#c0000c}
+  @media print{.panel-back{display:none!important}}
+</style>
+</head>
+<body>
+<a class="panel-back" href="../index.html" onclick="event.preventDefault(); window.location.href='../index.html';">&larr; Volver al panel</a>
+<div class="page">
+
+  <div class="hdr">
+    <div class="logo-box">
+      <svg width="96" height="44" viewBox="0 0 96 44" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="16" cy="12" rx="5" ry="6" fill="#CC0000"/>
+        <ellipse cx="11" cy="10" rx="3.5" ry="2" fill="#CC0000" transform="rotate(-40 11 10)"/>
+        <ellipse cx="21" cy="10" rx="3.5" ry="2" fill="#CC0000" transform="rotate(40 21 10)"/>
+        <ellipse cx="16" cy="7" rx="3" ry="2" fill="#e55"/>
+        <ellipse cx="16" cy="13" rx="3" ry="4" fill="#dd3333"/>
+        <line x1="16" y1="18" x2="16" y2="36" stroke="#4CAF50" stroke-width="1.5" stroke-linecap="round"/>
+        <ellipse cx="12.5" cy="26" rx="3" ry="1.3" fill="#4CAF50" transform="rotate(-35 12.5 26)"/>
+        <rect x="11" y="30" width="10" height="8" rx="2" fill="#fff"/>
+        <rect x="11" y="28" width="10" height="4" rx="1.5" fill="#fff"/>
+        <rect x="11.5" y="26" width="2" height="4" rx="1" fill="#fff"/>
+        <rect x="14.5" y="26" width="2" height="4" rx="1" fill="#fff"/>
+        <rect x="17.5" y="27" width="2" height="3" rx="1" fill="#fff"/>
+        <text x="30" y="19" font-family="Arial Black,Arial,sans-serif" font-size="15" font-weight="900" fill="#CC0000">UGT</text>
+        <line x1="30" y1="22" x2="93" y2="22" stroke="#CC0000" stroke-width="0.8"/>
+        <text x="30" y="31" font-family="Arial,sans-serif" font-size="6" fill="#ffffff" letter-spacing=".4">unión general de trabajadores</text>
+        <text x="30" y="41" font-family="Arial Black,Arial,sans-serif" font-size="8" font-weight="900" fill="#CC0000" letter-spacing=".8">LIMPIEZA</text>
+      </svg>
+    </div>
+    <div class="hdr-info">
+      <div class="hdr-title">Nóminas FDS · UGT Limpieza · Personal fines de semana</div>
+      <div class="hdr-sub">UTE Limpieza Hospitales Madrid · Hospital Clínico San Carlos</div>
+    </div>
+    <div class="hdr-pill">Sección Sindical UGT</div>
+  </div>
+
+  <div class="card"><div class="card-inner">
+    <div class="stitle">Datos del trabajador</div>
+    <div class="row r2">
+      <div><label>Nombre completo</label><input type="text" id="nombre" placeholder="Nombre y apellidos"/></div>
+      <div><label>Fecha antigüedad</label><input type="date" id="antiguedad" onchange="calcular()"/></div>
+    </div>
+    <div class="row r2">
+      <div>
+        <label>Categoría profesional</label>
+        <select id="categoria" onchange="calcular()">
+          <option value="limpiador">Limpiador/a</option>
+          <option value="encargado">Encargado/a</option>
+          <option value="especialista">Especialista</option>
+        </select>
+      </div>
+      <div>
+        <label>Carrera profesional</label>
+        <select id="carrera" onchange="calcular()">
+          <option value="0">Sin carrera (0%)</option>
+          <option value="1">1er tramo (+3%)</option>
+          <option value="2">2º tramo (+6%)</option>
+          <option value="3">3er tramo (+9%)</option>
+        </select>
+      </div>
+    </div>
+    <div id="antig-info" class="warn-box" style="display:none"></div>
+    <label style="margin-bottom:6px;display:block;margin-top:.6rem">Régimen plus domingo / festivo</label>
+    <div class="tgl-grp">
+      <div class="tgl on" id="btn-ac" onclick="setR('ac')">
+        Firmó acuerdo transaccional
+        <span>25 € brutos/jornada dom+fest (2026) · 30 € (2027)</span>
+      </div>
+      <div class="tgl" id="btn-co" onclick="setR('co')">
+        Convenio UTE — no firmó
+        <span>49,96 € brutos/jornada dom+fest</span>
+      </div>
+    </div>
+    <div class="info-base">
+      SB mensual: <strong>613,57 €</strong> · Prorrata 2,5 pagas = SB × 2,5÷12 = <strong>127,83 €</strong> (cotiza en RGSS, no se cobra mensualmente) · SS trabajador: <strong>6,50%</strong> s/base cotización
+    </div>
+  </div></div>
+
+  <div class="card"><div class="card-inner">
+    <div class="stitle">Mes a liquidar</div>
+    <div class="row r2" style="margin-bottom:.85rem">
+      <div><label>Año</label>
+        <select id="anyo" onchange="buildCal()">
+          <option value="2026" selected>2026</option>
+          <option value="2027">2027</option>
+        </select>
+      </div>
+      <div><label>Mes</label>
+        <select id="mes" onchange="buildCal()">
+          <option value="0">Enero</option><option value="1">Febrero</option>
+          <option value="2">Marzo</option><option value="3">Abril</option>
+          <option value="4">Mayo</option><option value="5">Junio</option>
+          <option value="6">Julio</option><option value="7">Agosto</option>
+          <option value="8">Septiembre</option><option value="9">Octubre</option>
+          <option value="10">Noviembre</option><option value="11">Diciembre</option>
+        </select>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="leg"><div class="ldot" style="background:#f0f0f0;border:1px solid #ddd"></div>Sábado</div>
+      <div class="leg"><div class="ldot" style="background:var(--red-light);border:1px solid #ffcccc"></div>Domingo</div>
+      <div class="leg"><div class="ldot" style="background:var(--red)"></div>Festivo</div>
+      <div class="leg"><div class="ldot" style="background:var(--green-bg);border:1px solid #a5d6a7"></div>Baja IT</div>
+      <div class="leg"><div class="ldot" style="border:1px dashed #ccc"></div>Ausente</div>
+    </div>
+    <div class="info-cal">Clic en cada día para cambiar estado: <strong>trabajado → ausente → baja IT → trabajado</strong>. En baja se cobra el SB íntegro.</div>
+    <div class="cal-grid" id="cal-h" style="margin-bottom:4px"></div>
+    <div class="cal-grid" id="cal-b"></div>
+    <div class="cal-tip" id="cal-tip"></div>
+  </div></div>
+
+  <div class="card"><div class="card-inner">
+    <div class="stitle">Otras deducciones</div>
+    <div class="row r2">
+      <div><label>IRPF % retención</label><input type="number" id="irpf" value="0" min="0" max="45" step="0.01" oninput="calcular()"/></div>
+      <div><label>Cancelación crédito u otras (€)</label><input type="number" id="otras" value="0" min="0" step="0.01" oninput="calcular()"/></div>
+    </div>
+    <button class="btn" onclick="calcular()">Calcular nómina</button>
+    <button class="btn-print" onclick="imprimir()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Imprimir nómina
+    </button>
+  </div></div>
+
+  <h2 class="print-header" id="print-header"></h2>
+  <div id="res">
+    <div class="card"><div class="card-inner">
+      <div class="stitle">Resumen</div>
+      <div class="metrics" id="m-top"></div>
+    </div></div>
+    <div class="card"><div class="card-inner">
+      <div class="stitle">Devengos y base cotización</div>
+      <table class="tbl" id="t-dev"></table>
+    </div></div>
+    <div class="card"><div class="card-inner">
+      <div class="stitle">Deducciones</div>
+      <table class="tbl" id="t-ded"></table>
+    </div></div>
+    <div class="card"><div class="card-inner">
+      <div class="stitle">Resultado nómina</div>
+      <div id="t-res"></div>
+      <div class="nota">
+        Cálculo orientativo — Sección Sindical UGT Limpieza · Hospital Clínico San Carlos.<br>
+        Verificado al céntimo contra nóminas reales abril 2026 (Raquel Gómez y Juan Carlos Cruz).<br>
+        No sustituye a la nómina oficial emitida por la empresa.
+      </div>
+    </div></div>
+  </div>
+
+</div>
+<script>
+// ═══════════════════════════════════════════════════════
+//  CONSTANTES — verificadas contra nóminas reales UTE
+//  Abril 2026:  SB=613.57, plus 4×25=100, dev=713.57 ✓
+//               PP=127.83, base cot=841.40 ✓
+//               SS=6.50% → 54.69, líquido=558.88 ✓
+// ═══════════════════════════════════════════════════════
+const SB  = 613.57;                  // Salario base mensual (tabla UTE)
+const CP  = [0, 0.03, 0.06, 0.09];  // Carrera profesional
+const SS_PCT = 0.065;                // SS trabajador total: 4.70+1.65+0.15 = 6.50%
+
+// Festivos nacionales + Comunidad de Madrid
+const F26 = ['2026-01-01','2026-01-06','2026-04-02','2026-04-03',
+  '2026-05-01','2026-05-02','2026-05-15','2026-07-25','2026-08-15',
+  '2026-10-12','2026-11-01','2026-11-09','2026-12-07','2026-12-08','2026-12-25'];
+const F27 = ['2027-01-01','2027-01-06','2027-03-25','2027-03-26',
+  '2027-05-01','2027-05-03','2027-05-15','2027-07-25','2027-08-15',
+  '2027-10-12','2027-11-01','2027-11-09','2027-12-06','2027-12-08','2027-12-25'];
+
+function fst(y){return y===2026?F26:F27;}
+function ds(y,m,d){return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;}
+function dw(y,m,d){return new Date(y,m,d).getDay();}
+function fmt(n){return n.toFixed(2).replace('.',',')+' €';}
+
+// Día laborable: sábado(6), domingo(0) o festivo
+function isW(y,m,d){const w=dw(y,m,d),s=ds(y,m,d);return w===0||w===6||fst(y).includes(s);}
+// Día con plus: domingo(0) o festivo
+function isDF(y,m,d){const w=dw(y,m,d),s=ds(y,m,d);return w===0||fst(y).includes(s);}
+
+// ═══════════════════════════════════════════════════════
+//  ANTIGÜEDAD  (trienios cada 3 años: 4%, 5% o 6% según fecha)
+// ═══════════════════════════════════════════════════════
+function calcAntig(dt){
+  if(!dt) return {importe:0,pct:0,trienios:0,años:0};
+  const ic=new Date('1988-04-01T00:00:00'), l5=new Date('1991-04-01T00:00:00'), l6=new Date('1996-09-01T00:00:00');
+  let ini=new Date(dt+'T00:00:00');
+  if(ini<ic) ini=ic;
+  const y=+document.getElementById('anyo').value;
+  const m=+document.getElementById('mes').value;
+  const ref=new Date(y,m+1,0);
+  const años=(ref-ini)/(1000*60*60*24*365.25);
+  const t=Math.floor(años/3);
+  if(t<=0) return {importe:0,pct:0,trienios:0,años};
+  const ult=new Date(ini); ult.setFullYear(ult.getFullYear()+t*3);
+  const tramo=ult<l5 ? 0.04 : (ult<l6 ? 0.05 : 0.06);
+  return {importe:+(SB*tramo*t).toFixed(2),pct:tramo,trienios:t,años};
+}
+
+let reg='ac', st={};
+
+function setR(r){
+  reg=r;
+  document.getElementById('btn-ac').classList.toggle('on',r==='ac');
+  document.getElementById('btn-co').classList.toggle('on',r==='co');
+  calcular();
+}
+
+// ═══════════════════════════════════════════════════════
+//  CALENDARIO
+// ═══════════════════════════════════════════════════════
+function buildCal(){
+  const y=+document.getElementById('anyo').value;
+  const m=+document.getElementById('mes').value;
+  const dim=new Date(y,m+1,0).getDate();
+  st={};
+  for(let d=1;d<=dim;d++) if(isW(y,m,d)) st[ds(y,m,d)]='t';
+  document.getElementById('cal-h').innerHTML=
+    ['L','M','X','J','V','S','D'].map(h=>`<div class="cal-head">${h}</div>`).join('');
+  rCal(y,m);
+  calcular();
+}
+
+function rCal(y,m){
+  const dim=new Date(y,m+1,0).getDate(),fl=fst(y);
+  const off=(new Date(y,m,1).getDay()||7)-1;
+  let h='';
+  for(let i=0;i<off;i++) h+=`<div class="cal-day empty"></div>`;
+  for(let d=1;d<=dim;d++){
+    const s=ds(y,m,d),w=dw(y,m,d),iF=fl.includes(s);
+    if(!isW(y,m,d)){h+=`<div class="cal-day empty"></div>`;continue;}
+    const sv=st[s]||'t';
+    let cls='cal-day',tag='';
+    if(sv==='b'){cls+=' baja';tag='BAJA';}
+    else if(sv==='a'){cls+=' aus';tag='AUS';}
+    else if(iF){cls+=' fest';tag='FEST';}
+    else if(w===0){cls+=' dom';tag='DOM';}
+    else{cls+=' sab';tag='SÁB';}
+    h+=`<div class="${cls}" onclick="tog('${s}')"><span class="dn">${d}</span><span class="dt">${tag}</span></div>`;
+  }
+  document.getElementById('cal-b').innerHTML=h;
+  const t=Object.values(st).filter(v=>v==='t').length;
+  const b=Object.values(st).filter(v=>v==='b').length;
+  const a=Object.values(st).filter(v=>v==='a').length;
+  document.getElementById('cal-tip').textContent=`${t} trabajados · ${b} baja IT · ${a} ausentes`;
+}
+
+function tog(s){
+  const c=st[s]||'t';
+  st[s]=c==='t'?'a':c==='a'?'b':'t';
+  const y=+document.getElementById('anyo').value;
+  const m=+document.getElementById('mes').value;
+  rCal(y,m); calcular();
+}
+
+// ═══════════════════════════════════════════════════════
+//  CÁLCULO PRINCIPAL
+// ═══════════════════════════════════════════════════════
+function calcular(){
+  const y  =+document.getElementById('anyo').value;
+  const m  =+document.getElementById('mes').value;
+  const ad = document.getElementById('antiguedad').value;
+  const ci =+document.getElementById('carrera').value;
+  const ip = parseFloat(document.getElementById('irpf').value)||0;
+  const oe = parseFloat(document.getElementById('otras').value)||0;
+
+  // Antigüedad
+  const antig=calcAntig(ad);
+  const aiBox=document.getElementById('antig-info');
+  if(ad){
+    aiBox.style.display='block';
+    aiBox.textContent=antig.trienios===0
+      ?`Antigüedad: ${antig.años.toFixed(1)} años — sin trienio cumplido (mínimo 3 años). Antigüedad = 0,00 €`
+      :`Antigüedad: ${antig.años.toFixed(1)} años · ${antig.trienios} trienio/s · ${(antig.pct*100).toFixed(0)}% s/SB = ${fmt(antig.importe)}`;
+  } else {
+    aiBox.style.display='none';
+  }
+
+  // Contar días del mes
+  const dim=new Date(y,m+1,0).getDate();
+  let totalWork=0,trab=0,dfTrab=0,bajaDias=0,ausDias=0;
+  for(let d=1;d<=dim;d++){
+    const s=ds(y,m,d);
+    if(!isW(y,m,d)) continue;
+    totalWork++;
+    const sv=st[s]||'t';
+    if(sv==='t'){trab++;if(isDF(y,m,d))dfTrab++;}
+    else if(sv==='b') bajaDias++;
+    else ausDias++;
+  }
+
+  const an  = antig.importe;
+  const car = +(SB*CP[ci]).toFixed(2);
+
+  // ── Salario base: mensual fijo, descuenta solo por ausentes ──
+  const propAus = totalWork>0 ? ausDias/totalWork : 0;
+  const propRet = 1-propAus;
+  const sbDev  = +(SB *propRet).toFixed(2);
+  const anDev  = +(an *propRet).toFixed(2);
+  const carDev = +(car*propRet).toFixed(2);
+
+  // ── Plus dom/fest ──
+  const pu   = reg==='ac'?(y===2026?25:30):49.96;
+  const plus = +(pu*dfTrab).toFixed(2);
+
+  // ── Prorrata 2,5 pagas ──
+  // Base = SB + antigüedad + carrera (proporcional si hay ausentes)
+  // COTIZA en RGSS — NO se cobra mensualmente
+  const basePaga   = +((SB+an+car)*propRet).toFixed(2);
+  const totalPagas = +(basePaga*2.5/12).toFixed(2);
+
+  // ── Baja IT: cobran el SB íntegro (empresa paga 100% siempre) ──
+  // El salario base ya está incluido en sbDev — no hay devengo adicional
+  const bajaEmpresa = 0;
+
+  // ── Total devengos (lo que cobra en nómina) ──
+  const totalDev=+(sbDev+anDev+carDev+plus+bajaEmpresa).toFixed(2);
+
+  // ── Base cotización RGSS = devengos + prorrata ──
+  const baseCot=+(totalDev+totalPagas).toFixed(2);
+
+  // ── SS trabajador 6,50% sobre base cotización ──
+  const tss=+(baseCot*SS_PCT).toFixed(2);
+
+  // ── Líquido = devengos − SS − IRPF − otras ──
+  const birpf =+(totalDev-tss).toFixed(2);
+  const irpfE =+(birpf*ip/100).toFixed(2);
+  const tdeduc=+(tss+irpfE+oe).toFixed(2);
+  const liq   =+(totalDev-tdeduc).toFixed(2);
+
+  // ═══════════════════════════════════════════════════
+  //  RENDER
+  // ═══════════════════════════════════════════════════
+  document.getElementById('res').style.display='block';
+
+  const rL=reg==='ac'
+    ?`<span class="badge b-red">Acuerdo: ${pu} €/jornada</span>`
+    :`<span class="badge b-blk">Convenio: 49,96 €/jornada</span>`;
+
+  const notaAus=ausDias>0?` (−${ausDias} día${ausDias>1?'s':''} aus.)`:'';
+  const rowBaja = '';
+
+  // Métricas
+  document.getElementById('m-top').innerHTML=`
+    <div class="metric red-m">
+      <div class="mlbl">Líquido a percibir</div>
+      <div class="mval">${fmt(liq)}</div>
+      <div class="msub">${trab}/${totalWork} días trab.</div>
+    </div>
+    <div class="metric">
+      <div class="mlbl">Total devengos</div>
+      <div class="mval">${fmt(totalDev)}</div>
+      <div class="msub">lo que cobra</div>
+    </div>
+    <div class="metric">
+      <div class="mlbl">SS trabajador</div>
+      <div class="mval">${fmt(tss)}</div>
+      <div class="msub">base: ${fmt(baseCot)}</div>
+    </div>
+    <div class="metric">
+      <div class="mlbl">Plus dom/fest</div>
+      <div class="mval">${fmt(plus)}</div>
+      <div class="msub">${dfTrab} jornadas × ${pu} €</div>
+    </div>`;
+
+  // Tabla devengos
+  document.getElementById('t-dev').innerHTML=`
+    <thead><tr><th>Concepto</th><th>Referencia</th><th class="r">Importe</th></tr></thead>
+    <tbody>
+      <tr><td>Salario base${notaAus}</td>
+          <td style="font-size:10px;color:#999">613,57 € mes</td>
+          <td class="r">${fmt(sbDev)}</td></tr>
+      <tr><td>Antigüedad (${(antig.pct*100).toFixed(0)}% · ${antig.trienios} trienio/s)</td>
+          <td style="font-size:10px;color:#999">${fmt(an)} mes</td>
+          <td class="r">${fmt(anDev)}</td></tr>
+      <tr><td>Carrera profesional (${(CP[ci]*100).toFixed(0)}%)</td>
+          <td style="font-size:10px;color:#999">${fmt(car)} mes</td>
+          <td class="r">${fmt(carDev)}</td></tr>
+      <tr><td>Plus dom/festivos ${rL}</td>
+          <td style="font-size:10px;color:#999">${dfTrab} × ${pu} €</td>
+          <td class="r">${fmt(plus)}</td></tr>
+      ${rowBaja}
+      <tr class="tot"><td colspan="2">Total devengos (a cobrar)</td><td class="r">${fmt(totalDev)}</td></tr>
+      <tr class="sub-hdr"><td colspan="3">Base cotización RGSS (no se cobra mensualmente)</td></tr>
+      <tr class="info-row">
+        <td>Prorrata 2,5 pagas / 12 meses</td>
+        <td style="font-size:10px;color:#999">(SB+ant+carr) × 2,5÷12</td>
+        <td class="r">${fmt(totalPagas)}</td></tr>
+      <tr class="tot"><td colspan="2">Base cotización RGSS</td><td class="r">${fmt(baseCot)}</td></tr>
+    </tbody>`;
+
+  // Tabla deducciones
+  document.getElementById('t-ded').innerHTML=`
+    <thead><tr><th>Concepto</th><th class="r">Importe</th></tr></thead>
+    <tbody>
+      <tr class="neg"><td>SS trabajador (6,50% s/base cotización)</td><td class="r">${fmt(tss)}</td></tr>
+      <tr class="neg"><td>IRPF (${ip.toFixed(2)}%)</td><td class="r">${fmt(irpfE)}</td></tr>
+      ${oe>0?`<tr class="neg"><td>Cancelación crédito / otras deducciones</td><td class="r">${fmt(oe)}</td></tr>`:''}
+      <tr class="tot"><td>Total deducciones</td><td class="r">${fmt(tdeduc)}</td></tr>
+    </tbody>`;
+
+  // Resultado final
+  document.getElementById('t-res').innerHTML=`
+    <table class="tbl">
+      <tr><td>Total devengos</td><td class="r">${fmt(totalDev)}</td></tr>
+      <tr class="neg"><td>(−) SS trabajador (6,50%)</td><td class="r">${fmt(tss)}</td></tr>
+      <tr class="neg"><td>(−) IRPF (${ip.toFixed(2)}%)</td><td class="r">${fmt(irpfE)}</td></tr>
+      ${oe>0?`<tr class="neg"><td>(−) Otras deducciones</td><td class="r">${fmt(oe)}</td></tr>`:''}
+      <tr class="tot pos">
+        <td>Líquido total a percibir</td>
+        <td class="r" style="font-size:16px">${fmt(liq)}</td>
+      </tr>
+    </table>
+    <div style="margin-top:.6rem;font-size:10px;color:#999">
+      Base cotiz. RGSS: ${fmt(baseCot)} &nbsp;·&nbsp; Base IRPF: ${fmt(birpf)}
+    </div>`;
+
+
+  // Actualizar header de impresión
+  const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const nombre=document.getElementById('nombre').value||'Trabajador/a';
+  document.getElementById('print-header').textContent=
+    `${nombre} — Nómina ${MESES[m]} ${y} — Hospital Clínico San Carlos`;
+
+  document.getElementById('res').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+
+function imprimir(){
+  if(document.getElementById('res').style.display==='none'){
+    alert('Primero calcula la nómina antes de imprimir.');
+    return;
+  }
+  window.print();
+}
+
+// Init
+const now=new Date();
+document.getElementById('mes').value=now.getMonth();
+document.getElementById('anyo').value=Math.min(2027,Math.max(2026,now.getFullYear()));
+buildCal();
+</script>
+</body>
+</html>

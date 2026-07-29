@@ -1,0 +1,2254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UGT · Revisión Nóminas</title>
+
+<!-- PWA META TAGS -->
+<meta name="application-name" content="UGT Nóminas">
+<meta name="description" content="Revisión de nóminas UGT · Limpieza Hospital Clínico San Carlos · 2026">
+<meta name="theme-color" content="#c0000c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="UGT Nóminas">
+
+<!-- ICONOS PWA -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiB2aWV3Qm94PSIwIDAgMTkyIDE5MiI+CiAgPCEtLSBCYWNrZ3JvdW5kIHJlZCBjaXJjbGUgLS0+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iOTYiIGZpbGw9IiNjMDAwMGMiLz4KICA8IS0tIFdoaXRlIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iODYiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBSZWQgaW5uZXIgY2lyY2xlIC0tPgogIDxjaXJjbGUgY3g9Ijk2IiBjeT0iOTYiIHI9Ijc4IiBmaWxsPSIjYzAwMDBjIi8+CiAgPCEtLSBXaGl0ZSBjZW50ZXIgLS0+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iNjgiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBVR1QgdGV4dCAtLT4KICA8dGV4dCB4PSI5NiIgeT0iODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCBCbGFjaywgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSIzOCIgZmlsbD0iI2MwMDAwYyI+VUdUPC90ZXh0PgogIDwhLS0gU3VidGl0bGUgLS0+CiAgPHRleHQgeD0iOTYiIHk9IjEwOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjExIiBmaWxsPSIjYzAwMDBjIj5SRVZJU0nDk048L3RleHQ+CiAgPHRleHQgeD0iOTYiIHk9IjEyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjExIiBmaWxsPSIjYzAwMDBjIj5Ow5NNSU5BUzwvdGV4dD4KICA8IS0tIEdvbGQgc3RhciB0b3AgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSI5NiwxNCA5OSwyMiAxMDgsMjIgMTAxLDI3IDEwNCwzNSA5NiwzMCA4OCwzNSA5MSwyNyA4NCwyMiA5MywyMiIgZmlsbD0iI2ZmZGMwMCIvPgo8L3N2Zz4=">
+<link rel="apple-touch-icon" href="data:image/png;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiB2aWV3Qm94PSIwIDAgMTkyIDE5MiI+CiAgPCEtLSBCYWNrZ3JvdW5kIHJlZCBjaXJjbGUgLS0+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iOTYiIGZpbGw9IiNjMDAwMGMiLz4KICA8IS0tIFdoaXRlIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iODYiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBSZWQgaW5uZXIgY2lyY2xlIC0tPgogIDxjaXJjbGUgY3g9Ijk2IiBjeT0iOTYiIHI9Ijc4IiBmaWxsPSIjYzAwMDBjIi8+CiAgPCEtLSBXaGl0ZSBjZW50ZXIgLS0+CiAgPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iNjgiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBVR1QgdGV4dCAtLT4KICA8dGV4dCB4PSI5NiIgeT0iODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCBCbGFjaywgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjkwMCIgZm9udC1zaXplPSIzOCIgZmlsbD0iI2MwMDAwYyI+VUdUPC90ZXh0PgogIDwhLS0gU3VidGl0bGUgLS0+CiAgPHRleHQgeD0iOTYiIHk9IjEwOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjExIiBmaWxsPSIjYzAwMDBjIj5SRVZJU0nDk048L3RleHQ+CiAgPHRleHQgeD0iOTYiIHk9IjEyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjExIiBmaWxsPSIjYzAwMDBjIj5Ow5NNSU5BUzwvdGV4dD4KICA8IS0tIEdvbGQgc3RhciB0b3AgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSI5NiwxNCA5OSwyMiAxMDgsMjIgMTAxLDI3IDEwNCwzNSA5NiwzMCA4OCwzNSA5MSwyNyA4NCwyMiA5MywyMiIgZmlsbD0iI2ZmZGMwMCIvPgo8L3N2Zz4=">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rojo: #c0000c;
+    --rojo-oscuro: #8b0000;
+    --rojo-claro: #e8000f;
+    --negro: #111111;
+    --gris-oscuro: #1e1e1e;
+    --blanco: #ffffff;
+    --oro: #d4a017;
+    --texto-muted: #888;
+    --azul-info: #7dd3fc;
+    --verde: #7fff7f;
+    --naranja: #ffb347;
+    --lila: #c4b5fd;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; background: var(--negro); color: var(--blanco); min-height: 100vh; }
+
+  header {
+    background: linear-gradient(135deg, var(--rojo-oscuro) 0%, var(--rojo) 60%, #e83030 100%);
+    position: relative; overflow: hidden;
+  }
+  header::before { content:''; position:absolute; top:-50%; right:-10%; width:400px; height:400px; background:rgba(255,255,255,0.05); border-radius:50%; }
+  header::after  { content:''; position:absolute; bottom:-30%; left:20%; width:300px; height:300px; background:rgba(0,0,0,0.1); border-radius:50%; }
+
+  .header-inner {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 30px; position: relative; z-index: 1; flex-wrap: wrap;
+  }
+  .logo-ugt { width: 80px; height: 80px; flex-shrink: 0; }
+  .header-text h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem; font-weight: 800; letter-spacing: 1px;
+    text-transform: uppercase; line-height: 1.1; text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .header-text p { font-size: 0.82rem; font-weight: 300; opacity: 0.9; margin-top: 4px; }
+  .header-badge {
+    margin-left: auto; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px; padding: 8px 14px; text-align: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .header-badge span { display: block; font-size: 1.4rem; font-weight: 800; color: #ffdc00; }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px 40px; }
+
+  .card {
+    background: var(--gris-oscuro); border-radius: 12px; padding: 24px;
+    margin-bottom: 16px; border: 1px solid #333; animation: fadeUp 0.4s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+  .card-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--rojo-claro);
+    margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #333;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title::before { content:''; width:4px; height:20px; background:var(--rojo); border-radius:2px; display:inline-block; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media(max-width:600px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .header-inner { padding: 16px; }
+    .header-badge { margin-left: 0; }
+  }
+
+  label { display:block; font-size:0.78rem; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:var(--texto-muted); margin-bottom:6px; }
+
+  select, input[type="number"] {
+    width: 100%; background: #111; border: 1.5px solid #444; border-radius: 8px;
+    color: var(--blanco); padding: 10px 14px; font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem; transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none; -webkit-appearance: none;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; cursor: pointer;
+  }
+  select:focus, input:focus { outline:none; border-color:var(--rojo); box-shadow:0 0 0 3px rgba(192,0,12,0.15); }
+  select option { background: #222; }
+
+  .toggle-group {
+    display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+    background: #111; border: 1.5px solid #444; border-radius: 8px;
+    cursor: pointer; transition: border-color 0.2s; user-select: none;
+  }
+  .toggle-group:hover { border-color: var(--rojo); }
+  .toggle-group input[type="checkbox"] { display: none; }
+  .toggle-switch { width:40px; height:22px; background:#444; border-radius:11px; position:relative; flex-shrink:0; transition:background 0.3s; }
+  .toggle-switch::after { content:''; position:absolute; top:3px; left:3px; width:16px; height:16px; background:white; border-radius:50%; transition:transform 0.3s; }
+  input[type="checkbox"]:checked + .toggle-switch { background: var(--rojo); }
+  input[type="checkbox"]:checked + .toggle-switch::after { transform: translateX(18px); }
+  .toggle-label-text { font-size: 0.88rem; font-weight: 500; color: #ccc; }
+
+  .info-tag {
+    display:inline-block; background:rgba(192,0,12,0.15); color:var(--rojo-claro);
+    border:1px solid rgba(192,0,12,0.3); border-radius:4px; font-size:0.70rem;
+    font-weight:600; letter-spacing:0.5px; padding:2px 7px; text-transform:uppercase; margin-left:6px; vertical-align:middle;
+  }
+  .tag-especial { background:rgba(255,179,71,0.15); color:var(--naranja); border-color:rgba(255,179,71,0.4); }
+
+  .festivos-especiales-box {
+    background: rgba(255,100,20,0.07); border: 1.5px solid rgba(255,140,30,0.35);
+    border-radius: 10px; padding: 16px; margin-top: 16px;
+  }
+  .fe-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--naranja);
+    margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+  }
+  .info-box {
+    background: rgba(212,160,23,0.10); border: 1px solid rgba(212,160,23,0.30);
+    border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; color: #ddc060;
+    line-height: 1.6; margin-top: 12px;
+  }
+  .info-box strong { color: var(--oro); }
+
+  .irpf-tabs { display:flex; gap:8px; margin-bottom:12px; }
+  .irpf-tab {
+    flex:1; padding:8px; text-align:center; border-radius:8px; font-size:0.8rem;
+    font-weight:600; letter-spacing:0.5px; text-transform:uppercase; cursor:pointer;
+    border:1.5px solid #444; color:#888; background:transparent; transition:all 0.2s; font-family:'Barlow',sans-serif;
+  }
+  .irpf-tab.active { background:var(--rojo); border-color:var(--rojo); color:white; }
+
+  .resultado-card {
+    background: linear-gradient(135deg, var(--rojo-oscuro), #5a0000);
+    border-radius: 14px; padding: 28px; margin-bottom: 16px; position: relative; overflow: hidden;
+  }
+  .resultado-card::after { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(255,255,255,0.04); border-radius:50%; }
+  .resultado-titulo { font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; opacity:0.8; margin-bottom:6px; }
+  .resultado-neto { font-family:'Barlow Condensed',sans-serif; font-size:3.2rem; font-weight:800; letter-spacing:-1px; line-height:1; }
+  .resultado-neto small { font-size:1.4rem; opacity:0.7; font-weight:400; }
+  .resultado-sub { font-size:0.82rem; opacity:0.7; margin-top:6px; }
+
+  .desglose-fila {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 0; border-bottom:1px solid #2a2a2a; font-size:0.9rem; gap:10px;
+  }
+  .desglose-fila:last-child { border-bottom:none; }
+  .desglose-fila .concepto { color:#bbb; flex:1; }
+  .desglose-fila .importe { font-weight:600; font-family:'Barlow Condensed',sans-serif; font-size:1rem; white-space:nowrap; }
+  .desglose-fila.total-bruto .concepto { color:#fff; font-weight:600; }
+  .desglose-fila.total-bruto .importe { color:var(--oro); font-size:1.1rem; }
+  .desglose-fila.deduccion .importe { color:#ff6b6b; }
+  .desglose-fila.neto-final .concepto { color:#fff; font-weight:700; }
+  .desglose-fila.neto-final .importe { color:var(--verde); font-size:1.2rem; }
+  .desglose-fila.sub-item .concepto { color:#666; font-size:0.80rem; padding-left:16px; }
+  .desglose-fila.sub-item .importe { font-size:0.88rem; color:#888; }
+
+  .separador { height:1px; background:linear-gradient(to right,transparent,#444,transparent); margin:8px 0; }
+
+  .btn-calcular {
+    width:100%; background:var(--rojo); color:white; border:none; border-radius:10px;
+    padding:16px; font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:700;
+    letter-spacing:2px; text-transform:uppercase; cursor:pointer;
+    transition:background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow:0 4px 20px rgba(192,0,12,0.4); margin-top:8px;
+  }
+  .btn-calcular:hover { background:var(--rojo-claro); box-shadow:0 6px 28px rgba(192,0,12,0.6); }
+  .btn-calcular:active { transform:scale(0.98); }
+
+  .btn-imprimir {
+    width:100%; background:transparent; color:#aaa; border:1.5px solid #444;
+    border-radius:10px; padding:12px; font-family:'Barlow Condensed',sans-serif;
+    font-size:1rem; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+    cursor:pointer; transition:all 0.2s; margin-top:8px;
+  }
+  .btn-imprimir:hover { border-color:#777; color:#fff; }
+
+  footer { text-align:center; padding:20px; font-size:0.75rem; color:#555; border-top:1px solid #222; }
+
+  /* ── BANNER CAMPAÑA AFILIACIÓN ── */
+  .banner-afiliacion {
+    background: linear-gradient(90deg, #8b0000 0%, #c0000c 40%, #8b0000 100%);
+    background-size: 200% 100%;
+    animation: bannerShift 4s ease infinite;
+    padding: 10px 20px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; flex-wrap: wrap; position: relative; overflow: hidden;
+    border-bottom: 2px solid rgba(255,220,0,0.4);
+  }
+  @keyframes bannerShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .banner-afiliacion::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    animation: bannerShine 3s ease infinite;
+  }
+  @keyframes bannerShine {
+    0%   { left: -100%; }
+    100% { left: 200%; }
+  }
+  .banner-texto {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: white;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center;
+  }
+  .banner-texto .banner-highlight {
+    color: #ffdc00; font-size: 1.1rem; font-weight: 800;
+    text-shadow: 0 0 12px rgba(255,220,0,0.5);
+    animation: pulseGold 2s ease infinite;
+  }
+  @keyframes pulseGold {
+    0%, 100% { text-shadow: 0 0 8px rgba(255,220,0,0.4); }
+    50%       { text-shadow: 0 0 20px rgba(255,220,0,0.9); }
+  }
+  .banner-btn {
+    background: #ffdc00; color: #8b0000; border: none;
+    border-radius: 20px; padding: 6px 18px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem;
+    font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 3px 12px rgba(255,220,0,0.4);
+    animation: pulseBtn 2.5s ease infinite;
+    white-space: nowrap;
+  }
+  .banner-btn:hover { transform: scale(1.06); box-shadow: 0 5px 20px rgba(255,220,0,0.7); }
+  @keyframes pulseBtn {
+    0%, 100% { box-shadow: 0 3px 12px rgba(255,220,0,0.4); }
+    50%       { box-shadow: 0 4px 22px rgba(255,220,0,0.8); }
+  }
+  .banner-cerrar {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    background: transparent; border: none; color: rgba(255,255,255,0.5);
+    font-size: 1.1rem; cursor: pointer; line-height: 1; padding: 4px 8px;
+    transition: color 0.2s;
+  }
+  .banner-cerrar:hover { color: white; }
+  @media(max-width:600px) {
+    .banner-texto { font-size: 0.85rem; letter-spacing: 1px; }
+    .banner-cerrar { position: static; transform: none; margin-left: 4px; }
+  }
+  .btn-reclamacion {
+    width:100%; background: linear-gradient(135deg, #1a3a5c, #0f2a45);
+    color: #7dd3fc; border: 1.5px solid #2a5f8f;
+    border-radius:10px; padding:14px; font-family:'Barlow Condensed',sans-serif;
+    font-size:1.1rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    cursor:pointer; transition:all 0.2s; margin-top:8px;
+    box-shadow: 0 4px 20px rgba(30,100,180,0.25);
+  }
+  .btn-reclamacion:hover { background: linear-gradient(135deg, #1e4a70, #143555); border-color:#4a9fcf; color:#bae6fd; }
+
+  #reclamacion-section {
+    background: #0d1117; border: 1.5px solid #2a5f8f; border-radius:14px;
+    padding: 28px; margin-top: 16px; color: #e2e8f0;
+    font-family: 'Georgia', serif; font-size: 0.92rem; line-height: 1.75;
+  }
+  .recl-header {
+    text-align: center; margin-bottom: 28px; padding-bottom: 16px;
+    border-bottom: 2px solid #2a5f8f;
+  }
+  .recl-header .recl-ugt-badge {
+    display: inline-block; background: #c0000c; color: white;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 3px; padding: 4px 14px; border-radius: 4px; margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .recl-header h2 {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase; color: #7dd3fc; margin-bottom: 4px;
+  }
+  .recl-header p { font-size: 0.8rem; color: #64748b; }
+  #recl-texto { white-space: pre-wrap; word-break: break-word; }
+  #recl-texto strong { color: #fbbf24; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.5px; }
+  .recl-tabla {
+    width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85rem;
+    font-family: 'Barlow', sans-serif;
+  }
+  .recl-tabla th {
+    background: #1e3a5c; color: #7dd3fc; padding: 8px 12px; text-align: left;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .recl-tabla td { padding: 7px 12px; border-bottom: 1px solid #1e2a3a; color: #cbd5e1; }
+  .recl-tabla tr:nth-child(even) td { background: rgba(30,60,100,0.15); }
+  .recl-tabla .total-row td { color: #fbbf24; font-weight: 700; border-top: 2px solid #2a5f8f; }
+  .recl-bloque { margin-bottom: 18px; }
+  .recl-bloque p { margin: 0 0 8px 0; }
+  .recl-firma { margin-top: 32px; border-top: 1px solid #1e3a5c; padding-top: 20px; }
+  .recl-firma .firma-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+  .recl-firma .firma-box { border: 1px dashed #2a5f8f; border-radius: 8px; padding: 14px; text-align: center; }
+  .recl-firma .firma-box .firma-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 30px; font-family: 'Barlow Condensed', sans-serif; }
+  .recl-firma .firma-box .firma-sub { font-size: 0.75rem; color: #475569; margin-top: 8px; border-top: 1px solid #1e3a5c; padding-top: 8px; }
+
+  .recl-campos {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;
+  }
+  .recl-campo-full { grid-column: 1 / -1; }
+  @media(max-width:600px) { .recl-campos { grid-template-columns: 1fr; } }
+
+  /* Print reclamación */
+  @media print {
+    #reclamacion-section {
+      background: white !important; color: black !important;
+      border: 1px solid #ccc !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .recl-header h2 { color: #1a3a5c !important; }
+    .recl-header .recl-ugt-badge { background: #c0000c !important; }
+    #recl-texto strong { color: #1a3a5c !important; }
+    .recl-tabla th { background: #1a3a5c !important; color: white !important; }
+    .recl-tabla td { color: #333 !important; }
+    .recl-tabla .total-row td { color: #8b0000 !important; }
+    .btn-reclamacion, #recl-config, #recl-actions { display: none !important; }
+  }
+
+  @media print {
+  div[style*="position: fixed"] { display: none !important; }
+  #nombre-print {
+    display: block !important;
+    font-size: 1rem !important;
+    color: rgba(255,255,255,0.9) !important;
+    opacity: 1 !important;
+  }
+    body { background:white; color:black; }
+    header { background:#c0000c !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .btn-calcular, .btn-imprimir, .irpf-tabs { display:none; }
+    .card { background:#f9f9f9; border:1px solid #ddd; color:black; }
+    .card-title { color:#c0000c; }
+    .desglose-fila .concepto { color:#333; }
+    .resultado-card { background:#c0000c !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .festivos-especiales-box { background:#fff8f0; border-color:#f90; }
+    .panel-back { display:none !important; }
+  }
+  .panel-back{position:fixed;top:14px;left:14px;z-index:9999;display:inline-flex;align-items:center;gap:8px;background:#ffdc00;color:#111;border:2px solid #111;border-radius:999px;padding:9px 14px;font-family:'Barlow Condensed',Arial,sans-serif;font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+  .panel-back:hover{background:#fff;color:#c0000c}
+</style>
+
+<style id="ugt-ajustes-finales-css">
+  .banner-afiliacion { display: none !important; }
+  .ugt-print-actions {
+    background: var(--gris-oscuro);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    border: 1px solid #555;
+  }
+  .ugt-print-actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media(max-width:600px) {
+    .ugt-print-actions-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+
+<style id="ugt-recuperacion-final-css">
+  .banner-afiliacion { display:none !important; }
+  .ugt-print-actions {
+    background: var(--gris-oscuro);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    border: 1px solid #555;
+  }
+  .ugt-print-actions-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:14px;
+  }
+  @media(max-width:800px){ .ugt-print-actions-grid{ grid-template-columns:1fr !important; } }
+
+  .recl-anexo-nota {
+    background: rgba(125,211,252,0.08);
+    border: 1px solid rgba(125,211,252,0.25);
+    color: #bae6fd;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.86rem;
+  }
+  @media print {
+    #recl-config { display:none !important; }
+  }
+</style>
+
+<style id="ugt-firmas-separadas-css">
+  .firmas-separadas {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    margin-top:50px;
+    width:100%;
+  }
+  .firma-bloque {
+    width:45%;
+    min-height:120px;
+  }
+  .firma-bloque.derecha {
+    text-align:right;
+  }
+  .firma-linea {
+    margin-top:70px;
+    border-top:1.5px solid #333;
+    padding-top:6px;
+    font-weight:600;
+  }
+  @media(max-width:700px){
+    .firmas-separadas{
+      flex-direction:column;
+      gap:28px;
+    }
+    .firma-bloque,
+    .firma-bloque.derecha{
+      width:100%;
+      text-align:left;
+    }
+  }
+</style>
+
+
+<style id="ugt-firmas-final-forzado-css">
+  .recl-firma {
+    margin-top: 55px !important;
+    padding-top: 25px !important;
+    border-top: 1px solid #ddd !important;
+  }
+
+  .recl-firma .firma-cols {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    column-gap: 120px !important;
+    width: 100% !important;
+    margin-top: 55px !important;
+    align-items: start !important;
+  }
+
+  .recl-firma .firma-box {
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    min-height: 150px !important;
+    text-align: left !important;
+  }
+
+  .recl-firma .firma-box:first-child {
+    text-align: left !important;
+  }
+
+  .recl-firma .firma-box:last-child {
+    text-align: right !important;
+  }
+
+  .recl-firma .firma-label {
+    margin-top: 85px !important;
+    border-top: 1.5px solid #000 !important;
+    padding-top: 10px !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  .recl-firma .firma-sub {
+    border-top: none !important;
+    margin-top: 6px !important;
+    padding-top: 0 !important;
+    color: #000 !important;
+    font-size: 0.85rem !important;
+  }
+
+  @media print {
+    .recl-firma .firma-cols {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      column-gap: 120px !important;
+      width: 100% !important;
+    }
+    .recl-firma .firma-box:first-child { text-align: left !important; }
+    .recl-firma .firma-box:last-child { text-align: right !important; }
+  }
+
+  @media(max-width:700px) {
+    .recl-firma .firma-cols {
+      grid-template-columns: 1fr !important;
+      row-gap: 35px !important;
+    }
+    .recl-firma .firma-box:last-child {
+      text-align: left !important;
+    }
+  }
+</style>
+
+
+<style id="ugt-firmas-reclamacion-print-fix-css">
+  .recl-firma .firma-cols {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    column-gap: 180px !important;
+    width: 100% !important;
+    margin-top: 70px !important;
+    align-items: start !important;
+  }
+
+  .recl-firma .firma-box {
+    border: none !important;
+    padding: 0 !important;
+    min-height: 150px !important;
+  }
+
+  .recl-firma .firma-box:first-child {
+    text-align: left !important;
+    justify-self: start !important;
+    width: 100% !important;
+  }
+
+  .recl-firma .firma-box:last-child {
+    text-align: right !important;
+    justify-self: end !important;
+    width: 100% !important;
+  }
+
+  .recl-firma .firma-label {
+    margin-top: 85px !important;
+    border-top: 1.5px solid #000 !important;
+    padding-top: 10px !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+  }
+
+  .recl-firma .firma-sub {
+    border-top: none !important;
+    color: #000 !important;
+    margin-top: 6px !important;
+    padding-top: 0 !important;
+  }
+</style>
+
+</head>
+<body>
+
+<a class="panel-back" href="../index.html" onclick="event.preventDefault(); window.location.href='../index.html';">&larr; Volver al panel</a>
+
+<header>
+  <div class="header-inner">
+    <svg class="logo-ugt" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="white" opacity="0.95"/>
+      <circle cx="50" cy="50" r="44" fill="#c0000c"/>
+      <circle cx="50" cy="50" r="38" fill="white"/>
+      <text x="50" y="44" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" fill="#c0000c">UGT</text>
+      <text x="50" y="58" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="7.5" fill="#c0000c">UNIÓN GENERAL</text>
+      <text x="50" y="68" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="7.5" fill="#c0000c">DE TRABAJADORES</text>
+    </svg>
+    <div class="header-text">
+      <h1>Calculadora de Nóminas<br>Limpieza Hospitalaria</h1>
+      <p>Hospital Clínico San Carlos · UTE Limpieza Hospitales Madrid · 2026</p>
+      <p style="margin-top:6px;font-size:0.80rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#ffdc00;opacity:1;">
+        ❤️ UGT · Siempre a tu lado
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-left:auto;">
+      <div class="header-badge">Subida<br><span>+1,5%</span>Enero 2026</div>
+      <div class="header-badge" style="background:rgba(255,220,0,0.18);border-color:rgba(255,220,0,0.5);">
+        <span style="font-size:0.65rem;font-weight:700;letter-spacing:1px;color:#ffdc00;text-transform:uppercase;">🆕 Actualización</span><br>
+        <span style="font-size:1rem;font-weight:800;color:#ffdc00;">Mayo 2026</span>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- DATOS TRABAJADOR -->
+  <div class="card" style="animation-delay:0.05s">
+    <div class="card-title">Datos del Trabajador</div>
+    <div class="grid-2" style="margin-bottom:14px;">
+      <div>
+        <label>Categoría profesional</label>
+        <select id="categoria" onchange="calcular()">
+          <option value="">— Selecciona categoría —</option>
+          <option value="limpiador">Limpiador/a</option>
+          <option value="peon">Peón Especializado</option>
+          <option value="especialista">Especialista</option>
+          <option value="encargado">Encargado de Grupo</option>
+        </select>
+      </div>
+      <div>
+        <label>Nombre del trabajador/a <span class="info-tag" style="background:rgba(100,180,100,0.15);color:#7dc97d;border-color:rgba(100,180,100,0.3);">Opcional · solo para imprimir</span></label>
+        <input type="text" id="nombre-trabajador" placeholder="Ej: María García López" 
+          style="width:100%;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;transition:border-color 0.2s,box-shadow 0.2s;"
+          oninput="actualizarNombre()">
+      </div>
+    </div>
+    <div class="grid-2">
+      <div style="display:none;"></div>
+      <div>
+        <label>Fecha de antigüedad <span class="info-tag">1 trienio cada 3 años · 6%</span></label>
+        <input type="date" id="fecha-antiguedad" onchange="calcular()"
+          style="width:100%;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;color-scheme:dark;">
+        <div id="trienios-preview" style="margin-top:8px;font-size:0.82rem;color:#aaa;background:#0a0a0a;border-radius:6px;padding:8px 12px;border:1px solid #333;display:none;line-height:1.7;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPTOS VARIABLES -->
+  <div class="card" style="animation-delay:0.10s">
+    <div class="card-title">Conceptos Variables</div>
+
+    <!-- NOCTURNIDAD -->
+    <div style="margin-bottom:14px;">
+      <label>Nocturnidad</label>
+      <select id="tipo-nocturnidad" onchange="actualizarNocturnidad()" style="margin-bottom:10px;">
+        <option value="0">Sin nocturnidad</option>
+        <option value="completa">Mes completo en turno de noche — 416,88 €/mes</option>
+        <option value="horas">Turno con 1 hora nocturna (ej. turno de las 11) — 109,20 €/mes</option>
+      </select>
+      <div id="noct-horas-container" style="display:none;">
+        <div id="noct-horas-preview" style="margin-top:4px;font-size:0.82rem;color:#aaa;background:#0a0a0a;border-radius:6px;padding:8px 12px;border:1px solid #2a4a6a;line-height:1.7;">
+          🌙 <strong style="color:#7dd3fc">Nocturnidad 1 hora (turno de las 11):</strong> importe fijo <strong style="color:#7fff7f">109,20 €/mes</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- PELIGROSIDAD -->
+    <div class="grid-2" style="margin-bottom:14px;">
+      <div>
+        <label>Plus de peligrosidad <span class="info-tag">+10% s/base</span></label>
+        <div class="toggle-group" onclick="toggleCheck('peligrosidad')">
+          <input type="checkbox" id="peligrosidad">
+          <div class="toggle-switch"></div>
+          <span class="toggle-label-text">Con peligrosidad</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <label>Carrera profesional (mensual)</label>
+      <select id="carrera" onchange="calcular()">
+        <option value="0">Sin carrera profesional</option>
+        <option value="82.13">Nivel I — 82,13 €/mes</option>
+        <option value="155.17">Nivel II — 155,17 €/mes</option>
+        <option value="234.33">Nivel III — 234,33 €/mes</option>
+        <option value="306.95">Nivel IV — 306,95 €/mes</option>
+      </select>
+    </div>
+
+    <!-- DOMINGOS -->
+    <div style="margin-bottom:14px;">
+      <label>Domingos trabajados <span class="info-tag">49,96 € complemento / domingo</span></label>
+      <input type="number" id="domingos" min="0" max="5" value="0" onchange="calcular()">
+    </div>
+
+    <!-- FESTIVOS ORDINARIOS -->
+    <div style="margin-bottom:4px;">
+      <label>Festivos totales trabajados <span class="info-tag">Complemento 49,96 €</span></label>
+      <input type="number" id="festivos-normales">
+<label>Festivos a librar (solo complemento)</label>
+<input type="number" id="festivos-librar" value="0" onchange="calcular()" min="0" max="20" value="0" onchange="calcular()">
+    </div>
+
+    <!-- FESTIVOS ESPECIALES -->
+    <div class="festivos-especiales-box">
+      <div class="fe-title">⭐ Festivos Especiales — Complemento doble (×2)</div>
+      <div class="grid-3">
+        <div>
+          <label>25 Diciembre <span class="info-tag tag-especial">Navidad ×2</span></label>
+          <div class="toggle-group" onclick="toggleCheck('f25dic')">
+            <input type="checkbox" id="f25dic">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label-text">Trabajado</span>
+          </div>
+        </div>
+        <div>
+          <label>1 Enero <span class="info-tag tag-especial">Año Nuevo ×2</span></label>
+          <div class="toggle-group" onclick="toggleCheck('f1ene')">
+            <input type="checkbox" id="f1ene">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label-text">Trabajado</span>
+          </div>
+        </div>
+        <div>
+          <label>6 Enero <span class="info-tag tag-especial">Reyes ×2</span></label>
+          <div class="toggle-group" onclick="toggleCheck('f6ene')">
+            <input type="checkbox" id="f6ene">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label-text">Trabajado</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-box">
+        <strong>Fórmula festivo:</strong> (Base + Antigüedad + Carrera + Nocturnidad) ÷ 30 × 175% + Complemento festivo (49,96 €)<br>
+        <strong>Festivos especiales (25-Dic, 1-Ene, 6-Ene):</strong> misma fórmula pero complemento doble → 99,92 € en lugar de 49,96 €
+      </div>
+    </div>
+  </div>
+
+  <!-- ACUERDO ITE NOVIEMBRE 2023 -->
+  <div class="card" style="animation-delay:0.12s">
+    <div class="card-title" style="color:#f59e0b;">⚕️ Acuerdo ITE — Baja Médica (Nov. 2023)</div>
+    <div class="info-box" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.3);color:#e0b060;margin-bottom:14px;">
+      <strong style="color:#f59e0b;">Acuerdo UGT · Noviembre 2023:</strong> Los domingos y festivos que caigan durante una baja médica (IT) se abonan como si hubieran sido trabajados — complemento de <strong>49,96 €/unidad</strong>.
+    </div>
+    <div class="grid-2">
+      <div>
+        <label>Domingos en baja (ITE) <span class="info-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;border-color:rgba(245,158,11,0.35);">49,96 €/ud</span></label>
+        <input type="number" id="ite-domingos" min="0" max="5" value="0" placeholder="0" onchange="calcular()">
+      </div>
+      <div>
+        <label>Festivos ordinarios en baja (ITE) <span class="info-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;border-color:rgba(245,158,11,0.35);">49,96 €/ud</span></label>
+        <input type="number" id="ite-festivos" min="0" max="20" value="0" placeholder="0" onchange="calcular()">
+      </div>
+    </div>
+    <div style="margin-top:14px;">
+      <label>Festivos especiales en baja (ITE) <span class="info-tag tag-especial">×2 · 99,92 €/ud</span></label>
+      <div class="grid-3" style="margin-top:6px;">
+        <div>
+          <label>25 Diciembre <span class="info-tag tag-especial">×2</span></label>
+          <div class="toggle-group" onclick="toggleCheck('ite-f25dic')">
+            <input type="checkbox" id="ite-f25dic">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label-text">En baja</span>
+          </div>
+        </div>
+        <div>
+          <label>1 Enero <span class="info-tag tag-especial">×2</span></label>
+          <div class="toggle-group" onclick="toggleCheck('ite-f1ene')">
+            <input type="checkbox" id="ite-f1ene">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label-text">En baja</span>
+          </div>
+        </div>
+        <div>
+          <label>6 Enero <span class="info-tag tag-especial">×2</span></label>
+          <div class="toggle-group" onclick="toggleCheck('ite-f6ene')">
+            <input type="checkbox" id="ite-f6ene">
+            <div class="toggle-switch"></div>
+            <span class="toggle-label-text">En baja</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IRPF -->
+  <div class="card" style="animation-delay:0.15s">
+    <div class="card-title">Retención IRPF</div>
+    <div class="irpf-tabs">
+      <button class="irpf-tab active" id="tab-auto" onclick="setIrpfMode('auto')">Automático (tablas 2026)</button>
+      <button class="irpf-tab" id="tab-manual" onclick="setIrpfMode('manual')">Manual</button>
+    </div>
+    <div id="irpf-auto-info" style="font-size:0.85rem; color:#888; padding:6px 0 4px;">
+      IRPF calculado automáticamente sobre el bruto anual estimado según tramos vigentes 2026.
+    </div>
+    <div id="irpf-manual-container" style="display:none;">
+      <label>Porcentaje IRPF (%)</label>
+      <input type="number" id="irpf-manual" min="0" max="45" step="0.5" value="15" onchange="calcular()" style="max-width:180px;">
+    </div>
+  </div>
+
+  <!-- PRÉSTAMO EMPRESA (Cod. 380 — Cancelación Diferida) -->
+  <div class="card" style="animation-delay:0.18s;border-color:#2a4a2a;">
+    <div class="card-title" style="color:#7fff7f;">💳 Préstamo Empresa — Cancelación Diferida (Cód. 380)</div>
+    <div class="info-box" style="background:rgba(127,255,127,0.06);border-color:rgba(127,255,127,0.2);color:#a8e6a8;margin-bottom:14px;">
+      <strong style="color:#7fff7f;">Préstamo anual empresa:</strong> Se concede a principios de año (1.200 € o 600 €) y se descuenta en cuotas iguales a lo largo del año. Aparece en nómina como <strong>código 380 — De Cancelación Diferida</strong>.
+    </div>
+    <div class="grid-2" style="margin-bottom:14px;">
+      <div>
+        <label>Importe del préstamo</label>
+        <select id="prestamo-importe" onchange="actualizarPrestamo()">
+          <option value="0">Sin préstamo</option>
+          <option value="1200">1.200 € (cuota: 100 €/mes en 12 meses)</option>
+          <option value="600">600 € (cuota: 50 €/mes en 12 meses)</option>
+        </select>
+      </div>
+      <div>
+        <label>Cuotas pendientes de descontar <span class="info-tag" style="background:rgba(127,255,127,0.12);color:#7fff7f;border-color:rgba(127,255,127,0.3);">meses restantes</span></label>
+        <input type="number" id="prestamo-cuotas" min="0" max="12" value="12" onchange="actualizarPrestamo()" placeholder="Ej: 9">
+      </div>
+    </div>
+    <div id="prestamo-preview" style="display:none;font-size:0.85rem;background:#0a0a0a;border-radius:6px;padding:10px 14px;border:1px solid #2a4a2a;line-height:1.8;color:#aaa;"></div>
+  </div>
+
+  <button class="btn-calcular" onclick="calcular()">⚡ Calcular Nómina</button>
+
+  <!-- RESULTADO -->
+  <div class="resultado-card" id="resultado-card" style="display:none;">
+    <div id="nombre-print" style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.75;margin-bottom:6px;"></div>
+    <div class="resultado-titulo">💶 Salario Neto Mensual</div>
+    <div class="resultado-neto" id="neto-display">— <small>€</small></div>
+    <div class="resultado-sub" id="neto-sub"></div>
+  </div>
+
+  <!-- DESGLOSE -->
+  <div class="card" id="desglose-card" style="display:none;">
+    <div class="card-title">Desglose Detallado de Nómina</div>
+    <div id="desglose-contenido"></div>
+  </div>
+
+  <button class="btn-imprimir" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+
+<div id="ugt-print-actions" class="ugt-print-actions">
+  <div class="card-title">🖨️ Impresión separada</div>
+  <div class="ugt-print-actions-grid">
+    <button class="btn-imprimir" onclick="imprimirSoloConceptosUGT()" style="margin-top:0;">
+      🧾 Imprimir solo conceptos / cálculo
+    </button>
+    <button class="btn-imprimir" onclick="imprimirDatosYDescuentosUGT()" style="margin-top:0;">
+      📋 Imprimir datos introducidos y descuentos
+    </button>
+    <button class="btn-reclamacion" onclick="imprimirSoloReclamacionUGT()" style="display:block;margin-top:0;">
+      📑 Imprimir reclamación + nómina real/generada
+    </button>
+  </div>
+  <div class="info-box" style="margin-top:14px;">
+    La reclamación mantiene la nómina real/generada como anexo y permite indicar exactamente qué falta reclamar.
+  </div>
+</div>
+
+
+  <!-- BOTÓN RECLAMACIÓN -->
+  <button class="btn-reclamacion" id="btn-reclamacion" onclick="generarReclamacion()" style="display:none;">
+    📄 Generar Reclamación Formal para la Empresa
+  </button>
+
+  <!-- SECCIÓN RECLAMACIÓN -->
+  <div id="reclamacion-section" style="display:none;">
+
+    <div id="recl-config" class="card" style="background:#0a1622;border:1.5px solid #1e3a5c;margin-bottom:16px;animation:none;">
+      <div class="card-title" style="color:#7dd3fc;">⚙️ Datos para la Reclamación</div>
+      <div class="recl-campos">
+        <div>
+          <label>Mes/período reclamado</label>
+          <input type="text" id="recl-periodo" placeholder="Ej: enero 2025"
+            style="width:100%;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;">
+        </div>
+        <div>
+          <label>DNI del trabajador/a</label>
+          <input type="text" id="recl-dni" placeholder="Ej: 12345678-A"
+            style="width:100%;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;">
+        </div>
+        <div>
+          <label>Nº de contrato / centro de trabajo</label>
+          <input type="text" id="recl-contrato" placeholder="Ej: Hospital Clínico San Carlos"
+            style="width:100%;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;">
+        </div>
+        <div>
+          <label>Turno del trabajador/a</label>
+          <select id="recl-turno" style="width:100%;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;appearance:none;">
+            <option value="tarde">Turno de tarde</option>
+            <option value="mañana">Turno de mañana</option>
+            <option value="noche">Turno de noche</option>
+            <option value="partido">Turno partido</option>
+          </select>
+        </div>
+        <div class="recl-campo-full">
+          <label>Importe abonado en nómina (lo que pagaron) — 0 si no se abonó nada</label>
+          <input type="number" id="recl-pagado" min="0" step="0.01" value="0" placeholder="0.00"
+            style="width:100%;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;">
+        </div>
+        <div class="recl-campo-full">
+          <label>Qué falta reclamar / conceptos no abonados <span class="info-tag">Necesario para la reclamación</span></label>
+          <textarea id="recl-que-falta" placeholder="Ej: faltan 2 domingos trabajados, 1 festivo ordinario y la diferencia de carrera profesional..." style="width:100%;min-height:90px;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;resize:vertical;"></textarea>
+        </div>
+        <div class="recl-campo-full">
+          <label>Motivo adicional <span class="info-tag">Opcional</span></label>
+          <input type="text" id="recl-motivo-extra" placeholder="Ej: no se abonaron los complementos de festivos trabajados"
+            style="width:100%;background:#111;border:1.5px solid #444;border-radius:8px;color:#fff;padding:10px 14px;font-family:'Barlow',sans-serif;font-size:0.95rem;">
+        </div>
+      </div>
+      <button onclick="renderReclamacion()" style="background:#1a5c8a;color:#bae6fd;border:1.5px solid #2a7fba;border-radius:8px;padding:10px 20px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;width:100%;">
+        🔄 Actualizar Documento
+      </button>
+      <div class="recl-anexo-nota">La reclamación se imprimirá sin este cuadro superior y añadirá la nómina generada como anexo.</div>
+    </div>
+
+    <div class="recl-header">
+      <div class="recl-ugt-badge">UGT · Sección Sindical</div>
+      <h2>Reclamación de Diferencias Salariales</h2>
+      <p>Hospital Clínico San Carlos · UTE Limpieza Hospitales Madrid</p>
+    </div>
+
+    <div id="recl-texto"></div>
+
+    <div class="recl-firma">
+      <p style="font-size:0.82rem;color:#64748b;font-family:'Barlow',sans-serif;">
+        En Madrid, a <strong id="recl-fecha-hoy" style="color:#cbd5e1;"></strong>
+      </p>
+
+      <div class="firma-cols">
+        <div class="firma-box">
+          <div class="firma-label">Firma del/la trabajador/a</div>
+          <div class="firma-sub" id="recl-nombre-firma">MIGUEL A ROMERO HERAS · 11814893T</div>
+        </div>
+
+        <div class="firma-box">
+          <div class="firma-label">Sello / Recibí empresa</div>
+          <div class="firma-sub">UTE Limpieza Hospitales Madrid<br>Grupo Clece / Integra</div>
+        </div>
+      </div>
+    </div>
+
+<div id="recl-actions" class="recl-actions" style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button onclick="imprimirReclamacionSolo()" style="flex:1;background:#c0000c;color:white;border:none;border-radius:8px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">
+        🖨️ Imprimir reclamación 2 copias
+      </button>
+      <button onclick="imprimirTodo()" style="flex:1;background:#1a5c8a;color:#bae6fd;border:1.5px solid #2a7fba;border-radius:8px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;">
+        🖨️ Imprimir TODO
+      </button>
+      <button onclick="document.getElementById('reclamacion-section').style.display='none'" style="flex:1;background:transparent;color:#64748b;border:1.5px solid #334155;border-radius:8px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;">
+        ✕ Cerrar
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>UGT · Sección Sindical Limpieza Hospital Clínico San Carlos de Madrid</strong><br>
+  Tabla salarial vigente desde enero 2026 · Subida del 1,5% · UTE Limpieza Hospitales Madrid<br>
+  <span style="color:#333;">Calculadora orientativa. Para dudas consulta con tu delegado/a sindical de UGT.</span>
+</footer>
+
+<script>
+
+function imprimirReclamacionSolo() {
+  const contenido = document.getElementById("reclamacion-section").innerHTML;
+  const ventana = window.open('', '', 'width=900,height=700');
+  ventana.document.write(`
+    <html>
+      <head>
+        <title>Reclamación UGT</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 20px; color:#111; }
+          table { width:100%; border-collapse: collapse; }
+          td, th { border:1px solid #999; padding:6px; text-align:left; }
+          button { display:none !important; }
+          .recl-actions { display:none !important; }
+        </style>
+      
+<style id="ugt-ajustes-finales-css">
+  .banner-afiliacion { display: none !important; }
+  .ugt-print-actions {
+    background: var(--gris-oscuro);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    border: 1px solid #555;
+  }
+  .ugt-print-actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media(max-width:600px) {
+    .ugt-print-actions-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+
+<style id="ugt-recuperacion-final-css">
+  .banner-afiliacion { display:none !important; }
+  .ugt-print-actions {
+    background: var(--gris-oscuro);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    border: 1px solid #555;
+  }
+  .ugt-print-actions-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:14px;
+  }
+  @media(max-width:800px){ .ugt-print-actions-grid{ grid-template-columns:1fr !important; } }
+
+  .recl-anexo-nota {
+    background: rgba(125,211,252,0.08);
+    border: 1px solid rgba(125,211,252,0.25);
+    color: #bae6fd;
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.86rem;
+  }
+  @media print {
+    #recl-config { display:none !important; }
+  }
+</style>
+
+<style id="ugt-firmas-separadas-css">
+  .firmas-separadas {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    margin-top:50px;
+    width:100%;
+  }
+  .firma-bloque {
+    width:45%;
+    min-height:120px;
+  }
+  .firma-bloque.derecha {
+    text-align:right;
+  }
+  .firma-linea {
+    margin-top:70px;
+    border-top:1.5px solid #333;
+    padding-top:6px;
+    font-weight:600;
+  }
+  @media(max-width:700px){
+    .firmas-separadas{
+      flex-direction:column;
+      gap:28px;
+    }
+    .firma-bloque,
+    .firma-bloque.derecha{
+      width:100%;
+      text-align:left;
+    }
+  }
+</style>
+
+</head>
+      <body>${contenido}</body>
+    </html>
+  `);
+  ventana.document.close();
+  ventana.focus();
+  ventana.print();
+  ventana.close();
+}
+
+function imprimirTodo() {
+  window.print();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  DATOS SALARIALES 2026 (valores tras subida 1,5%)
+// ══════════════════════════════════════════════════════════════
+const DATOS = {
+  limpiador:    { nombre: 'Limpiador/a',        base: 1352.07 },
+  peon:         { nombre: 'Peón Especializado', base: 1364.12 },
+  especialista: { nombre: 'Especialista',       base: 1469.43 },
+  encargado:    { nombre: 'Encargado de Grupo', base: 1517.15 }
+};
+
+const COMPLEMENTO_FESTIVO = 49.96;  // complemento por domingo / festivo ordinario
+const NOCTURNIDAD_MENSUAL = 416.88;
+const PAGAS_EXTRAS_MESES  = 2.5;    // 2,5 pagas extras al año
+// Cuotas SS trabajador 2026 (sobre base de cotización)
+const SS_REG_GENERAL_PCT = 0.0470;  // 4,70% Contingencias comunes
+const SS_DESEMPLEO_PCT   = 0.0155;  // 1,55% Desempleo
+const SS_FP_PCT          = 0.0010;  // 0,10% Formación Profesional
+const SS_MEI_PCT         = 0.0015;  // 0,15% MEI (Mecanismo Equidad Intergeneracional)
+const SS_PCT_TOTAL       = SS_REG_GENERAL_PCT + SS_DESEMPLEO_PCT + SS_FP_PCT + SS_MEI_PCT; // 6,50%
+
+let irpfMode = 'auto';
+
+// ──────────────────────────────────────────────────────────────
+function toggleCheck(id) {
+  const cb = document.getElementById(id);
+  cb.checked = !cb.checked;
+  calcular();
+}
+
+function setIrpfMode(mode) {
+  irpfMode = mode;
+  document.getElementById('tab-auto').classList.toggle('active', mode === 'auto');
+  document.getElementById('tab-manual').classList.toggle('active', mode === 'manual');
+  document.getElementById('irpf-auto-info').style.display    = mode === 'auto'   ? 'block' : 'none';
+  document.getElementById('irpf-manual-container').style.display = mode === 'manual' ? 'block' : 'none';
+  calcular();
+}
+
+function calcularIRPFAuto(brutoAnual) {
+  if (brutoAnual <= 12450)  return 0.19;
+  if (brutoAnual <= 20200)  return 0.24;
+  if (brutoAnual <= 35200)  return 0.30;
+  if (brutoAnual <= 60000)  return 0.37;
+  if (brutoAnual <= 300000) return 0.45;
+  return 0.47;
+}
+
+function fmt(n) {
+  return n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+}
+
+// ══════════════════════════════════════════════════════════════
+//  FÓRMULA FESTIVO (convenio limpieza HSC)
+//  total = (base + antigüedad + carrera) / 30 × 75%
+//          + COMPLEMENTO_FESTIVO × multiplicador
+//  Festivos normales / domingos → multiplicador = 1 → comp = 49,96€
+//  Festivos especiales (25-dic, 1-ene, 6-ene) → multiplicador = 2 → comp = 99,92€
+// ══════════════════════════════════════════════════════════════
+// FÓRMULA FESTIVO (convenio HSC):
+// (Salario base + Antigüedad + Carrera + Nocturnidad) ÷ 30 × 175% + Complemento festivo
+// El ×175% equivale a: el día trabajado (100%) + el 75% extra por ser festivo
+// Luego se suma el complemento festivo (49,96€ normal, 99,92€ especiales)
+function calcFestivo(base, antiguo, carrera, nocturno, peligro, diasMes, multComp) {
+  const diaBase     = (base + antiguo + carrera + nocturno + peligro) / diasMes;
+  const laboral     = diaBase * 1.75;
+  const complemento = COMPLEMENTO_FESTIVO * multComp;
+  return { total: laboral + complemento, laboral, complemento, diaBase };
+}
+
+function actualizarNombre() {
+  const nombre = document.getElementById('nombre-trabajador').value.trim();
+  const el = document.getElementById('nombre-print');
+  if (el) {
+    el.style.display = nombre ? 'block' : 'none';
+    el.textContent = nombre ? 'Trabajador/a: ' + nombre : '';
+  }
+}
+
+function actualizarNocturnidad() {
+  const tipo = document.getElementById('tipo-nocturnidad').value;
+  document.getElementById('noct-horas-container').style.display = tipo === 'horas' ? 'block' : 'none';
+  calcular();
+}
+
+function actualizarPrestamo() {
+  const importe = parseFloat(document.getElementById('prestamo-importe').value) || 0;
+  const cuotas  = parseInt(document.getElementById('prestamo-cuotas').value) || 0;
+  const prev    = document.getElementById('prestamo-preview');
+  if (importe > 0 && cuotas > 0) {
+    const cuotaMensual = importe / 12;
+    prev.style.display = 'block';
+    prev.innerHTML =
+      `💳 <span style="color:#7dd3fc">Préstamo:</span> <strong style="color:#fff">${importe.toLocaleString('es-ES')} €</strong> &nbsp;·&nbsp; ` +
+      `Cuota fija: <strong style="color:#ff6b6b">${cuotaMensual.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})} €/mes</strong><br>` +
+      `📅 Cuotas pendientes: <strong style="color:#fff">${cuotas}</strong> &nbsp;·&nbsp; ` +
+      `Resto pendiente: <strong style="color:#ffb347">${(cuotaMensual * cuotas).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})} €</strong>`;
+  } else if (importe > 0 && cuotas === 0) {
+    prev.style.display = 'block';
+    prev.innerHTML = `✅ <span style="color:#7fff7f">Préstamo ya cancelado — sin descuento en nómina este mes.</span>`;
+  } else {
+    prev.style.display = 'none';
+  }
+  calcular();
+}
+
+function fechaReferenciaAntiguedadUGT(){
+  const p=[
+    document.getElementById('recl-periodo')?.value || '',
+    document.getElementById('ne-periodo')?.value || ''
+  ].join(' ').toLowerCase();
+  const meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const y=(p.match(/\b(20\d{2}|19\d{2})\b/)||[])[1];
+  const mi=meses.findIndex(m=>p.includes(m));
+  if(y && mi>=0) return new Date(Number(y), mi+1, 0);
+  if(y) return new Date(Number(y), 11, 31);
+  return new Date();
+}
+
+// ══════════════════════════════════════════════════════════════
+//  FUNCIÓN PRINCIPAL
+// ══════════════════════════════════════════════════════════════
+function calcular() {
+  const cat = document.getElementById('categoria').value;
+  if (!cat) return;
+
+  const datos          = DATOS[cat];
+  const nombreTrabajador = document.getElementById('nombre-trabajador').value.trim();
+  const diasMes        = 30; // Todas las nóminas a 30 días
+
+  // Antigüedad: trienios al 4%, 5% o 6% según el tramo que corresponda por fecha.
+  // Se calcula el total y se redondea al final para no perder céntimos.
+
+  const FECHA_INICIO_CONVENIO = new Date('1988-04-01');
+  const FECHA_LIMITE_5PCT     = new Date('1991-04-01');
+  const FECHA_LIMITE_6PCT     = new Date('1996-09-01');
+
+  const fechaAntig = document.getElementById('fecha-antiguedad').value;
+  let nTrienios = 0;
+  let trieniosPct = 0;
+  let tramo = '—';
+  let aniosTrabajados = 0;
+  let proximoTrienio = '';
+  let detalleTrienios = '';
+
+  if (fechaAntig) {
+    const hoy    = fechaReferenciaAntiguedadUGT();
+    // Si la antigüedad es anterior al convenio, tomamos el inicio del convenio
+    const inicio = new Date(fechaAntig) < FECHA_INICIO_CONVENIO
+                   ? new Date(FECHA_INICIO_CONVENIO)
+                   : new Date(fechaAntig);
+
+    const diffMs    = hoy - inicio;
+    const diffAnios = Math.max(0, diffMs / (1000 * 60 * 60 * 24 * 365.25));
+    aniosTrabajados = diffAnios;
+    nTrienios       = Math.floor(diffAnios / 3);
+
+    if (nTrienios > 0) {
+      const fechaUltimoTrienio = new Date(inicio);
+      fechaUltimoTrienio.setFullYear(fechaUltimoTrienio.getFullYear() + nTrienios * 3);
+      trieniosPct = fechaUltimoTrienio < FECHA_LIMITE_5PCT ? 0.04 : (fechaUltimoTrienio < FECHA_LIMITE_6PCT ? 0.05 : 0.06);
+      tramo = (trieniosPct * 100).toFixed(0) + '%';
+    }
+
+    // Próximo trienio
+    const aniosSigTrienio = (nTrienios + 1) * 3;
+    const fechaProx = new Date(inicio);
+    fechaProx.setFullYear(fechaProx.getFullYear() + aniosSigTrienio);
+    proximoTrienio = fechaProx.toLocaleDateString('es-ES', {day:'2-digit', month:'long', year:'numeric'});
+
+    if (nTrienios > 0) detalleTrienios = 'Trienios al <strong>' + tramo + '</strong> sobre salario base';
+  }
+  const tipoNoct       = document.getElementById('tipo-nocturnidad').value;
+  const conPeligro     = document.getElementById('peligrosidad').checked;
+  const carreraVal     = parseFloat(document.getElementById('carrera').value) || 0;
+
+  const nDomingos      = parseInt(document.getElementById('domingos').value)         || 0;
+  const diasTrabajados = parseFloat(document.getElementById('dias-trabajados')?.value||30);
+const factorDias = diasTrabajados/30;
+const nFestNorm      = parseInt(document.getElementById('festivos-normales').value) || 0;
+  const f25dic         = document.getElementById('f25dic').checked;
+  const f1ene          = document.getElementById('f1ene').checked;
+  const f6ene          = document.getElementById('f6ene').checked;
+
+  // ITE — Acuerdo noviembre 2023
+  const nIteDomingos   = parseInt(document.getElementById('ite-domingos').value)  || 0;
+  const nIteFestivos   = parseInt(document.getElementById('ite-festivos').value)  || 0;
+  const iteF25dic      = document.getElementById('ite-f25dic').checked;
+  const iteF1ene       = document.getElementById('ite-f1ene').checked;
+  const iteF6ene       = document.getElementById('ite-f6ene').checked;
+
+  // ── Componentes fijos mensuales ──
+  const base      = datos.base;
+  const antiguo   = +(base * trieniosPct * nTrienios).toFixed(2);
+  const peligro   = conPeligro ? base * 0.10 : 0;
+  // Nocturnidad
+  // Completa: 416,88€/mes fijo (turno noche entero)
+  // 1 hora (turno de las 11): 104,00€/mes fijo
+  const NOCTURNIDAD_1H = 109.20;
+  let nocturno = 0;
+  if (tipoNoct === 'completa') {
+    nocturno = NOCTURNIDAD_MENSUAL;
+  } else if (tipoNoct === 'horas') {
+    nocturno = NOCTURNIDAD_1H;
+  }
+  const carrera   = carreraVal;
+
+  // ── Domingos: solo complemento fijo (49,96€) ──
+  const totalDomingos = nDomingos * COMPLEMENTO_FESTIVO;
+
+  // ── Festivos ordinarios: fórmula completa × 1 ──
+  let fNormTotal = 0, fNormLaboral = 0, fNormComp = 0;
+  if (nFestNorm > 0) {
+    const f = calcFestivo(base, antiguo, carrera, nocturno, peligro, diasMes, 1);
+    let festivosLibrar = parseInt(document.getElementById('festivos-librar')?.value||0);
+let festivosCobrar = nFestNorm - festivosLibrar;
+
+fNormTotal = (f.total * festivosCobrar) + (49.96 * festivosLibrar);
+    fNormLaboral = f.laboral     * nFestNorm;
+    fNormComp    = f.complemento * nFestNorm;
+  }
+
+  // ── Festivos especiales: fórmula completa × 2 ──
+  const nEsp = (f25dic ? 1 : 0) + (f1ene ? 1 : 0) + (f6ene ? 1 : 0);
+  let fEspTotal = 0, fEspLaboral = 0, fEspComp = 0;
+  if (nEsp > 0) {
+    const f = calcFestivo(base, antiguo, carrera, nocturno, peligro, diasMes, 2);
+    fEspTotal   = f.total       * nEsp;
+    fEspLaboral = f.laboral     * nEsp;
+    fEspComp    = f.complemento * nEsp; // 99,92€ × n
+  }
+
+  const totalFestivos = totalDomingos + fNormTotal + fEspTotal;
+
+  // ── ITE (Acuerdo noviembre 2023): domingos/festivos en baja ──
+  const iteDomingosMensual  = nIteDomingos * COMPLEMENTO_FESTIVO;
+  const iteFestivosMensual  = nIteFestivos * COMPLEMENTO_FESTIVO;
+  const nIteEsp = (iteF25dic ? 1 : 0) + (iteF1ene ? 1 : 0) + (iteF6ene ? 1 : 0);
+  // Festivos especiales ITE: solo complemento doble (49,96×2), sin parte laboral
+  // porque el trabajador está de baja — se abona igual que un domingo × 2
+  const iteEspMensual = nIteEsp * COMPLEMENTO_FESTIVO * 2;
+  const totalITE = iteDomingosMensual + iteFestivosMensual + iteEspMensual;
+
+  // ── Bruto periódico (12 mensualidades) ──
+  const brutoPeriodico = base + antiguo + peligro + nocturno + carrera + totalFestivos + totalITE;
+
+  // ── Pagas extras mensualiz. (base + antigüedad) × 2,5 / 12 ──
+  const pagasExtras = (base + antiguo) * (PAGAS_EXTRAS_MESES / 12);
+
+  const brutoMensualConExtras = brutoPeriodico + pagasExtras;
+
+  // ── Bruto anual estimado ──
+  const brutoAnual = brutoPeriodico * 12 + (base + antiguo) * PAGAS_EXTRAS_MESES;
+
+  // ── Base de cotización (devengos periódicos + prorrata pagas extras) ──
+  const baseCotizacion = brutoPeriodico + pagasExtras;
+
+  // ── Seguridad Social trabajador — 3 conceptos (sobre base cotización) ──
+  const ssRegGeneral = baseCotizacion * SS_REG_GENERAL_PCT;   // 4,70%
+  const ssDesempleo  = baseCotizacion * SS_DESEMPLEO_PCT;      // 1,55%
+  const ssFP         = baseCotizacion * SS_FP_PCT;             // 0,10%
+  const ssMEI        = baseCotizacion * SS_MEI_PCT;            // 0,15%
+  const ssMensual    = ssRegGeneral + ssDesempleo + ssFP + ssMEI; // Total SS
+
+  let irpfPct;
+  if (irpfMode === 'auto') {
+    irpfPct = calcularIRPFAuto(brutoAnual);
+  } else {
+    irpfPct = (parseFloat(document.getElementById('irpf-manual').value) || 0) / 100;
+  }
+  // Base IRPF = solo devengos periódicos (SIN prorrata pagas extras)
+  // Así está en tu nómina real: base IRPF 2.283,65€ ≠ base cotización 2.687,93€
+  const baseIRPF    = brutoPeriodico;
+  const irpfMensual = baseIRPF * irpfPct;
+
+  // Neto total (sobre bruto con extras)
+  const netoMensual = brutoMensualConExtras - ssMensual - irpfMensual;
+  // Neto que recibes en nómina mensual (sin prorrata extras)
+  const netoSinExtras = netoMensual - pagasExtras;
+
+  // ── Préstamo empresa (Cód. 380 — Cancelación Diferida) ──
+  const prestamoImporte = parseFloat(document.getElementById('prestamo-importe').value) || 0;
+  const prestamoCuotas  = parseInt(document.getElementById('prestamo-cuotas').value) || 0;
+  const prestamoCuotaMensual = (prestamoImporte > 0 && prestamoCuotas > 0)
+    ? prestamoImporte / 12
+    : 0;
+  const netoConPrestamo = netoSinExtras - prestamoCuotaMensual;
+
+  // ══════════════════════════════════════════════════════════════
+  //  MOSTRAR
+  // ══════════════════════════════════════════════════════════════
+  document.getElementById('resultado-card').style.display = 'block';
+  // Mostrar nombre si se ha introducido
+  const nombreEl = document.getElementById('nombre-print');
+  if (nombreEl) {
+    nombreEl.style.display = nombreTrabajador ? 'block' : 'none';
+    nombreEl.textContent = nombreTrabajador ? 'Trabajador/a: ' + nombreTrabajador : '';
+  }
+  document.getElementById('desglose-card').style.display  = 'block';
+  document.getElementById('neto-display').innerHTML =
+    fmt(netoMensual).replace(' €','') + ' <small>€</small>';
+  document.getElementById('neto-sub').textContent =
+    `${datos.nombre}${nombreTrabajador ? ' · ' + nombreTrabajador : ''} · IRPF ${(irpfPct*100).toFixed(1)}% · Bruto: ${fmt(brutoMensualConExtras)}${prestamoCuotaMensual > 0 ? ' · Préstamo: −' + fmt(prestamoCuotaMensual) : ''}`;
+
+  // ══════════════════════════════════════════════════════════════
+  //  DESGLOSE
+  // ══════════════════════════════════════════════════════════════
+  const R = (c, i, col, cls='') =>
+    `<div class="desglose-fila ${cls}"><span class="concepto">${c}</span><span class="importe" style="color:${col}">${fmt(i)}</span></div>`;
+
+  let html = '';
+  // Preview trienios
+  const previewEl = document.getElementById('trienios-preview');
+  if (fechaAntig) {
+    previewEl.style.display = 'block';
+    const aniosStr = aniosTrabajados.toFixed(1).replace('.',',');
+    const inicioReal = new Date(fechaAntig) < new Date('1988-04-01')
+      ? '01/04/1988 (inicio convenio)'
+      : new Date(fechaAntig).toLocaleDateString('es-ES');
+    previewEl.innerHTML =
+      `<span style="color:#7dd3fc">⏱ Antigüedad:</span> <strong style="color:#fff">${aniosStr} años</strong> · desde ${inicioReal}<br>` +
+      `<span style="color:#ffb347">🏅 Trienios completos:</span> <strong style="color:#fff">${nTrienios}</strong> &nbsp;·&nbsp; ` +
+      (nTrienios > 0
+        ? `Porcentaje aplicable: <strong style="color:#7dd3fc">${tramo}</strong> → <strong style="color:#7fff7f">${fmt(antiguo)}/mes</strong>`
+        : `<span style="color:#888">Sin trienios aún</span>`) + `<br>` +
+      (detalleTrienios ? `<span style="color:#aaa">📋 ${detalleTrienios}</span><br>` : '') +
+      (nTrienios > 0
+        ? `<span style="color:#888">📅 Próximo trienio:</span> <span style="color:#ccc">${proximoTrienio}</span>`
+        : `<span style="color:#888">📅 Primer trienio:</span> <span style="color:#ccc">${proximoTrienio}</span>`);
+  } else {
+    previewEl.style.display = 'none';
+  }
+
+  html += R('Salario base mensual (2026)', base, '#7dd3fc');
+  if (antiguo > 0)
+    html += R(`Antigüedad: ${nTrienios} trienio${nTrienios>1?'s':''} × ${tramo} s/base ${fmt(base)}`, antiguo, '#7dd3fc');
+  if (peligro > 0)
+    html += R('Plus de peligrosidad (+10% s/base)', peligro, '#7dd3fc');
+  if (nocturno > 0 && tipoNoct === 'completa')
+    html += R('Plus nocturnidad — turno de noche completo', nocturno, '#7dd3fc');
+  if (nocturno > 0 && tipoNoct === 'horas')
+    html += R('Plus nocturnidad — 1 hora nocturna (turno de las 11)', nocturno, '#7dd3fc');
+  if (carrera > 0) {
+    const idx = [82.13, 155.17, 234.33, 306.95].indexOf(carreraVal);
+    html += R(`Carrera profesional Nivel ${['I','II','III','IV'][idx] || ''}`, carrera, '#7dd3fc');
+  }
+
+  // Domingos
+  if (totalDomingos > 0)
+    html += R(`Domingos trabajados (${nDomingos} × 49,96 €)`, totalDomingos, '#c4b5fd');
+
+  // Festivos ordinarios
+  if (fNormTotal > 0) {
+    html += R(`Festivos totales trabajados (${nFestNorm})`, fNormTotal, '#c4b5fd');
+    html += R(`↳ Parte laboral: (base+antig+carrera+peligro+noct) ÷ 30 × 175% × ${nFestNorm}`, fNormLaboral, '#9a80c4','sub-item');
+    html += R(`↳ Complemento festivo (49,96 € × ${nFestNorm})`, fNormComp, '#9a80c4','sub-item');
+  }
+
+  // Festivos especiales
+  if (fEspTotal > 0) {
+    const nombres = [f25dic && '25-Dic ⭐', f1ene && '1-Ene ⭐', f6ene && '6-Ene ⭐'].filter(Boolean).join(' · ');
+    html += R(`Festivos especiales: ${nombres}`, fEspTotal, '#ffb347');
+    html += R(`↳ Parte laboral: (base+antig+carrera+peligro+noct) ÷ 30 × 175% × ${nEsp}`, fEspLaboral, '#cc8830','sub-item');
+    html += R(`↳ Complemento DOBLE (99,92 € × ${nEsp})`, fEspComp, '#cc8830','sub-item');
+  }
+
+  // ITE rows
+  if (totalITE > 0) {
+    html += `<div class="desglose-fila" style="border-bottom:1px solid #2a2a2a;padding:8px 0;">
+      <span class="concepto" style="color:#f59e0b;font-weight:600;font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;">⚕️ Acuerdo ITE — Baja Médica (Nov. 2023)</span>
+      <span class="importe" style="color:#f59e0b;">${fmt(totalITE)}</span>
+    </div>`;
+    if (iteDomingosMensual > 0)
+      html += R(`↳ Domingos en baja ITE (${nIteDomingos} × 49,96 €)`, iteDomingosMensual, '#d4891a','sub-item');
+    if (iteFestivosMensual > 0)
+      html += R(`↳ Festivos ordinarios en baja ITE (${nIteFestivos} × 49,96 €)`, iteFestivosMensual, '#d4891a','sub-item');
+    if (iteEspMensual > 0) {
+      const nombresIteEsp = [iteF25dic && '25-Dic', iteF1ene && '1-Ene', iteF6ene && '6-Ene'].filter(Boolean).join(', ');
+      html += R(`↳ Festivos especiales en baja ITE: ${nombresIteEsp} (× 99,92 €)`, iteEspMensual, '#d4891a','sub-item');
+    }
+  }
+
+  html += R('Parte proporcional pagas extras (2,5 pagas)', pagasExtras, '#7dd3fc');
+
+  html += `<div class="separador"></div>`;
+  html += `<div class="desglose-fila total-bruto"><span class="concepto">TOTAL DEVENGOS (bruto mensual)</span><span class="importe">${fmt(brutoMensualConExtras)}</span></div>`;
+  html += `<div class="separador"></div>`;
+
+  // Bases informativas
+  html += `<div class="desglose-fila sub-item">
+    <span class="concepto">📋 Base cotización S.S. (devengos + prorrata extras)</span>
+    <span class="importe" style="color:#94a3b8;">${fmt(baseCotizacion)}</span>
+  </div>`;
+  html += `<div class="desglose-fila sub-item">
+    <span class="concepto">📋 Base IRPF (devengos periódicos, sin prorrata extras)</span>
+    <span class="importe" style="color:#94a3b8;">${fmt(baseIRPF)}</span>
+  </div>`;
+  html += `<div class="separador"></div>`;
+
+  // SS desglosada en 3 líneas como en nómina real
+  html += `<div class="desglose-fila" style="border-bottom:1px solid #2a2a2a;padding:8px 0;">
+    <span class="concepto" style="color:#f87171;font-weight:600;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.5px;">SEGURIDAD SOCIAL TRABAJADOR</span>
+    <span class="importe" style="color:#f87171;">−${fmt(ssMensual)}</span>
+  </div>`;
+  html += `<div class="desglose-fila sub-item deduccion">
+    <span class="concepto">↳ Cotización Régimen General (4,70%)</span>
+    <span class="importe">−${fmt(ssRegGeneral)}</span>
+  </div>`;
+  html += `<div class="desglose-fila sub-item deduccion">
+    <span class="concepto">↳ Cotización Desempleo (1,55%)</span>
+    <span class="importe">-${fmt(ssDesempleo)}</span>
+  </div>`;
+  html += `<div class="desglose-fila sub-item deduccion">
+    <span class="concepto">↓ Formación Profesional (0,10%)</span>
+    <span class="importe">-${fmt(ssFP)}</span>
+  </div>`;
+  html += `<div class="desglose-fila sub-item deduccion"><span class="concepto">↳ MEI — Mecanismo Equidad Intergeneracional (0,15%)</span>
+    <span class="importe">−${fmt(ssMEI)}</span>
+  </div>`;
+
+  html += `<div class="desglose-fila deduccion" style="margin-top:4px;">
+    <span class="concepto">− Retención IRPF (${(irpfPct*100).toFixed(1)}% sobre ${fmt(baseIRPF)})</span>
+    <span class="importe" style="color:#ff6b6b;">−${fmt(irpfMensual)}</span>
+  </div>`;
+
+  html += `<div class="separador"></div>`;
+  html += `<div class="desglose-fila neto-final"><span class="concepto">✅ LÍQUIDO TOTAL (con prorrata extras)</span><span class="importe">${fmt(netoMensual)}</span></div>`;
+  html += `<div class="desglose-fila" style="padding:10px 0;border-bottom:1px solid #333;">
+    <span class="concepto" style="color:#aaa;">↓ Menos prorrata pagas extras <small style="color:#666;">(se cobran en nomina aparte)</small></span>
+    <span class="importe" style="color:#ff6b6b;">-${fmt(pagasExtras)}</span>
+  </div>`;
+  html += `<div class="desglose-fila" style="padding:12px 4px;border-bottom:none;margin-top:4px;">
+    <span class="concepto" style="color:#ffd700;font-weight:700;">NETO EN NOMINA MENSUAL</span>
+    <span class="importe" style="color:#ffd700;font-size:1.2rem;">${fmt(netoSinExtras)}</span>
+  </div>`;
+
+  if (prestamoCuotaMensual > 0) {
+    html += `<div class="separador"></div>`;
+    html += `<div class="desglose-fila deduccion" style="padding:8px 0;">
+      <span class="concepto" style="color:#f87171;font-weight:600;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;letter-spacing:0.5px;">
+        💳 Cód. 380 — Cancelación Diferida (préstamo ${prestamoImporte.toLocaleString('es-ES')} €)
+      </span>
+      <span class="importe" style="color:#ff6b6b;">−${fmt(prestamoCuotaMensual)}</span>
+    </div>`;
+    html += `<div class="desglose-fila" style="padding:12px 4px;border-bottom:none;margin-top:4px;background:rgba(255,215,0,0.05);border-radius:8px;">
+      <span class="concepto" style="color:#ffd700;font-weight:700;font-size:1.05rem;">✅ TRANSFERENCIA REAL A CUENTA</span>
+      <span class="importe" style="color:#ffd700;font-size:1.3rem;font-weight:800;">${fmt(netoConPrestamo)}</span>
+    </div>`;
+  }
+
+  html += `<div class="desglose-fila" style="margin-top:10px;padding-top:10px;border-top:1px dashed #333;border-bottom:none;">
+    <span class="concepto" style="color:#555;font-size:0.8rem;">Bruto anual estimado (orientativo)</span>
+    <span class="importe" style="color:#666;font-size:0.9rem;">${fmt(brutoAnual)}</span>
+  </div>`;
+
+  document.getElementById('desglose-contenido').innerHTML = html;
+  // Sin scroll automatico - el usuario navega manualmente
+}
+</script>
+<div style="
+  position: fixed;
+  bottom: 12px;
+  right: 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: rgba(192,0,12,0.35);
+  user-select: none;
+  pointer-events: none;
+  z-index: 9999;
+">MRH</div>
+<script>
+function prepararReclamacionGeneralDosCopiasUGT(incluirAnexo){
+  if (typeof calcular === 'function') calcular();
+  if (typeof generarReclamacion === 'function') generarReclamacion();
+  if (typeof renderReclamacion === 'function') renderReclamacion();
+  const recl=document.getElementById('reclamacion-section');
+  if(!recl){ alert('No se encuentra la reclamación.'); return null; }
+  recl.style.display='block';
+  const limpiar=(nodo)=>{
+    nodo.querySelectorAll('button,input,select,textarea,#recl-config,#recl-actions,.recl-anexo-nota').forEach(el=>el.remove());
+    nodo.style.display='block';
+    return nodo;
+  };
+  const crear=(titulo)=>{
+    const copia=limpiar(recl.cloneNode(true));
+    const marca=document.createElement('div');
+    marca.style.cssText='font-family:Arial,sans-serif;font-size:10pt;font-weight:700;color:#c0000c;text-align:right;border-bottom:1px solid #ddd;margin-bottom:10px;padding-bottom:5px;';
+    marca.textContent=titulo;
+    copia.insertBefore(marca,copia.firstChild);
+    return copia.outerHTML;
+  };
+  let html=crear('COPIA PARA LA EMPRESA') + '<div style="page-break-before:always"></div>' + crear('COPIA PARA EL/LA TRABAJADOR/A');
+  const nomina=document.getElementById('nomina-espejo-render');
+  if(incluirAnexo && nomina && nomina.innerText.trim().length>20){
+    html += '<div style="page-break-before:always"></div><h2>ANEXO · Nómina real/generada por la aplicación</h2>' + nomina.cloneNode(true).outerHTML;
+  }
+  return html;
+}
+function imprimirReclamacionDosCopiasGeneralUGT(incluirAnexo){
+  const contenido=prepararReclamacionGeneralDosCopiasUGT(incluirAnexo);
+  if(!contenido) return;
+  const w=window.open('','_blank','width=900,height=700');
+  w.document.write('<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Reclamación dos copias</title><style>body{font-family:\"Times New Roman\",Times,serif;color:#111;background:#fff;margin:0;padding:18px;line-height:1.55}.recl-header{text-align:center;margin-bottom:16px}.recl-ugt-badge{font-family:Arial,sans-serif;color:#c0000c;font-weight:700}.recl-bloque{margin-bottom:12px}table{width:100%;border-collapse:collapse}td,th{border:1px solid #999;padding:6px}.firma-cols{display:grid!important;grid-template-columns:1fr 1fr!important;gap:70px!important;margin-top:50px!important}.firma-box{min-height:120px!important;border-top:1px solid #111!important;padding-top:8px!important}.recl-actions,#recl-config,button,input,select,textarea{display:none!important}@page{size:A4;margin:12mm}</style></head><body>'+contenido+'</body></html>');
+  w.document.close(); w.focus(); setTimeout(()=>w.print(),250);
+}
+window.imprimirReclamacionSolo=function(){ imprimirReclamacionDosCopiasGeneralUGT(false); };
+window.imprimirSoloReclamacionUGT=function(){ imprimirReclamacionDosCopiasGeneralUGT(true); };
+</script>
+</body>
+</html>
+<script>
+// Patch: añadir lógica de reclamación al calcular()
+// Se inyecta después del script original
+(function() {
+  const _calcOriginal = calcular;
+  calcular = function() {
+    _calcOriginal();
+    // Guardar datos para reclamación
+    try {
+      const cat = document.getElementById('categoria').value;
+      if (!cat) return;
+      const datos = DATOS[cat];
+      const nombreTrabajador = document.getElementById('nombre-trabajador').value.trim();
+      const diasMes = 30;
+      const FECHA_INICIO_CONVENIO = new Date('1988-04-01');
+      const FECHA_LIMITE_5PCT = new Date('1991-04-01');
+      const FECHA_LIMITE_6PCT = new Date('1996-09-01');
+      const fechaAntig = document.getElementById('fecha-antiguedad').value;
+      let nTrienios = 0, trieniosPct = 0, tramo = '—';
+      if (fechaAntig) {
+        const inicio = new Date(fechaAntig) < FECHA_INICIO_CONVENIO ? new Date(FECHA_INICIO_CONVENIO) : new Date(fechaAntig);
+        const diffAnios = Math.max(0, (fechaReferenciaAntiguedadUGT() - inicio) / (1000*60*60*24*365.25));
+        nTrienios = Math.floor(diffAnios / 3);
+        if (nTrienios > 0) {
+          const fu = new Date(inicio); fu.setFullYear(fu.getFullYear() + nTrienios*3);
+          trieniosPct = fu < FECHA_LIMITE_5PCT ? 0.04 : (fu < FECHA_LIMITE_6PCT ? 0.05 : 0.06);
+          tramo = (trieniosPct*100).toFixed(0) + '%';
+        }
+      }
+      const tipoNoct = document.getElementById('tipo-nocturnidad').value;
+      const conPeligro = document.getElementById('peligrosidad').checked;
+      const carreraVal = parseFloat(document.getElementById('carrera').value) || 0;
+      const base = datos.base;
+      const antiguo = +(base * trieniosPct * nTrienios).toFixed(2);
+      const peligro = conPeligro ? base*0.10 : 0;
+      let nocturno = tipoNoct==='completa' ? 416.88 : tipoNoct==='horas' ? 109.20 : 0;
+      const carrera = carreraVal;
+      const nDomingos = parseInt(document.getElementById('domingos').value)||0;
+      const diasTrabajados = parseFloat(document.getElementById('dias-trabajados')?.value||30);
+const factorDias = diasTrabajados/30;
+const nFestNorm = parseInt(document.getElementById('festivos-normales').value)||0;
+      const f25dic = document.getElementById('f25dic').checked;
+      const f1ene = document.getElementById('f1ene').checked;
+      const f6ene = document.getElementById('f6ene').checked;
+      const nIteDomingos = parseInt(document.getElementById('ite-domingos').value)||0;
+      const nIteFestivos = parseInt(document.getElementById('ite-festivos').value)||0;
+      const iteF25dic = document.getElementById('ite-f25dic').checked;
+      const iteF1ene = document.getElementById('ite-f1ene').checked;
+      const iteF6ene = document.getElementById('ite-f6ene').checked;
+      const COMP = 49.96;
+      const totalDomingos = nDomingos * COMP;
+      let fNormTotal=0, fNormLaboral=0, fNormComp=0;
+      if (nFestNorm>0) { const f=calcFestivo(base,antiguo,carrera,nocturno,peligro,diasMes,1); fNormTotal=f.total*nFestNorm; fNormLaboral=f.laboral*nFestNorm; fNormComp=f.complemento*nFestNorm; }
+      const nEsp=(f25dic?1:0)+(f1ene?1:0)+(f6ene?1:0);
+      let fEspTotal=0, fEspLaboral=0, fEspComp=0;
+      if (nEsp>0) { const f=calcFestivo(base,antiguo,carrera,nocturno,peligro,diasMes,2); fEspTotal=f.total*nEsp; fEspLaboral=f.laboral*nEsp; fEspComp=f.complemento*nEsp; }
+      const iteDomingosMensual=nIteDomingos*COMP;
+      const iteFestivosMensual=nIteFestivos*COMP;
+      const nIteEsp=(iteF25dic?1:0)+(iteF1ene?1:0)+(iteF6ene?1:0);
+      const iteEspMensual=nIteEsp*COMP*2;
+      const totalITE=iteDomingosMensual+iteFestivosMensual+iteEspMensual;
+      const totalFestivos=totalDomingos+fNormTotal+fEspTotal;
+      const brutoPeriodico=base+antiguo+peligro+nocturno+carrera+totalFestivos+totalITE;
+      const pagasExtras=(base+antiguo)*(2.5/12);
+      const brutoMensualConExtras=brutoPeriodico+pagasExtras;
+      const baseCotizacion=brutoPeriodico+pagasExtras;
+      const ssMensual=baseCotizacion*(0.047+0.0155+0.001+0.0015);
+      const brutoAnual=brutoPeriodico*12+(base+antiguo)*2.5;
+      let irpfPct; if(window.irpfMode==='auto'){irpfPct=calcularIRPFAuto(brutoAnual);}else{irpfPct=(parseFloat(document.getElementById('irpf-manual').value)||0)/100;}
+      const irpfMensual=brutoPeriodico*irpfPct;
+      const netoMensual=brutoMensualConExtras-ssMensual-irpfMensual;
+      const netoSinExtras=netoMensual-pagasExtras;
+      window._reclData = { cat, datos, nombreTrabajador, nTrienios, tramo, antiguo, base, peligro, nocturno, tipoNoct, carrera, nDomingos, totalDomingos, nFestNorm, fNormTotal, fNormLaboral, fNormComp, nEsp, f25dic, f1ene, f6ene, fEspTotal, fEspLaboral, fEspComp, nIteDomingos, iteDomingosMensual, nIteFestivos, iteFestivosMensual, nIteEsp, iteF25dic, iteF1ene, iteF6ene, iteEspMensual, totalITE, totalFestivos, brutoMensualConExtras, netoMensual, netoSinExtras, fechaAntig };
+      const hayReclamable = totalFestivos > 0 || totalITE > 0;
+      document.getElementById('btn-reclamacion').style.display = hayReclamable ? 'block' : 'none';
+    } catch(e) { console.warn('Reclamación patch error:', e); }
+  };
+})();
+
+function generarReclamacion() {
+  const sec = document.getElementById('reclamacion-section');
+  sec.style.display = 'block';
+  const hoy = new Date();
+  document.getElementById('recl-fecha-hoy').textContent = hoy.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+  renderReclamacion();
+  sec.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function renderReclamacion() {
+  // Reclamación formal y limpia: solo compara lo cobrado con lo que debía cobrar
+  // según la nómina espejo generada por la app. Evita incluir artículos o conceptos
+  // que no estén seleccionados por el usuario.
+  const d = window._neLast || (typeof recopilarDatosNominaEspejo === 'function' ? recopilarDatosNominaEspejo() : window._reclData);
+  if (!d) return;
+
+  const periodo = document.getElementById('recl-periodo')?.value.trim() || (document.getElementById('ne-periodo')?.value.trim() || 'el período indicado');
+  const dni = document.getElementById('recl-dni')?.value.trim() || document.getElementById('ne-dni')?.value.trim() || '';
+  const contrato = document.getElementById('recl-contrato')?.value.trim() || document.getElementById('ne-centro')?.value.trim() || 'Hospital Clínico San Carlos';
+  const turno = document.getElementById('recl-turno')?.value || '';
+  const pagadoManual = parseFloat((document.getElementById('recl-pagado')?.value || '').replace(',','.'));
+  const pagadoNomina = parseFloat((document.getElementById('ne-liquido-real')?.value || '').replace(',','.'));
+  const pagado = !isNaN(pagadoManual) && pagadoManual > 0 ? pagadoManual : (!isNaN(pagadoNomina) ? pagadoNomina : 0);
+  const motivoExtra = document.getElementById('recl-motivo-extra')?.value.trim() || '';
+  const queFalta = document.getElementById('recl-que-falta')?.value.trim() || '';
+  const nombreTrab = document.getElementById('nombre-trabajador')?.value.trim() || d.nombreTrabajador || '[NOMBRE DEL TRABAJADOR/A]';
+  const categoria = d.datos?.nombre || 'categoría indicada';
+  const dniStr = dni ? `, con DNI ${dni},` : ',';
+  const turnoStr = {tarde:'turno de tarde',mañana:'turno de mañana',noche:'turno de noche',partido:'turno partido'}[turno] || turno || 'turno correspondiente';
+  const fmtE = n => (Number(n)||0).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+
+  const devengosCorrectos = Number(d.dev || d.brutoMensualConExtras || 0);
+  const deduccionesCorrectas = Number(d.ded || 0);
+  const liquidoCorrecto = Number(d.liquido || d.netoSinExtras || d.netoMensual || 0);
+  const diferenciaLiquida = pagado > 0 ? (liquidoCorrecto - pagado) : 0;
+
+  document.getElementById('recl-nombre-firma').textContent = nombreTrab + (dni ? ' · ' + dni : '');
+
+  const conceptos = [];
+  if ((d.base||0)>0) conceptos.push(['Salario base', fmtE(d.base)]);
+  if ((d.antig||d.antiguo||0)>0) conceptos.push(['Antigüedad', fmtE(d.antig||d.antiguo)]);
+  if ((d.carrera||0)>0) conceptos.push(['Carrera profesional', fmtE(d.carrera)]);
+  if ((d.dom||d.totalDomingos||0)>0) conceptos.push(['Domingos trabajados / complemento dominical', fmtE(d.dom||d.totalDomingos)]);
+  if ((d.fest||d.fNormTotal||0)>0) conceptos.push(['Festivos trabajados ordinarios', fmtE(d.fest||d.fNormTotal)]);
+  if ((d.festEsp||d.fEspTotal||0)>0) conceptos.push(['Festivos especiales trabajados', fmtE(d.festEsp||d.fEspTotal)]);
+  if ((d.noct||d.nocturno||0)>0) conceptos.push(['Nocturnidad', fmtE(d.noct||d.nocturno)]);
+  if ((d.peligro||0)>0) conceptos.push(['Peligrosidad', fmtE(d.peligro)]);
+  if ((d.iteDom||d.iteDomingosMensual||0)>0) conceptos.push(['Domingos en IT', fmtE(d.iteDom||d.iteDomingosMensual)]);
+  if ((d.iteFest||d.iteFestivosMensual||0)>0) conceptos.push(['Festivos ordinarios en IT', fmtE(d.iteFest||d.iteFestivosMensual)]);
+  if ((d.iteEsp||d.iteEspMensual||0)>0) conceptos.push(['Festivos especiales en IT', fmtE(d.iteEsp||d.iteEspMensual)]);
+
+  let conceptosHtml = conceptos.length ? `
+    <table class="recl-tabla">
+      <thead><tr><th>Conceptos incluidos en la nómina generada</th><th style="text-align:right;">Importe</th></tr></thead>
+      <tbody>${conceptos.map(c=>`<tr><td>${c[0]}</td><td style="text-align:right;font-weight:600;">${c[1]}</td></tr>`).join('')}</tbody>
+    </table>` : `<p>No se han detallado conceptos variables. La reclamación se basa en la comparación entre nómina generada y nómina abonada.</p>`;
+
+  const comparativaHtml = `
+    <table class="recl-tabla">
+      <thead><tr><th>Comparación</th><th style="text-align:right;">Importe</th></tr></thead>
+      <tbody>
+        <tr><td>Total devengos según nómina generada</td><td style="text-align:right;font-weight:600;">${fmtE(devengosCorrectos)}</td></tr>
+        <tr><td>Total deducciones estimadas según nómina generada</td><td style="text-align:right;font-weight:600;">${fmtE(deduccionesCorrectas)}</td></tr>
+        <tr class="total-row"><td><strong>Líquido que debería percibir según nómina generada</strong></td><td style="text-align:right;"><strong>${fmtE(liquidoCorrecto)}</strong></td></tr>
+        <tr><td>Líquido abonado por la empresa según nómina real</td><td style="text-align:right;color:#f87171;font-weight:600;">${pagado>0 ? fmtE(pagado) : 'Pendiente de indicar'}</td></tr>
+        <tr class="total-row"><td><strong>Diferencia líquida reclamada</strong></td><td style="text-align:right;"><strong>${pagado>0 ? fmtE(diferenciaLiquida) : 'Pendiente de calcular'}</strong></td></tr>
+      </tbody>
+    </table>`;
+
+  const notaDiferencia = pagado > 0
+    ? `La diferencia que se reclama resulta de comparar el líquido que figura en la nómina generada por la aplicación, <strong>${fmtE(liquidoCorrecto)}</strong>, con el líquido abonado por la empresa en la nómina real, <strong>${fmtE(pagado)}</strong>.`
+    : `Queda pendiente consignar en la aplicación el líquido realmente abonado por la empresa para fijar la diferencia exacta a reclamar.`;
+
+  const html = `
+  <div class="recl-bloque">
+    <p><strong>A LA DIRECCIÓN DE RECURSOS HUMANOS</strong><br>
+    <strong>UTE LIMPIEZA HOSPITALES MADRID</strong><br>
+    <span style="color:#94a3b8;font-size:0.85rem;">Centro de trabajo: ${contrato}</span></p>
+  </div>
+
+  <div class="recl-bloque">
+    <p>D./D.ª <strong>${nombreTrab}</strong>${dniStr} trabajador/a adscrito/a al centro de trabajo <strong>${contrato}</strong>, con categoría profesional de <strong>${categoria}</strong> y jornada en <strong>${turnoStr}</strong>, comparece y</p>
+    <p><strong>EXPONE</strong></p>
+    <p>Que, una vez revisada la nómina correspondiente a <strong>${periodo}</strong>, se aprecia una diferencia entre la cantidad abonada por la empresa y la cantidad que debería haberse abonado conforme a los datos salariales y conceptos introducidos en la nómina generada.</p>
+    <p>${notaDiferencia}</p>
+    ${motivoExtra ? `<p><strong>Observación adicional:</strong> ${motivoExtra}</p>` : ''}
+  </div>
+
+  ${queFalta ? `<div class="recl-bloque">
+    <p><strong>CONCEPTOS QUE SE INDICAN COMO PENDIENTES DE ABONO</strong></p>
+    <p>${queFalta.replace(/\n/g,'<br>')}</p>
+  </div>` : ''}
+
+  <div class="recl-bloque">
+    <p><strong>DOCUMENTACIÓN QUE SE ACOMPAÑA</strong></p>
+    <p>Se adjunta a este escrito la <strong>nómina real abonada por la empresa</strong> y la <strong>nómina generada por la aplicación</strong>, donde constan los datos reales introducidos, los conceptos calculados, lo cobrado y la diferencia reclamada.</p>
+  </div>
+
+  <div class="recl-bloque">
+    <p><strong>CONCEPTOS UTILIZADOS PARA EL CÁLCULO</strong></p>
+    ${conceptosHtml}
+  </div>
+
+  <div class="recl-bloque">
+    <p><strong>RESUMEN DE LA RECLAMACIÓN</strong></p>
+    ${comparativaHtml}
+  </div>
+
+  <div class="recl-bloque">
+    <p><strong>SOLICITA</strong></p>
+    <p>Que la empresa revise la nómina indicada, compruebe los conceptos salariales adjuntados y proceda al abono de la diferencia resultante, o en su caso entregue respuesta escrita y motivada explicando los conceptos y cálculos aplicados.</p>
+    <p>Asimismo, se solicita que cualquier regularización se realice en la siguiente nómina o mediante liquidación complementaria, con entrega del correspondiente recibo de salarios.</p>
+  </div>`;
+
+  document.getElementById('recl-texto').innerHTML = html;
+}
+
+function imprimirReclamacion() { window.print(); }
+</script>
+
+
+<script>
+/* ===== ACTUALIZACIÓN UGT: NÓMINA ESPEJO + COMPARADOR ===== */
+(function(){
+  const css = `
+  .btn-nomina-espejo{width:100%;background:linear-gradient(135deg,#f5f5f5,#d9d9d9);color:#111;border:2px solid #999;border-radius:10px;padding:14px;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:8px;box-shadow:0 4px 20px rgba(255,255,255,.12)}
+  .btn-nomina-espejo:hover{background:white;transform:translateY(-1px)}
+  #nomina-espejo-section{display:none;margin-top:18px;background:#111;border:1px solid #444;border-radius:14px;padding:18px}
+  .nomina-config{background:#1e1e1e;border:1px solid #333;border-radius:12px;padding:16px;margin-bottom:16px}
+  .nomina-config h3{font-family:'Barlow Condensed',sans-serif;color:#ffdc00;letter-spacing:1px;text-transform:uppercase;margin:0 0 12px}
+  .nomina-config input{width:100%;background:#0a0a0a;border:1.5px solid #444;border-radius:8px;color:white;padding:9px 12px;font-family:'Barlow',sans-serif;font-size:.92rem}
+  .nomina-a4{background:white;color:#111;width:100%;max-width:860px;margin:0 auto;padding:22px 28px;font-family:'Courier New',monospace;font-size:12px;line-height:1.25;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+  .nomina-top{text-align:center;font-family:Arial,sans-serif;margin-bottom:12px}.nomina-top h2{font-size:17px;margin:10px 0 4px}.euro-big{font-size:46px;font-weight:bold;line-height:1;margin:4px 0}
+  .nomina-boxes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}.nomina-box{border:1px solid #222;padding:8px;min-height:88px}.nomina-box p{margin:2px 0}.nomina-rightbox{border:1px solid #222;padding:8px;min-height:88px}
+  .nomina-table{width:100%;border-collapse:collapse;border:2px solid #111;margin-top:8px}.nomina-table th,.nomina-table td{border-left:1px solid #111;border-right:1px solid #111;padding:4px 6px}.nomina-table th{border-bottom:2px solid #111;text-align:center;font-weight:bold}.nomina-table td.num{text-align:right;white-space:nowrap}.nomina-table td.center{text-align:center}.nomina-table tr.total td{border-top:1px solid #111;font-weight:bold}
+  .nomina-footergrid{display:grid;grid-template-columns:1.6fr .9fr .7fr 1fr;gap:0;margin-top:0;border:2px solid #111;border-top:0}.nomina-footergrid>div{border-right:1px solid #111;padding:7px 8px;min-height:44px;text-align:center}.nomina-footergrid>div:last-child{border-right:0}.nomina-bases{display:grid;grid-template-columns:repeat(5,1fr);border:2px solid #111;border-top:0}.nomina-bases>div{border-right:1px solid #111;padding:7px 4px;text-align:center;min-height:52px}.nomina-bases>div:last-child{border-right:0}.mini-title{font-size:9px;font-weight:bold}.mini-val{font-size:12px;margin-top:5px}.nomina-alerta{background:#fff6cc;border:1px solid #d6a700;color:#3d3000;border-radius:8px;padding:10px;margin:12px 0;font-family:Arial,sans-serif}.nomina-diff{background:#eef9ee;border:1px solid #4f9b4f;color:#063b06;border-radius:8px;padding:10px;margin-top:12px;font-family:Arial,sans-serif;font-weight:bold;text-align:center}
+  @media(max-width:700px){.nomina-a4{font-size:10px;padding:14px 10px}.nomina-boxes{grid-template-columns:1fr}.nomina-footergrid,.nomina-bases{grid-template-columns:1fr}.nomina-footergrid>div,.nomina-bases>div{border-right:0;border-bottom:1px solid #111}.euro-big{font-size:34px}}
+  @media print{#nomina-espejo-section{display:block!important;background:white!important;border:0!important}.nomina-config,.btn-nomina-espejo,.btn-calcular,.btn-imprimir,.btn-reclamacion,#recl-config,#recl-actions,header,.banner-afiliacion,footer,.card:not(#nomina-espejo-section){display:none!important}.nomina-a4{box-shadow:none!important;max-width:100%!important}.nomina-alerta,.nomina-diff{display:none!important}}
+  `;
+  const style=document.createElement('style'); style.textContent=css; document.head.appendChild(style);
+
+  function addUI(){
+    if(document.getElementById('btn-nomina-espejo')) return;
+    const btn=document.createElement('button');
+    btn.id='btn-nomina-espejo'; btn.className='btn-nomina-espejo';
+    btn.textContent='📄 Generar Nómina Espejo / Comparar';
+    btn.onclick=function(){ generarNominaEspejo(); };
+    const imp=document.querySelector('.btn-imprimir');
+    if(imp) imp.insertAdjacentElement('beforebegin', btn);
+
+    const sec=document.createElement('div'); sec.id='nomina-espejo-section';
+    sec.innerHTML=`
+      <div class="nomina-config">
+        <h3>📄 Datos para nómina espejo</h3>
+        <div class="grid-2" style="margin-bottom:12px">
+          <div><label>Empresa</label><input id="ne-empresa" value="UTE LIMPIEZA HOSPITALES MADRID"></div>
+          <div><label>CIF / CCC</label><input id="ne-cif" value="U44791150 · 28261569281"></div>
+          <div><label>Cód. Seguridad Social empresa</label><input id="ne-ss-empresa" value="280383045617"></div>
+          <div><label>DNI trabajador/a</label><input id="ne-dni" placeholder="Ej: 12345678Z"></div>
+          <div><label>Nº Afiliación Seguridad Social</label><input id="ne-naf" placeholder="Ej: 281234567890"></div>
+          <div><label>Periodo de liquidación</label><input id="ne-periodo" placeholder="Ej: Del 01 al 31 Julio 2026"></div>
+          <div><label>Días</label><input id="ne-dias" type="number" value="30"></div>
+          <div><label>Centro de trabajo</label><input id="ne-centro" value="11980 HOSPITAL CLÍNICO SAN CARLOS"></div>
+          <div><label>Domicilio centro</label><input id="ne-centrodir" value="Profesor Lagos s/n · Madrid"></div>
+          <div><label>Cuenta bancaria</label><input id="ne-cuenta" value="ES1200000000000000000000"></div>
+          <div><label>IRPF real de nómina (%)</label><input id="ne-irpf" type="number" step="0.01" value="18.48"></div>
+          <div><label>Prorrata pagas extras real</label><input id="ne-prorrata" type="number" step="0.01" placeholder="Se calcula sola si se deja vacío"></div>
+          <div><label>Líquido real cobrado empresa</label><input id="ne-liquido-real" type="number" step="0.01" placeholder="Opcional para diferencia"></div>
+        </div>
+        <button class="btn-calcular" style="margin-top:0" onclick="renderNominaEspejo()">🔄 Actualizar Nómina Espejo</button>
+      </div>
+      <div id="nomina-espejo-render"></div>`;
+    if(imp) imp.insertAdjacentElement('afterend', sec);
+  }
+  document.addEventListener('DOMContentLoaded', addUI);
+  if(document.readyState!=='loading') addUI();
+})();
+
+function neVal(id,def=''){const el=document.getElementById(id);return el&&el.value!==''?el.value:def;}
+function neNum(id,def=0){const v=parseFloat((document.getElementById(id)?.value||'').replace(',','.'));return isNaN(v)?def:v;}
+function neFmt(n){return (Number(n)||0).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function neDateES(iso){ if(!iso) return ''; try{return new Date(iso).toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});}catch(e){return iso;} }
+const NE_MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function neMesCapitalizado(nombre){ return nombre.charAt(0).toUpperCase()+nombre.slice(1); }
+function nePeriodoDesdeTexto(texto){
+  const limpio=(texto||'').toString().trim();
+  const base=limpio.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const mesIdx=NE_MESES.findIndex(m=>base.includes(m));
+  const yearMatch=base.match(/\b(20\d{2})\b/);
+  const hoy=new Date();
+  const year=yearMatch?parseInt(yearMatch[1],10):hoy.getFullYear();
+  if(mesIdx>=0){
+    const dias=new Date(year,mesIdx+1,0).getDate();
+    return {periodo:`Del 01 al ${String(dias).padStart(2,'0')} ${neMesCapitalizado(NE_MESES[mesIdx])} ${year}`,dias};
+  }
+  if(limpio) return {periodo:limpio,dias:30};
+  const mesActual=hoy.getMonth();
+  const dias=new Date(hoy.getFullYear(),mesActual+1,0).getDate();
+  return {periodo:`Del 01 al ${String(dias).padStart(2,'0')} ${neMesCapitalizado(NE_MESES[mesActual])} ${hoy.getFullYear()}`,dias};
+}
+function neActualizarPeriodoDesdeReclamacion(){
+  const recl=document.getElementById('recl-periodo')?.value || '';
+  const periodoInput=document.getElementById('ne-periodo');
+  const diasInput=document.getElementById('ne-dias');
+  if(!periodoInput) return;
+  const actual=periodoInput.value.trim();
+  const debeActualizar=recl.trim() || !actual || /marzo\s+2026/i.test(actual);
+  if(!debeActualizar) return;
+  const datos=nePeriodoDesdeTexto(recl);
+  periodoInput.value=datos.periodo;
+  if(diasInput && (!diasInput.value || diasInput.value==='30' || recl.trim())) diasInput.value=datos.dias;
+}
+
+function generarNominaEspejo(){
+  const sec=document.getElementById('nomina-espejo-section');
+  if(sec) sec.style.display='block';
+  calcular();
+  neActualizarPeriodoDesdeReclamacion();
+  renderNominaEspejo();
+  sec?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function recopilarDatosNominaEspejo(){
+  const cat=document.getElementById('categoria').value || 'especialista';
+  const datos=DATOS[cat] || DATOS.especialista;
+  const base=datos.base;
+  const fechaAntig=document.getElementById('fecha-antiguedad').value;
+  const hoy=new Date();
+  const inicio=fechaAntig?new Date(fechaAntig):null;
+  let nTrienios=0; if(inicio){ nTrienios=Math.max(0,Math.floor(((hoy-inicio)/(1000*60*60*24*365.25))/3)); }
+  const antig=base*0.06*nTrienios;
+  const carrera=parseFloat(document.getElementById('carrera').value)||0;
+  const nDom=parseInt(document.getElementById('domingos').value)||0;
+  const dom=nDom*49.96;
+  const peligro=document.getElementById('peligrosidad').checked?base*.10:0;
+  const tipoNoct=document.getElementById('tipo-nocturnidad').value;
+  const noct=tipoNoct==='completa'?416.88:(tipoNoct==='horas'?109.20:0);
+  const nFest=parseInt(document.getElementById('festivos-normales').value)||0;
+  const f25=document.getElementById('f25dic').checked, f1=document.getElementById('f1ene').checked, f6=document.getElementById('f6ene').checked;
+  const nEsp=(f25?1:0)+(f1?1:0)+(f6?1:0);
+  const calcF=(mult)=>{const dia=(base+antig+carrera+noct+peligro)/30; return dia*1.75+49.96*mult;};
+  const fest=nFest>0?calcF(1)*nFest:0;
+  const festEsp=nEsp>0?calcF(2)*nEsp:0;
+  const iteDom=(parseInt(document.getElementById('ite-domingos').value)||0)*49.96;
+  const iteFest=(parseInt(document.getElementById('ite-festivos').value)||0)*49.96;
+  const iteEsp=((document.getElementById('ite-f25dic').checked?1:0)+(document.getElementById('ite-f1ene').checked?1:0)+(document.getElementById('ite-f6ene').checked?1:0))*99.92;
+  const dev=base+antig+carrera+dom+peligro+noct+fest+festEsp+iteDom+iteFest+iteEsp;
+  const prorrata=neNum('ne-prorrata',(base+antig)*2.5/12);
+  const baseCot=dev+prorrata;
+  const irpfPct=neNum('ne-irpf',18.48)/100;
+  const irpf=dev*irpfPct;
+  const ssrg=baseCot*0.047;
+  const ssdfp=baseCot*(0.0155+0.0010);
+  const mei=baseCot*0.0015;
+  const ded=irpf+ssrg+ssdfp+mei;
+  const liquido=dev-ded;
+  return {datos,base,fechaAntig,nTrienios,antig,carrera,nDom,dom,peligro,noct,tipoNoct,nFest,fest,nEsp,festEsp,iteDom,iteFest,iteEsp,dev,prorrata,baseCot,irpfPct,irpf,ssrg,ssdfp,mei,ded,liquido};
+}
+
+function renderNominaEspejo(){
+  neActualizarPeriodoDesdeReclamacion();
+  const d=recopilarDatosNominaEspejo();
+  window._neLast = d;
+  const nombre=document.getElementById('nombre-trabajador').value.trim()||'TRABAJADOR/A';
+  const rows=[];
+  const add=(cod,concepto,uds,importe,dev=0,ded=0)=>rows.push({cod,concepto,uds,importe,dev,ded});
+  add('001','1.- COTIZABLES R.G.S.S.','','','','');
+  add('010','SALARIO BASE','1',d.base,d.base,0);
+  if(d.antig>0) add('075','ANTIGÜEDAD','1',d.antig,d.antig,0);
+  if(d.nDom>0) add('650','PLUS DOMINGO TRABAJADO',String(d.nDom),49.96,d.dom,0);
+  if(d.carrera>0) add('835','PLUS CARRERA PROFESIONAL','1',d.carrera,d.carrera,0);
+  if(d.peligro>0) add('420','PLUS PELIGROSIDAD','1',d.peligro,d.peligro,0);
+  if(d.noct>0) add('430',d.tipoNoct==='completa'?'PLUS NOCTURNIDAD':'PLUS NOCTURNIDAD 1 HORA','1',d.noct,d.noct,0);
+  if(d.nFest>0) add('660','FESTIVOS TRABAJADOS',String(d.nFest),d.fest/d.nFest,d.fest,0);
+  if(d.nEsp>0) add('661','FESTIVOS ESPECIALES',String(d.nEsp),d.festEsp/d.nEsp,d.festEsp,0);
+  if(d.iteDom>0) add('670','DOMINGOS EN I.T.','',d.iteDom,d.iteDom,0);
+  if(d.iteFest>0) add('671','FESTIVOS EN I.T.','',d.iteFest,d.iteFest,0);
+  if(d.iteEsp>0) add('672','FESTIVOS ESPECIALES EN I.T.','',d.iteEsp,d.iteEsp,0);
+  add('000','RET. A CUENTA DEL I.R.P.F.','','','',d.irpf);
+  add('500','COTIZACION REGIMEN GENERAL (1)','','','',d.ssrg);
+  add('540','COTIZACION DESEMPLEO + FP (2)','','','',d.ssdfp);
+  add('550','COTIZACION MEI','','','',d.mei);
+  add('985','******* TOTAL DEVENGOS Y DEDUCCIONES','','',d.dev,d.ded);
+  let trs=rows.map(r=>`<tr class="${r.cod==='985'?'total':''}"><td>${r.cod}</td><td>${r.concepto}</td><td class="center">${r.uds||''}</td><td class="num">${typeof r.importe==='number'?neFmt(r.importe):''}</td><td class="num">${typeof r.dev==='number'?neFmt(r.dev):''}</td><td class="num">${typeof r.ded==='number'?neFmt(r.ded):''}</td></tr>`).join('');
+  const liquidoReal=neNum('ne-liquido-real',NaN);
+  const diff=!isNaN(liquidoReal)?(d.liquido-liquidoReal):null;
+  const aviso=diff!==null?`<div class="nomina-diff">Comparación con líquido real empresa: teórico ${neFmt(d.liquido)} € · empresa ${neFmt(liquidoReal)} € · diferencia ${neFmt(diff)} €</div>`:'';
+  const html=`
+  <div class="nomina-alerta">Esta es una <strong>nómina espejo orientativa</strong> para revisar conceptos y preparar reclamaciones. Usa los datos reales de la nómina de empresa para comparar.</div>
+  <div class="nomina-a4">
+    <div style="font-family:Arial,sans-serif;font-weight:bold;margin-bottom:12px">${neVal('ne-empresa','UTE LIMPIEZA HOSPITALES MADRID')}</div>
+    <div class="nomina-top"><h2>RECIBO DE HABERES Y OTROS PAGOS</h2><div class="euro-big">€</div></div>
+    <div class="nomina-boxes">
+      <div class="nomina-box">
+        <p><b>Nº AFILIACIÓN SEG. SOCIAL:</b> ${neVal('ne-naf','')}</p>
+        <p><b>N.I.F.:</b> ${neVal('ne-dni','')}</p>
+        <p><b>CAT. PROFESIONAL:</b> ${d.datos.nombre.toUpperCase()}</p>
+        <p><b>PUESTO TRABAJO:</b> .</p>
+        <p><b>F. ANTIGÜEDAD:</b> ${neDateES(d.fechaAntig)}</p>
+        <p><b>TOTAL DÍAS:</b> ${neVal('ne-dias','30')}</p>
+        <p><b>PER. LIQUIDACIÓN:</b> ${neVal('ne-periodo','')}</p>
+      </div>
+      <div class="nomina-rightbox">
+        <p><b>D./Dña.:</b> ${nombre.toUpperCase()}</p>
+        <p><b>DOMICILIO:</b> ______________________________</p>
+        <p><b>POBLACIÓN:</b> ______________________________</p>
+        <p><b>PROVINCIA:</b> Madrid</p>
+        <br><p><b>TAJO:</b> ${neVal('ne-centro','11980 HOSPITAL CLÍNICO SAN CARLOS')}</p>
+        <p><b>CENTRO:</b> ${neVal('ne-centrodir','')}</p>
+      </div>
+    </div>
+    <table class="nomina-table"><thead><tr><th>CÓDIGO</th><th>CONCEPTO</th><th>UDS</th><th>IMPORTE</th><th>DEVENGOS</th><th>DEDUCCIONES</th></tr></thead><tbody>${trs}</tbody></table>
+    <div class="nomina-footergrid"><div><b>TRANSFERIDO A:</b><br>${neVal('ne-cuenta','')}</div><div><b>BASE I.R.P.F.</b><br>${neFmt(d.dev)}</div><div><b>% I.R.P.F.</b><br>${(d.irpfPct*100).toFixed(2).replace('.',',')}</div><div><b>LÍQUIDO TOTAL A PERCIBIR</b><br><span style="font-size:15px;font-weight:bold">${neFmt(d.liquido)}</span></div></div>
+    <div class="nomina-bases">
+      <div><div class="mini-title">REMUNERACIÓN<br>TOTAL COTIZABLE</div><div class="mini-val">${neFmt(d.dev)}</div></div>
+      <div><div class="mini-title">PRORRATA PAGAS<br>EXTRAS</div><div class="mini-val">${neFmt(d.prorrata)}</div></div>
+      <div><div class="mini-title">BASE TOTAL</div><div class="mini-val">${neFmt(d.baseCot)}</div></div>
+      <div><div class="mini-title">BASE COTIZACIÓN<br>REG. GENERAL</div><div class="mini-val">${neFmt(d.baseCot)}<br>4,7%</div></div>
+      <div><div class="mini-title">BASE DESEMPLEO<br>Y F.P.</div><div class="mini-val">${neFmt(d.baseCot)}<br>1,65%</div></div>
+    </div>
+    <div style="margin-top:12px;font-size:10px">RECIBÍ: __________________________</div>
+  </div>${aviso}`;
+  document.getElementById('nomina-espejo-render').innerHTML=html;
+}
+
+
+
+
+
+function limpiarHTMLParaImprimirUGT(clonado) {
+  const quitar = clonado.querySelectorAll('button, input, select, textarea, #recl-config, #recl-actions, .irpf-tabs, #ugt-print-actions');
+  quitar.forEach(e => e.remove());
+  return clonado.innerHTML;
+}
+
+function abrirImpresionUGT(titulo, contenido) {
+  const w = window.open('', '_blank', 'width=950,height=750');
+  if (!w) {
+    alert('El navegador ha bloqueado la ventana de impresión. Permite ventanas emergentes.');
+    return;
+  }
+  const css = ''
+    + 'body{font-family:Arial,Helvetica,sans-serif;color:#111;background:#fff;padding:22px;font-size:13px;line-height:1.45;}'
+    + '.cabecera{border-bottom:3px solid #c0000c;padding-bottom:10px;margin-bottom:18px;}'
+    + '.cabecera strong{color:#c0000c;font-size:18px;}'
+    + '.card,.resultado-card,#reclamacion-section{background:#fff!important;color:#000!important;border:1px solid #999!important;border-radius:0!important;padding:14px!important;margin-bottom:14px!important;box-shadow:none!important;}'
+    + '.card-title{color:#8b0000!important;border-bottom:2px solid #8b0000!important;padding-bottom:6px;margin-bottom:10px;font-weight:bold;text-transform:uppercase;}'
+    + '.desglose-fila{display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:6px 0;gap:20px;}'
+    + '.desglose-fila .concepto{flex:1;color:#111!important;}'
+    + '.desglose-fila .importe{font-weight:bold;color:#111!important;white-space:nowrap;}'
+    + '.resultado-neto{font-size:28px;font-weight:bold;color:#111!important;}'
+    + 'table{width:100%;border-collapse:collapse;margin:10px 0;}'
+    + 'th,td{border:1px solid #999;padding:6px;text-align:left;}'
+    + 'th{background:#f0f0f0;}'
+    + '.nomina-a4{background:#fff!important;color:#111!important;width:100%;max-width:860px;margin:0 auto;padding:16px;font-family:Courier New,monospace;font-size:11px;line-height:1.25;border:1px solid #111!important;}'
+    + '.nomina-top{text-align:center;font-family:Arial,sans-serif;margin-bottom:10px}.nomina-top h2{font-size:15px;margin:8px 0 4px}.euro-big{font-size:34px;font-weight:bold;line-height:1;margin:4px 0}'
+    + '.nomina-boxes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}.nomina-box,.nomina-rightbox{border:1px solid #222;padding:7px;min-height:75px}.nomina-box p,.nomina-rightbox p{margin:2px 0}'
+    + '.nomina-table{width:100%;border-collapse:collapse;border:2px solid #111;margin-top:8px}.nomina-table th,.nomina-table td{border-left:1px solid #111;border-right:1px solid #111;padding:4px 5px}.nomina-table th{border-bottom:2px solid #111;text-align:center;font-weight:bold}.nomina-table td.num{text-align:right;white-space:nowrap}.nomina-table td.center{text-align:center}.nomina-table tr.total td{border-top:1px solid #111;font-weight:bold}'
+    + '.nomina-footergrid{display:grid;grid-template-columns:1.6fr .9fr .7fr 1fr;gap:0;margin-top:0;border:2px solid #111;border-top:0}.nomina-footergrid>div{border-right:1px solid #111;padding:6px;text-align:center}'
+    + '.nomina-bases{display:grid;grid-template-columns:repeat(5,1fr);border:2px solid #111;border-top:0}.nomina-bases>div{border-right:1px solid #111;padding:5px;text-align:center}.mini-title{font-size:9px;font-weight:bold}.mini-val{font-size:11px;margin-top:4px}.nomina-alerta,.nomina-diff{border:1px solid #999;padding:8px;margin:8px 0;background:#f7f7f7;color:#111}'
+    + '.recl-firma{margin-top:55px!important;padding-top:25px!important;border-top:1px solid #ddd!important;}'
+    + '.recl-firma .firma-cols{display:grid!important;grid-template-columns:1fr 1fr!important;column-gap:120px!important;width:100%!important;margin-top:55px!important;align-items:start!important;}'
+    + '.recl-firma .firma-box{border:none!important;border-radius:0!important;padding:0!important;min-height:150px!important;}'
+    + '.recl-firma .firma-box:first-child{text-align:left!important;}'
+    + '.recl-firma .firma-box:last-child{text-align:right!important;}'
+    + '.recl-firma .firma-label{margin-top:85px!important;border-top:1.5px solid #000!important;padding-top:10px!important;color:#000!important;font-weight:700!important;text-transform:none!important;}'
+    + '.recl-firma .firma-sub{border-top:none!important;margin-top:6px!important;padding-top:0!important;color:#000!important;font-size:12px!important;}'
+
+    + '.recl-firma{margin-top:55px!important;padding-top:25px!important;border-top:1px solid #ddd!important;}'
+    + '.recl-firma .firma-cols{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;column-gap:180px!important;width:100%!important;margin-top:70px!important;align-items:start!important;}'
+    + '.recl-firma .firma-box{border:none!important;padding:0!important;min-height:150px!important;}'
+    + '.recl-firma .firma-box:first-child{text-align:left!important;justify-self:start!important;width:100%!important;}'
+    + '.recl-firma .firma-box:last-child{text-align:right!important;justify-self:end!important;width:100%!important;}'
+    + '.recl-firma .firma-label{margin-top:85px!important;border-top:1.5px solid #000!important;padding-top:10px!important;color:#000!important;font-weight:700!important;text-transform:none!important;}'
+    + '.recl-firma .firma-sub{border-top:none!important;color:#000!important;margin-top:6px!important;padding-top:0!important;font-size:12px!important;}'
+
+    + '@page{size:A4;margin:12mm;}';
+
+  w.document.open();
+  w.document.write('<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>' + titulo + '</title><style>' + css + '</style></head><body>');
+  w.document.write('<div class="cabecera"><strong>UGT · Sección Sindical Limpieza Hospital Clínico San Carlos</strong><br>Documento generado para revisión de nómina y posible reclamación.</div>');
+  w.document.write(contenido);
+  w.document.write('</body></html>');
+  w.document.close();
+  w.focus();
+  setTimeout(function(){ w.print(); }, 300);
+}
+
+function imprimirSoloConceptosUGT() {
+  if (typeof calcular === 'function') calcular();
+  const resultado = document.getElementById('resultado-card');
+  const desglose = document.getElementById('desglose-card');
+  if (!resultado || resultado.style.display === 'none' || !desglose || desglose.style.display === 'none') {
+    alert('Primero pulsa Calcular Nómina para generar los conceptos.');
+    return;
+  }
+  const bloque = document.createElement('div');
+  bloque.innerHTML = '<h2>Conceptos calculados por la aplicación</h2>';
+  bloque.appendChild(resultado.cloneNode(true));
+  bloque.appendChild(desglose.cloneNode(true));
+  abrirImpresionUGT('Conceptos calculados UGT', limpiarHTMLParaImprimirUGT(bloque));
+}
+
+function valorUGT(id) {
+  const el = document.getElementById(id);
+  if (!el) return '';
+  if (el.tagName === 'SELECT') return el.options[el.selectedIndex]?.text || el.value || '';
+  if (el.type === 'checkbox') return el.checked ? 'Sí' : 'No';
+  return el.value || '';
+}
+function filaUGT(a,b){ return '<tr><td>'+a+'</td><td style="text-align:right;font-weight:600;">'+(b||'No indicado')+'</td></tr>'; }
+
+function imprimirDatosYDescuentosUGT() {
+  if (typeof calcular === 'function') calcular();
+  if (typeof renderNominaEspejo === 'function') renderNominaEspejo();
+  const d = window._neLast || null;
+  const euro = n => (Number(n)||0).toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €';
+  let h = '<h2>Datos introducidos en la aplicación</h2><table><tbody>';
+  ['nombre-trabajador','categoria','fecha-antiguedad','tipo-nocturnidad','carrera','domingos','festivos-normales','festivos-librar','ite-domingos','ite-festivos','recl-periodo','ne-empresa','ne-dni','ne-naf','ne-periodo','ne-cuenta','ne-irpf','ne-liquido-real'].forEach(id=>{
+    h += filaUGT(id, valorUGT(id));
+  });
+  h += '</tbody></table>';
+  h += '<h2>Qué falta reclamar</h2><p>' + (valorUGT('recl-que-falta') || valorUGT('recl-motivo-extra') || 'No indicado') + '</p>';
+  if (d) {
+    h += '<h2>Descuentos y bases calculadas</h2><table><tbody>';
+    h += filaUGT('Total devengos calculados', euro(d.dev));
+    h += filaUGT('Base cotización', euro(d.baseCot));
+    h += filaUGT('Retención IRPF', euro(d.irpf));
+    h += filaUGT('Cotización Régimen General', euro(d.ssrg));
+    h += filaUGT('Desempleo + Formación Profesional', euro(d.ssdfp));
+    h += filaUGT('MEI', euro(d.mei));
+    h += filaUGT('Total deducciones', euro(d.ded));
+    h += filaUGT('Líquido calculado', euro(d.liquido));
+    h += '</tbody></table>';
+  }
+  abrirImpresionUGT('Datos introducidos y descuentos UGT', h);
+}
+
+function imprimirSoloReclamacionUGT() {
+  if (typeof calcular === 'function') calcular();
+  if (typeof renderNominaEspejo === 'function') renderNominaEspejo();
+  if (typeof generarReclamacion === 'function') generarReclamacion();
+  if (typeof renderReclamacion === 'function') renderReclamacion();
+
+  const recl = document.getElementById('reclamacion-section');
+  const nomina = document.getElementById('nomina-espejo-render');
+  if (!recl) {
+    alert('No se encuentra la reclamación.');
+    return;
+  }
+  recl.style.display = 'block';
+
+  const bloque = document.createElement('div');
+  bloque.appendChild(recl.cloneNode(true));
+
+  const firmas = bloque.querySelector('.recl-firma .firma-cols');
+  if (firmas) {
+    firmas.setAttribute('style', 'display:grid !important; grid-template-columns:1fr 1fr !important; column-gap:180px !important; width:100% !important; margin-top:70px !important; align-items:start !important;');
+    const cajas = firmas.querySelectorAll('.firma-box');
+    if (cajas[0]) cajas[0].setAttribute('style', 'text-align:left !important; border:none !important; padding:0 !important; min-height:150px !important; width:100% !important;');
+    if (cajas[1]) cajas[1].setAttribute('style', 'text-align:right !important; border:none !important; padding:0 !important; min-height:150px !important; width:100% !important;');
+  }
+
+
+  if (nomina && nomina.innerText.trim().length > 20) {
+    const salto = document.createElement('div');
+    salto.style.pageBreakBefore = 'always';
+    salto.innerHTML = '<h2>ANEXO I · Nómina real/generada por la aplicación</h2>';
+    bloque.appendChild(salto);
+    bloque.appendChild(nomina.cloneNode(true));
+  } else {
+    const aviso = document.createElement('p');
+    aviso.innerHTML = '<strong>Nota:</strong> no se encontró la nómina generada. Pulsa primero el botón de generar nómina espejo/comparar.';
+    bloque.appendChild(aviso);
+  }
+
+  abrirImpresionUGT('Reclamación UGT con nómina real/generada', limpiarHTMLParaImprimirUGT(bloque));
+}
+
+
+
+(function repararNominaEspejoUGT(){
+  function asegurarBotonYSeccionNomina(){
+    if(!document.getElementById('btn-nomina-espejo')){
+      const btn=document.createElement('button');
+      btn.id='btn-nomina-espejo';
+      btn.className='btn-nomina-espejo btn-calcular';
+      btn.textContent='📄 Generar Nómina Espejo / Comparar';
+      btn.onclick=function(){ generarNominaEspejo(); };
+      const imp=document.querySelector('.btn-imprimir') || document.querySelector('#btn-reclamacion') || document.querySelector('footer');
+      if(imp) imp.insertAdjacentElement('beforebegin', btn);
+      else document.body.appendChild(btn);
+    }
+
+    if(!document.getElementById('nomina-espejo-section')){
+      const sec=document.createElement('div');
+      sec.id='nomina-espejo-section';
+      sec.className='card';
+      sec.style.display='none';
+      sec.innerHTML=`
+        <div class="nomina-config">
+          <h3>📄 Datos para nómina espejo</h3>
+          <div class="grid-2" style="margin-bottom:12px">
+            <div><label>Empresa</label><input id="ne-empresa" value="UTE LIMPIEZA HOSPITALES MADRID"></div>
+            <div><label>CIF / CCC</label><input id="ne-cif" value="U44791150 · 28261569281"></div>
+            <div><label>Cód. Seguridad Social empresa</label><input id="ne-ss-empresa" value="280383045617"></div>
+            <div><label>DNI trabajador/a</label><input id="ne-dni" placeholder="Ej: 12345678Z"></div>
+            <div><label>Nº Afiliación Seguridad Social</label><input id="ne-naf" placeholder="Ej: 281234567890"></div>
+            <div><label>Periodo de liquidación</label><input id="ne-periodo" placeholder="Ej: Del 01 al 31 Julio 2026"></div>
+            <div><label>Días</label><input id="ne-dias" type="number" value="30"></div>
+            <div><label>Centro de trabajo</label><input id="ne-centro" value="11980 HOSPITAL CLÍNICO SAN CARLOS"></div>
+            <div><label>Domicilio centro</label><input id="ne-centrodir" value="Profesor Lagos s/n · Madrid"></div>
+            <div><label>Cuenta bancaria</label><input id="ne-cuenta" value="ES1200000000000000000000"></div>
+            <div><label>IRPF real de nómina (%)</label><input id="ne-irpf" type="number" step="0.01" value="18.48"></div>
+            <div><label>Prorrata pagas extras real</label><input id="ne-prorrata" type="number" step="0.01" placeholder="Se calcula sola si se deja vacío"></div>
+            <div><label>Líquido real cobrado empresa</label><input id="ne-liquido-real" type="number" step="0.01" placeholder="Opcional para diferencia"></div>
+          </div>
+          <button class="btn-calcular" style="margin-top:0" onclick="renderNominaEspejo()">🔄 Actualizar Nómina Espejo</button>
+        </div>
+        <div id="nomina-espejo-render"></div>`;
+      const btn=document.getElementById('btn-nomina-espejo');
+      btn.insertAdjacentElement('afterend', sec);
+    }
+  }
+
+  window.generarNominaEspejo = function(){
+    asegurarBotonYSeccionNomina();
+    const sec=document.getElementById('nomina-espejo-section');
+    if(sec) sec.style.display='block';
+    if(typeof calcular === 'function') calcular();
+    neActualizarPeriodoDesdeReclamacion();
+    renderNominaEspejo();
+    sec?.scrollIntoView({behavior:'smooth', block:'start'});
+  };
+
+  const renderOriginal = window.renderNominaEspejo;
+  window.renderNominaEspejo = function(){
+    asegurarBotonYSeccionNomina();
+    if(typeof renderOriginal === 'function'){
+      try {
+        const r = renderOriginal.apply(this, arguments);
+        const cont=document.getElementById('nomina-espejo-render');
+        if(cont && cont.innerText.trim().length>20){
+          if(!cont.innerText.includes('280383045617')){
+            const p=document.createElement('p');
+            p.innerHTML='<strong>Cód. Seguridad Social empresa:</strong> 280383045617';
+            cont.prepend(p);
+          }
+          return r;
+        }
+      } catch(e) {
+        console.warn('Render original nómina espejo falló, usando render reparado', e);
+      }
+    }
+
+    // Render mínimo seguro si el original no pinta nada
+    const cont=document.getElementById('nomina-espejo-render');
+    if(!cont) return;
+    const nombre=document.getElementById('nombre-trabajador')?.value || 'Trabajador/a';
+    const categoria=document.getElementById('categoria')?.selectedOptions?.[0]?.text || '';
+    const neto=document.getElementById('neto-display')?.innerText || '';
+    const desglose=document.getElementById('desglose-contenido')?.innerHTML || '';
+    cont.innerHTML = `
+      <div class="nomina-a4">
+        <div class="nomina-top">
+          <h2>RECIBO INDIVIDUAL JUSTIFICATIVO DEL PAGO DE SALARIOS</h2>
+          <p><strong>${document.getElementById('ne-empresa')?.value || 'UTE LIMPIEZA HOSPITALES MADRID'}</strong></p>
+          <p><strong>CIF / CCC:</strong> ${document.getElementById('ne-cif')?.value || 'U44791150 · 28261569281'}</p>
+          <p><strong>Cód. Seguridad Social empresa:</strong> ${document.getElementById('ne-ss-empresa')?.value || '280383045617'}</p>
+          <p><strong>Centro:</strong> ${document.getElementById('ne-centro')?.value || '11980 HOSPITAL CLÍNICO SAN CARLOS'}</p>
+          <p><strong>Domicilio centro:</strong> ${document.getElementById('ne-centrodir')?.value || 'Profesor Lagos s/n · Madrid'}</p>
+        </div>
+        <div class="nomina-boxes">
+          <div class="nomina-box">
+            <p><strong>Trabajador/a:</strong> ${nombre}</p>
+            <p><strong>DNI:</strong> ${document.getElementById('ne-dni')?.value || ''}</p>
+            <p><strong>Nº Afiliación S.S.:</strong> ${document.getElementById('ne-naf')?.value || ''}</p>
+            <p><strong>Categoría:</strong> ${categoria}</p>
+          </div>
+          <div class="nomina-rightbox">
+            <p><strong>Periodo:</strong> ${document.getElementById('ne-periodo')?.value || ''}</p>
+            <p><strong>Días:</strong> ${document.getElementById('ne-dias')?.value || '30'}</p>
+            <p><strong>Cuenta:</strong> ${document.getElementById('ne-cuenta')?.value || ''}</p>
+          </div>
+        </div>
+        <div class="nomina-diff"><strong>Líquido calculado:</strong> ${neto}</div>
+        <div>${desglose}</div>
+      </div>`;
+  };
+
+  document.addEventListener('DOMContentLoaded', asegurarBotonYSeccionNomina);
+  if(document.readyState !== 'loading') asegurarBotonYSeccionNomina();
+})();
+
+</script>
+
+
+<!-- Datos ejemplo ficticios -->
+<!-- Miguel · Oscar · David · Angela · Carmen · Esther · Maribel -->
+<script>
+window.imprimirReclamacionSolo=function(){ imprimirReclamacionDosCopiasGeneralUGT(false); };
+window.imprimirSoloReclamacionUGT=function(){ imprimirReclamacionDosCopiasGeneralUGT(true); };
+</script>
